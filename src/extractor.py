@@ -56,20 +56,73 @@ def _call_ollama(
     host: str | None = None,
 ) -> str:
     base_url = (host or os.getenv("OLLAMA_HOST") or "http://localhost:11434").rstrip("/")
-    response = requests.post(
-        f"{base_url}/api/generate",
-        json={
-            "model": model,
-            "prompt": prompt,
-            "stream": False,
-            "format": "json",
-            "options": {"temperature": temperature},
-        },
-        timeout=timeout_seconds,
-    )
-    response.raise_for_status()
-    payload = response.json()
-    return str(payload.get("response", ""))
+    try:
+        response = requests.post(
+            f"{base_url}/api/generate",
+            json={
+                "model": model,
+                "prompt": prompt,
+                "stream": False,
+                "format": "json",
+                "options": {"temperature": temperature},
+            },
+            timeout=timeout_seconds,
+        )
+        response.raise_for_status()
+    except requests.RequestException as exc:
+        raise RuntimeError(
+            f"Unable to reach Ollama at {base_url}. Please start Ollama and install the selected model."
+        ) from exc
+
+    try:
+        payload = response.json()
+    except ValueError as exc:
+        raise RuntimeError("Ollama returned a non-JSON response.") from exc
+
+    response_text = str(payload.get("response", "")).strip()
+    if not response_text:
+        raise RuntimeError("Ollama returned an empty extraction response.")
+    return response_text
+
+
+def _has_meaningful_extraction(extraction: dict[str, Any]) -> bool:
+    for key, value in extraction.items():
+        if key == "motivation_letter_required":
+            if value in (True, False):
+                return True
+            continue
+        if isinstance(value, list):
+            if value:
+                return True
+            continue
+        if isinstance(value, str):
+            if value.strip():
+                return True
+            continue
+        if value not in (None, ""):
+            return True
+    return False
+
+
+def _extract_with_model(
+    prompt: str,
+    model: str,
+    timeout_seconds: int,
+    temperature: float,
+) -> dict[str, Any]:
+    response_text = _call_ollama(prompt, model, timeout_seconds, temperature)
+    try:
+        parsed = json.loads(response_text)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError("returned invalid JSON") from exc
+
+    if not isinstance(parsed, dict):
+        raise RuntimeError("returned JSON, but not as an object")
+
+    extraction = normalize_extraction(parsed)
+    if not _has_meaningful_extraction(extraction):
+        raise RuntimeError("returned an empty extraction")
+    return extraction
 
 
 def extract_job_post(
@@ -77,6 +130,7 @@ def extract_job_post(
     source_platform: str | None = None,
     job_url: str | None = None,
     model: str = "qwen2.5:7b",
+    fallback_models: list[str] | None = None,
     timeout_seconds: int = 120,
     temperature: float = 0.2,
 ) -> dict[str, Any]:
@@ -85,13 +139,23 @@ def extract_job_post(
         raise ValueError("Job post text is empty.")
 
     prompt = build_extraction_prompt(cleaned_text)
-    try:
-        response_text = _call_ollama(prompt, model, timeout_seconds, temperature)
-        parsed = json.loads(response_text)
-    except Exception:
-        parsed = {}
+    candidate_models: list[str] = []
+    for candidate in [model, *(fallback_models or [])]:
+        if candidate and candidate not in candidate_models:
+            candidate_models.append(candidate)
 
-    extraction = normalize_extraction(parsed)
+    last_error: str | None = None
+    for candidate_model in candidate_models:
+        try:
+            extraction = _extract_with_model(prompt, candidate_model, timeout_seconds, temperature)
+            break
+        except RuntimeError as exc:
+            last_error = f"{candidate_model} {exc}"
+    else:
+        raise RuntimeError(
+            "All LLM extraction attempts failed: " + (last_error or "no model response was available.")
+        )
+
     if source_platform:
         extraction["source_platform"] = source_platform
     if job_url:

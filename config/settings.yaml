@@ -6,11 +6,10 @@ app:
 
 llm:
   provider: "ollama"
-  model: "qwen2.5:7b"
+  model: "qwen3:4b"
   fallback_models:
-    - "llama3.1:8b"
-    - "mistral:7b"
-    - "gemma2:9b"
+    - "llama3.2:latest"
+    - "qwen2.5:7b"
   timeout_seconds: 120
   temperature: 0.2
   require_review_before_save: true
@@ -25,8 +24,8 @@ exports:
   timestamp_filenames: true
 
 google_sheets:
-  enabled: false
-  spreadsheet_id: ""
+  enabled: true
+  spreadsheet_id: "1eRswxeZ83oMTzIR9ZXtqwkFZuo1duA1RgqqJtdVc5i4/edit?hl=fr&pli=1&gid=0#gid=0"
   worksheet_name: "Applications"
   credentials_path: "config/google_service_account.json"
   sqlite_is_source_of_truth: true

@@ -9,6 +9,8 @@ from src.constants import (
     APPLICATION_CHANNEL_VALUES,
     CONTRACT_TYPE_VALUES,
     CV_KEYS,
+    EXTRACTION_LIST_FIELDS,
+    EXTRACTION_SCHEMA_KEYS,
     SOURCE_PLATFORM_VALUES,
     STATUS_VALUES,
 )
@@ -27,6 +29,98 @@ def bootstrap() -> dict[str, dict[str, Any]]:
 def load_applications(configs: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
     db_path = configs["settings"].get("database", {}).get("path", "database/applications.db")
     return database.list_applications(db_path=db_path)
+
+
+def _parse_review_list(value: Any) -> list[str]:
+    if isinstance(value, (list, tuple, set)):
+        return [str(item).strip() for item in value if str(item).strip()]
+
+    lines = []
+    for line in str(value or "").splitlines():
+        cleaned = line.strip().lstrip("-* ").strip()
+        if cleaned:
+            lines.append(cleaned)
+    return lines
+
+
+def _list_to_review_text(value: Any) -> str:
+    return "\n".join(_parse_review_list(value))
+
+
+def _coerce_motivation_letter_required(value: Any) -> bool | None:
+    if value is True:
+        return True
+    if value is False:
+        return False
+    if value is None:
+        return None
+
+    normalized = str(value or "").strip().lower()
+    if normalized in {"yes", "true", "required"}:
+        return True
+    if normalized in {"no", "false", "not required"}:
+        return False
+    return None
+
+
+def build_application_from_reviewed_extraction(
+    reviewed_extraction: dict[str, Any],
+    raw_job_description: str,
+    status: str = "To Apply",
+    notes: str = "",
+) -> dict[str, Any]:
+    application: dict[str, Any] = {}
+    for key in EXTRACTION_SCHEMA_KEYS:
+        value = reviewed_extraction.get(key, "")
+        if key in EXTRACTION_LIST_FIELDS:
+            application[key] = _parse_review_list(value)
+        elif key == "motivation_letter_required":
+            application[key] = _coerce_motivation_letter_required(value)
+        else:
+            application[key] = "" if value is None else str(value).strip()
+
+    application["raw_job_description"] = raw_job_description.strip()
+    application["status"] = status or "To Apply"
+    application["notes"] = notes.strip()
+    return application
+
+
+def _store_pending_extraction(extraction: dict[str, Any], raw_text: str) -> None:
+    st.session_state["pending_job_extraction"] = extraction
+    st.session_state["pending_job_extraction_raw_text"] = raw_text
+    st.session_state["pending_job_extraction_version"] = (
+        st.session_state.get("pending_job_extraction_version", 0) + 1
+    )
+
+
+def _clear_pending_extraction() -> None:
+    for key in (
+        "pending_job_extraction",
+        "pending_job_extraction_raw_text",
+        "pending_job_extraction_version",
+    ):
+        st.session_state.pop(key, None)
+
+
+def _set_extraction_notice(level: str, message: str) -> None:
+    st.session_state["job_extraction_notice"] = {"level": level, "message": message}
+
+
+def _review_text(pending_extraction: dict[str, Any], key: str) -> str:
+    value = pending_extraction.get(key, "")
+    return "" if value is None else str(value)
+
+
+def _run_extraction(raw_text: str, settings: dict[str, Any]) -> None:
+    llm_settings = settings.get("llm", {})
+    extraction = extractor.extract_job_post(
+        raw_text,
+        model=llm_settings.get("model", "qwen2.5:7b"),
+        fallback_models=list(llm_settings.get("fallback_models", [])),
+        timeout_seconds=int(llm_settings.get("timeout_seconds", 120)),
+        temperature=float(llm_settings.get("temperature", 0.2)),
+    )
+    _store_pending_extraction(extraction, raw_text)
 
 
 def render_dashboard(configs: dict[str, dict[str, Any]]) -> None:
@@ -59,7 +153,7 @@ def render_dashboard(configs: dict[str, dict[str, Any]]) -> None:
         }
         for item in applications[:10]
     ]
-    st.dataframe(recent_rows, use_container_width=True, hide_index=True)
+    st.dataframe(recent_rows, width="stretch", hide_index=True)
 
 
 def render_add_job(configs: dict[str, dict[str, Any]]) -> None:
@@ -109,19 +203,263 @@ def render_add_job(configs: dict[str, dict[str, Any]]) -> None:
 
     st.divider()
     st.subheader("Job post extraction")
-    raw_text = st.text_area("Paste a job post for local extraction", height=180)
+    notice = st.session_state.pop("job_extraction_notice", None)
+    if notice:
+        getattr(st, notice["level"])(notice["message"])
+
+    raw_text = st.text_area(
+        "Paste a job post for local extraction",
+        height=180,
+        key="job_extraction_raw_text",
+    )
     if st.button("Analyze with local model"):
-        llm_settings = settings.get("llm", {})
         try:
-            extraction = extractor.extract_job_post(
-                raw_text,
-                model=llm_settings.get("model", "qwen2.5:7b"),
-                timeout_seconds=int(llm_settings.get("timeout_seconds", 120)),
-                temperature=float(llm_settings.get("temperature", 0.2)),
-            )
-            st.json(extraction)
-        except ValueError as exc:
+            _run_extraction(raw_text, settings)
+        except (RuntimeError, ValueError) as exc:
             st.warning(str(exc))
+
+    pending_extraction = st.session_state.get("pending_job_extraction")
+    if pending_extraction:
+        render_extraction_review(configs, pending_extraction, db_path, settings)
+
+
+def render_extraction_review(
+    configs: dict[str, dict[str, Any]],
+    pending_extraction: dict[str, Any],
+    db_path: str,
+    settings: dict[str, Any],
+) -> None:
+    version = st.session_state.get("pending_job_extraction_version", 0)
+    raw_job_description = st.session_state.get("pending_job_extraction_raw_text", "")
+
+    st.subheader("Review extracted job")
+    with st.form(f"extraction_review_form_{version}", clear_on_submit=False):
+        company_col, role_col = st.columns(2)
+        company_name = company_col.text_input(
+            "Company name",
+            value=_review_text(pending_extraction, "company_name"),
+            key=f"review_company_name_{version}",
+        )
+        job_title = role_col.text_input(
+            "Job title",
+            value=_review_text(pending_extraction, "job_title"),
+            key=f"review_job_title_{version}",
+        )
+
+        company_size = company_col.text_input(
+            "Company size",
+            value=_review_text(pending_extraction, "company_size"),
+            key=f"review_company_size_{version}",
+        )
+        job_domain = role_col.text_input(
+            "Job domain",
+            value=_review_text(pending_extraction, "job_domain"),
+            key=f"review_job_domain_{version}",
+        )
+
+        company_industry = company_col.text_input(
+            "Company industry",
+            value=_review_text(pending_extraction, "company_industry"),
+            key=f"review_company_industry_{version}",
+        )
+        seniority_level = role_col.text_input(
+            "Seniority level",
+            value=_review_text(pending_extraction, "seniority_level"),
+            key=f"review_seniority_level_{version}",
+        )
+
+        company_website = company_col.text_input(
+            "Company website",
+            value=_review_text(pending_extraction, "company_website"),
+            key=f"review_company_website_{version}",
+        )
+        contract_type = role_col.text_input(
+            "Contract type",
+            value=_review_text(pending_extraction, "contract_type"),
+            key=f"review_contract_type_{version}",
+        )
+
+        company_linkedin = company_col.text_input(
+            "Company LinkedIn",
+            value=_review_text(pending_extraction, "company_linkedin"),
+            key=f"review_company_linkedin_{version}",
+        )
+        job_length = role_col.text_input(
+            "Job length",
+            value=_review_text(pending_extraction, "job_length"),
+            key=f"review_job_length_{version}",
+        )
+
+        career_page_url = company_col.text_input(
+            "Career page URL",
+            value=_review_text(pending_extraction, "career_page_url"),
+            key=f"review_career_page_url_{version}",
+        )
+        salary = role_col.text_input(
+            "Salary",
+            value=_review_text(pending_extraction, "salary"),
+            key=f"review_salary_{version}",
+        )
+
+        location_col, tracking_col = st.columns(2)
+        location = location_col.text_input(
+            "Location",
+            value=_review_text(pending_extraction, "location"),
+            key=f"review_location_{version}",
+        )
+        source_platform = tracking_col.text_input(
+            "Source platform",
+            value=_review_text(pending_extraction, "source_platform"),
+            key=f"review_source_platform_{version}",
+        )
+        remote_policy = location_col.text_input(
+            "Remote policy",
+            value=_review_text(pending_extraction, "remote_policy"),
+            key=f"review_remote_policy_{version}",
+        )
+        application_channel = tracking_col.text_input(
+            "Application channel",
+            value=_review_text(pending_extraction, "application_channel"),
+            key=f"review_application_channel_{version}",
+        )
+        relocation_required = location_col.text_input(
+            "Relocation required",
+            value=_review_text(pending_extraction, "relocation_required"),
+            key=f"review_relocation_required_{version}",
+        )
+        job_url = tracking_col.text_input(
+            "Job URL",
+            value=_review_text(pending_extraction, "job_url"),
+            key=f"review_job_url_{version}",
+        )
+
+        detected_language = st.text_input(
+            "Detected language",
+            value=_review_text(pending_extraction, "detected_language"),
+            key=f"review_detected_language_{version}",
+        )
+        motivation_options = {
+            "Unknown": None,
+            "Yes": True,
+            "No": False,
+        }
+        motivation_value = pending_extraction.get("motivation_letter_required")
+        motivation_label = next(
+            (
+                label
+                for label, option_value in motivation_options.items()
+                if option_value is motivation_value
+            ),
+            "Unknown",
+        )
+        motivation_letter_required = st.selectbox(
+            "Motivation letter required",
+            tuple(motivation_options),
+            index=tuple(motivation_options).index(motivation_label),
+            key=f"review_motivation_letter_required_{version}",
+        )
+
+        key_responsibilities = st.text_area(
+            "Key responsibilities",
+            value=_list_to_review_text(pending_extraction.get("key_responsibilities", [])),
+            height=120,
+            key=f"review_key_responsibilities_{version}",
+        )
+        required_skills = st.text_area(
+            "Required skills",
+            value=_list_to_review_text(pending_extraction.get("required_skills", [])),
+            height=100,
+            key=f"review_required_skills_{version}",
+        )
+        preferred_qualifications = st.text_area(
+            "Preferred qualifications",
+            value=_list_to_review_text(pending_extraction.get("preferred_qualifications", [])),
+            height=100,
+            key=f"review_preferred_qualifications_{version}",
+        )
+        reviewed_raw_job_description = st.text_area(
+            "Raw job description",
+            value=raw_job_description,
+            height=220,
+            key=f"review_raw_job_description_{version}",
+        )
+        notes = st.text_area("Notes", height=100, key=f"review_notes_{version}")
+
+        status = st.selectbox(
+            "Status",
+            STATUS_VALUES,
+            index=STATUS_VALUES.index("To Apply"),
+            key=f"review_status_{version}",
+        )
+
+        create_col, retry_col, cancel_col = st.columns(3)
+        create_clicked = create_col.form_submit_button("Create application")
+        retry_clicked = retry_col.form_submit_button("Retry extraction")
+        cancel_clicked = cancel_col.form_submit_button("Cancel")
+
+    if cancel_clicked:
+        _clear_pending_extraction()
+        _set_extraction_notice("info", "Extraction discarded.")
+        st.rerun()
+        return
+
+    if retry_clicked:
+        try:
+            _run_extraction(reviewed_raw_job_description, settings)
+            _set_extraction_notice("success", "Extraction refreshed.")
+            st.rerun()
+        except (RuntimeError, ValueError) as exc:
+            st.warning(str(exc))
+        return
+
+    if not create_clicked:
+        return
+
+    reviewed_extraction = {
+        "company_name": company_name,
+        "company_size": company_size,
+        "company_industry": company_industry,
+        "company_website": company_website,
+        "company_linkedin": company_linkedin,
+        "career_page_url": career_page_url,
+        "job_title": job_title,
+        "job_domain": job_domain,
+        "seniority_level": seniority_level,
+        "contract_type": contract_type,
+        "job_length": job_length,
+        "salary": salary,
+        "location": location,
+        "remote_policy": remote_policy,
+        "relocation_required": relocation_required,
+        "key_responsibilities": key_responsibilities,
+        "required_skills": required_skills,
+        "preferred_qualifications": preferred_qualifications,
+        "detected_language": detected_language,
+        "source_platform": source_platform,
+        "application_channel": application_channel,
+        "job_url": job_url,
+        "motivation_letter_required": motivation_options[motivation_letter_required],
+    }
+    application = build_application_from_reviewed_extraction(
+        reviewed_extraction,
+        raw_job_description=reviewed_raw_job_description,
+        status=status,
+        notes=notes,
+    )
+    recommendation = cv_matcher.recommend_cv(application, configs["documents"])
+    application.update(
+        {
+            "recommended_cv": recommendation["recommended_cv"],
+            "selected_cv": recommendation["recommended_cv"],
+            "cv_confidence_score": recommendation["confidence_score"],
+            "cv_recommendation_reason": recommendation["reason"],
+            "cv_matched_keywords": recommendation["matched_keywords"],
+        }
+    )
+    application_id = database.add_application(application, db_path=db_path)
+    _clear_pending_extraction()
+    _set_extraction_notice("success", f"Application created from extraction: {application_id}")
+    st.rerun()
 
 
 def render_tracker(configs: dict[str, dict[str, Any]]) -> None:
@@ -147,7 +485,7 @@ def render_tracker(configs: dict[str, dict[str, Any]]) -> None:
         }
         for item in applications
     ]
-    st.dataframe(rows, use_container_width=True, hide_index=True)
+    st.dataframe(rows, width="stretch", hide_index=True)
 
 
 def render_cv_matcher(configs: dict[str, dict[str, Any]]) -> None:
