@@ -1,0 +1,125 @@
+user:
+  first_name: "Sebastian"
+  last_name: "Vazquez"
+  email: "sebastian.vazquez.blue@gmail.com"
+  phone: "+33 7 81 79 47 96"
+  current_location: "Grenoble, France"
+  location_usage_rule: "Use 'Open to relocation' when possible. Use 'Grenoble, France' only when a form requires a specific location."
+  linkedin_url: "https://www.linkedin.com/in/sebastian-vazquez-0999/"
+  github_url: "https://github.com/RedsMod721"
+  portfolio_url: null
+  personal_website: null
+  personal_website_note: "No public personal website, but has worked on websites for clients."
+
+languages:
+  french: "Native"
+  spanish: "Native"
+  english: "C1"
+  open_to_learning:
+    - "Japanese"
+    - "Chinese"
+
+education:
+  - institution: "KEDGE Business School Bordeaux"
+    degree_name: "MSc Master of Science"
+    major: "Data Analytics for Business"
+    level: "Master's degree"
+    start_year: 2020
+    graduation_date: "June 2026"
+    status: "Ongoing"
+    relevant_coursework:
+      - "Marketing"
+      - "Negotiation"
+      - "Accounting"
+      - "Finance"
+      - "Management"
+      - "Law"
+      - "Ethics"
+      - "Agile management"
+      - "Human resources"
+      - "Excel"
+      - "Machine learning"
+      - "Data management and processing"
+      - "SQL"
+      - "Python"
+      - "APIs"
+      - "LLM manipulation"
+      - "Stochastic programming"
+      - "Statistics"
+      - "Simulation development"
+      - "Business development"
+      - "AI"
+
+  - institution: "University of Hull"
+    degree_name: "Bachelor of Arts with Honours"
+    major: "Business Management with Entrepreneurship"
+    level: "Bachelor's degree"
+    start_date: "January 2022"
+    graduation_date: "June 2024"
+    relevant_coursework:
+      - "International business"
+      - "Marketing"
+      - "Entrepreneurship"
+      - "Business development"
+      - "Finance"
+      - "Ethics"
+
+  - institution: "Lycee Philippine Duchesne - ITEC Boisfleury"
+    degree_name: "Baccalaureat"
+    major: "Spanish European section"
+    level: "High school"
+    graduation_date: "July 2020"
+
+work_preferences:
+  target_countries:
+    - "France"
+    - "United Kingdom"
+    - "Switzerland"
+    - "Spain"
+    - "Luxembourg"
+    - "Belgium"
+    - "Netherlands"
+    - "Northern Europe"
+    - "Italy"
+    - "Latin America"
+    - "Canada"
+    - "Japan"
+    - "China"
+    - "Mexico"
+    - "United States"
+
+  priority_cities:
+    - "Geneva"
+
+  preferred_work_mode: "Hybrid"
+
+  contract_preferences:
+    preferred:
+      - "Permanent contract"
+      - "CDI"
+    open_to:
+      - "Temporary contract"
+      - "CDD"
+      - "ESN"
+      - "Consulting company"
+    not_looking_for:
+      - "Internship"
+
+  availability: "Immediate"
+  salary_strategy: "Flexible depending on the form, role, country, company and market. Avoid giving a fixed amount unless necessary."
+  salary_private_reference: "Around 2000 EUR net/month would be a nice baseline, but should not be the default public answer."
+  work_authorization: "European passport holder through Italian citizenship. Open to visa processes for strong international opportunities."
+
+job_target_order_if_needed:
+  - "AI Consultant / AI Product"
+  - "Data Analyst / Business Analyst"
+  - "Junior Consultant / Strategy Analyst"
+  - "Marketing Analyst"
+
+motivation_letters:
+  default_language: "English"
+  allow_french: true
+  language_selection_rule: "Match the job post and company language when useful."
+  tone: "Professional, energetic, with a personal connection or short anecdote when relevant."
+  max_words: 250
+  generate_only_when_needed: true

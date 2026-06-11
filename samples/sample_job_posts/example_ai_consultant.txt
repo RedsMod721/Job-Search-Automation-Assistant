@@ -1,0 +1,7 @@
+Example AI Consulting Firm is hiring a Junior AI Consultant in Paris, France.
+
+The role supports AI transformation projects for clients. Responsibilities include analyzing business processes, preparing client presentations, identifying automation opportunities, and supporting delivery teams with practical AI use cases.
+
+Required skills include Python, SQL, communication, structured problem solving, and interest in generative AI or LLMs. Preferred qualifications include Azure AI, OpenAI API experience, Power BI, and consulting exposure.
+
+The position is a permanent contract with hybrid work. Applications should be submitted through the company career page. A motivation letter is optional.

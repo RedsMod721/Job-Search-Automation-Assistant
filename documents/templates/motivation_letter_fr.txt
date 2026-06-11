@@ -1,0 +1,10 @@
+Madame, Monsieur,
+
+Je vous adresse ma candidature pour le poste de {job_title} chez {company_name}. Mon parcours combine analyse business, resolution de problemes, et experience pratique avec les outils data et IA.
+
+Ce qui m'interesse dans cette opportunite est la possibilite de contribuer a des projets concrets tout en continuant a progresser dans un environnement exigeant. D'apres la description du poste, je vois une bonne coherence avec mon profil en {selected_cv_domain} et mon envie de relier les besoins metier a des solutions utiles et structurees.
+
+Je serais ravi d'echanger avec vous sur ma candidature.
+
+Cordialement,
+Sebastian Vazquez

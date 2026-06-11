@@ -1,0 +1,61 @@
+common_answers:
+  tell_us_about_yourself:
+    short: ""
+    medium: ""
+    long: ""
+
+  why_this_role:
+    short: ""
+    medium: ""
+    long: ""
+
+  why_this_company:
+    short: ""
+    medium: ""
+    long: ""
+
+  why_should_we_hire_you:
+    short: ""
+    medium: ""
+    long: ""
+
+  main_strengths:
+    short: ""
+    medium: ""
+    long: ""
+
+  technical_skills:
+    short: ""
+    medium: ""
+    long: ""
+
+  soft_skills:
+    short: ""
+    medium: ""
+    long: ""
+
+default_answers:
+  availability: "I am available to start immediately."
+
+  salary_expectations: "I am flexible and open to discussing compensation depending on the role, responsibilities, location and overall package."
+
+  relocation: "I am open to relocation for the right opportunity."
+
+  current_location_when_required: "Grenoble, France"
+
+  work_authorization: "I hold a European passport through Italian citizenship and am open to visa processes for strong international opportunities."
+
+  languages: "French and Spanish are my native languages, and I have a C1 level in English."
+
+generation_rules:
+  salary:
+    prefer_flexible_answer: true
+    ask_user_if_exact_number_required: true
+
+  location:
+    prefer_open_to_relocation: true
+    use_grenoble_if_current_city_required: true
+
+  internship:
+    user_is_not_looking_for_internship_by_default: true
+    ask_user_before_using_internship_duration: true

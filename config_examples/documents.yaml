@@ -1,0 +1,85 @@
+documents:
+  cvs:
+    marketing:
+      label: "Marketing CV"
+      file_name: "CV_Sebastian.Vazquez_Anglais-Marketing.pdf"
+      file_path: "documents/cvs/CV_Sebastian.Vazquez_Anglais-Marketing.pdf"
+      domain_keywords:
+        - "marketing"
+        - "digital marketing"
+        - "SEO"
+        - "Google Ads"
+        - "campaign"
+        - "customer engagement"
+        - "consumer behavior"
+        - "CRM"
+        - "content automation"
+        - "marketing analytics"
+        - "A/B testing"
+        - "keyword optimization"
+
+    consulting:
+      label: "Consulting CV"
+      file_name: "CV_Sebastian.Vazquez_Anglais-Consulting.pdf"
+      file_path: "documents/cvs/CV_Sebastian.Vazquez_Anglais-Consulting.pdf"
+      domain_keywords:
+        - "consulting"
+        - "strategy"
+        - "business transformation"
+        - "process optimization"
+        - "stakeholder"
+        - "client advisory"
+        - "business analyst"
+        - "project management"
+        - "operations improvement"
+        - "structured problem-solving"
+        - "client-facing"
+
+    data_analysis:
+      label: "Data Analysis / Data Science CV"
+      file_name: "CV_Sebastian.Vazquez_Anglais-DataScience.pdf"
+      file_path: "documents/cvs/CV_Sebastian.Vazquez_Anglais-DataScience.pdf"
+      domain_keywords:
+        - "data analyst"
+        - "business analyst"
+        - "business intelligence"
+        - "data science"
+        - "SQL"
+        - "Python"
+        - "Power BI"
+        - "Tableau"
+        - "dashboard"
+        - "reporting"
+        - "machine learning"
+        - "statistical analysis"
+        - "predictive analytics"
+        - "data visualization"
+        - "data pipeline"
+        - "ETL"
+
+    ai:
+      label: "AI CV"
+      file_name: "CV_Sebastian.Vazquez_Anglais-AI.pdf"
+      file_path: "documents/cvs/CV_Sebastian.Vazquez_Anglais-AI.pdf"
+      domain_keywords:
+        - "AI"
+        - "artificial intelligence"
+        - "GenAI"
+        - "generative AI"
+        - "LLM"
+        - "OpenAI API"
+        - "automation"
+        - "machine learning"
+        - "Azure AI"
+        - "AI product"
+        - "AI strategy"
+        - "process automation"
+        - "prompt engineering"
+
+  motivation_letter_templates:
+    english:
+      label: "English motivation letter template"
+      file_path: "documents/templates/motivation_letter_en.txt"
+    french:
+      label: "French motivation letter template"
+      file_path: "documents/templates/motivation_letter_fr.txt"

@@ -1,0 +1,61 @@
+app:
+  name: "Job Search Automation Assistant"
+  interface_language: "English"
+  local_only: true
+  default_page: "Dashboard"
+
+llm:
+  provider: "ollama"
+  model: "qwen2.5:7b"
+  fallback_models:
+    - "llama3.1:8b"
+    - "mistral:7b"
+    - "gemma2:9b"
+  timeout_seconds: 120
+  temperature: 0.2
+  require_review_before_save: true
+
+database:
+  type: "sqlite"
+  path: "database/applications.db"
+
+exports:
+  excel_enabled: true
+  export_folder: "exports/excel"
+  timestamp_filenames: true
+
+google_sheets:
+  enabled: true
+  spreadsheet_id: ""
+  worksheet_name: "Applications"
+  credentials_path: "config/google_service_account.json"
+  sqlite_is_source_of_truth: true
+
+automation:
+  auto_submit_applications: false
+  linkedin_scraping: false
+  auto_send_messages: false
+  captcha_bypass: false
+  require_user_confirmation_for_generated_content: true
+
+form_helper:
+  supported_platforms:
+    - "LinkedIn"
+    - "Workday"
+    - "Greenhouse"
+    - "Lever"
+    - "Welcome to the Jungle"
+    - "Company Website"
+    - "Other"
+  default_platform: "LinkedIn"
+
+search:
+  enabled_in_v1: false
+  allow_public_company_website_search: true
+  allow_linkedin_mass_scraping: false
+  save_source_provenance: true
+
+logging:
+  enabled: true
+  log_file: "logs/app.log"
+  level: "INFO"
