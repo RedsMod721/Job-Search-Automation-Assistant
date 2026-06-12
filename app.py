@@ -4,7 +4,7 @@ from typing import Any
 
 import streamlit as st
 
-from src import cv_matcher, database, extractor, form_helper, letter_generator, sheets_sync
+from src import company_search, cv_matcher, database, extractor, form_helper, letter_generator, sheets_sync
 from src.constants import (
     APPLICATION_CHANNEL_VALUES,
     CONTRACT_TYPE_VALUES,
@@ -15,6 +15,16 @@ from src.constants import (
     STATUS_VALUES,
 )
 from src.utils import configure_logging, ensure_directories, load_app_config, resolve_path
+
+COMPANY_SEARCH_RESULT_FIELDS = (
+    "company_name",
+    "company_size",
+    "company_industry",
+    "company_website",
+    "company_linkedin",
+    "career_page_url",
+)
+PENDING_REVIEW_STATE_KEY = "pending_job_extraction_review_state"
 
 
 def bootstrap() -> dict[str, dict[str, Any]]:
@@ -121,6 +131,97 @@ def _run_extraction(raw_text: str, settings: dict[str, Any]) -> None:
         temperature=float(llm_settings.get("temperature", 0.2)),
     )
     _store_pending_extraction(extraction, raw_text)
+
+
+def _compact_review_keywords(values: list[Any]) -> list[str]:
+    keywords: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        candidates = _parse_review_list(value)
+        if not candidates and str(value or "").strip():
+            candidates = [str(value).strip()]
+        for candidate in candidates:
+            normalized = candidate.strip()
+            lookup_key = normalized.lower()
+            if normalized and lookup_key not in seen:
+                seen.add(lookup_key)
+                keywords.append(normalized)
+    return keywords
+
+
+def _build_company_search_request(reviewed_extraction: dict[str, Any]) -> dict[str, Any]:
+    sector = next(
+        (
+            str(reviewed_extraction.get(key, "")).strip()
+            for key in ("company_industry", "job_domain", "job_title")
+            if str(reviewed_extraction.get(key, "")).strip()
+        ),
+        "",
+    )
+    location = str(reviewed_extraction.get("location", "")).strip()
+    keywords = _compact_review_keywords(
+        [
+            reviewed_extraction.get("company_name", ""),
+            reviewed_extraction.get("company_website", ""),
+            reviewed_extraction.get("company_linkedin", ""),
+            reviewed_extraction.get("career_page_url", ""),
+            reviewed_extraction.get("job_title", ""),
+            reviewed_extraction.get("job_url", ""),
+            reviewed_extraction.get("required_skills", ""),
+            reviewed_extraction.get("preferred_qualifications", ""),
+        ]
+    )
+    return {"sector": sector, "location": location, "keywords": keywords}
+
+
+def _has_company_search_input(search_request: dict[str, Any]) -> bool:
+    return bool(
+        search_request.get("sector")
+        or search_request.get("location")
+        or search_request.get("keywords")
+    )
+
+
+def _merge_company_search_result(
+    reviewed_extraction: dict[str, Any],
+    company_result: dict[str, Any],
+) -> dict[str, Any]:
+    merged = dict(reviewed_extraction)
+    for field in COMPANY_SEARCH_RESULT_FIELDS:
+        value = company_result.get(field)
+        if value is None:
+            continue
+        cleaned_value = str(value).strip()
+        if cleaned_value:
+            merged[field] = cleaned_value
+    return merged
+
+
+def _company_fields_changed(
+    before: dict[str, Any],
+    after: dict[str, Any],
+) -> bool:
+    return any(
+        str(before.get(field, "")).strip() != str(after.get(field, "")).strip()
+        for field in COMPANY_SEARCH_RESULT_FIELDS
+    )
+
+
+def _build_review_refresh_state(status: str, notes: str) -> dict[str, str]:
+    return {"status": status, "notes": notes}
+
+
+def _review_refresh_defaults(state: dict[str, Any] | None) -> tuple[str, str]:
+    state = state or {}
+    status = str(state.get("status", "To Apply")).strip() or "To Apply"
+    if status not in STATUS_VALUES:
+        status = "To Apply"
+    notes = str(state.get("notes", ""))
+    return status, notes
+
+
+def _store_review_refresh_state(status: str, notes: str) -> None:
+    st.session_state[PENDING_REVIEW_STATE_KEY] = _build_review_refresh_state(status, notes)
 
 
 def render_dashboard(configs: dict[str, dict[str, Any]]) -> None:
@@ -231,6 +332,9 @@ def render_extraction_review(
 ) -> None:
     version = st.session_state.get("pending_job_extraction_version", 0)
     raw_job_description = st.session_state.get("pending_job_extraction_raw_text", "")
+    restored_status, restored_notes = _review_refresh_defaults(
+        st.session_state.pop(PENDING_REVIEW_STATE_KEY, None)
+    )
 
     st.subheader("Review extracted job")
     with st.form(f"extraction_review_form_{version}", clear_on_submit=False):
@@ -383,37 +487,27 @@ def render_extraction_review(
             height=220,
             key=f"review_raw_job_description_{version}",
         )
-        notes = st.text_area("Notes", height=100, key=f"review_notes_{version}")
+        notes = st.text_area(
+            "Notes",
+            value=restored_notes,
+            height=100,
+            key=f"review_notes_{version}",
+        )
 
         status = st.selectbox(
             "Status",
             STATUS_VALUES,
-            index=STATUS_VALUES.index("To Apply"),
+            index=STATUS_VALUES.index(restored_status),
             key=f"review_status_{version}",
         )
 
-        create_col, retry_col, cancel_col = st.columns(3)
+        create_col, company_search_col, retry_col, cancel_col = st.columns(4)
         create_clicked = create_col.form_submit_button("Create application")
+        company_search_clicked = company_search_col.form_submit_button(
+            "Launch company search and fill fields"
+        )
         retry_clicked = retry_col.form_submit_button("Retry extraction")
         cancel_clicked = cancel_col.form_submit_button("Cancel")
-
-    if cancel_clicked:
-        _clear_pending_extraction()
-        _set_extraction_notice("info", "Extraction discarded.")
-        st.rerun()
-        return
-
-    if retry_clicked:
-        try:
-            _run_extraction(reviewed_raw_job_description, settings)
-            _set_extraction_notice("success", "Extraction refreshed.")
-            st.rerun()
-        except (RuntimeError, ValueError) as exc:
-            st.warning(str(exc))
-        return
-
-    if not create_clicked:
-        return
 
     reviewed_extraction = {
         "company_name": company_name,
@@ -440,6 +534,84 @@ def render_extraction_review(
         "job_url": job_url,
         "motivation_letter_required": motivation_options[motivation_letter_required],
     }
+
+    if cancel_clicked:
+        _clear_pending_extraction()
+        _set_extraction_notice("info", "Extraction discarded.")
+        st.rerun()
+        return
+
+    if retry_clicked:
+        try:
+            _run_extraction(reviewed_raw_job_description, settings)
+            _set_extraction_notice("success", "Extraction refreshed.")
+            st.rerun()
+        except (RuntimeError, ValueError) as exc:
+            st.warning(str(exc))
+        return
+
+    if company_search_clicked:
+        search_request = _build_company_search_request(reviewed_extraction)
+        if not _has_company_search_input(search_request):
+            _store_review_refresh_state(status, notes)
+            _set_extraction_notice(
+                "warning",
+                "Add a company name, industry, website, or job/domain context before launching company search.",
+            )
+            st.rerun()
+            return
+
+        try:
+            company_results = company_search.search_companies(
+                search_request["sector"],
+                search_request["location"],
+                search_request["keywords"],
+            )
+            if not company_results:
+                _store_review_refresh_state(status, notes)
+                _set_extraction_notice(
+                    "info",
+                    "Company search finished, but no company details were found.",
+                )
+                st.rerun()
+                return
+
+            company_result = dict(company_results[0] or {})
+            if not str(company_result.get("career_page_url", "")).strip():
+                career_page_url_result = company_search.find_career_page(
+                    str(
+                        company_result.get("company_name")
+                        or reviewed_extraction.get("company_name")
+                        or ""
+                    ).strip(),
+                    str(
+                        company_result.get("company_website")
+                        or reviewed_extraction.get("company_website")
+                        or ""
+                    ).strip()
+                    or None,
+                )
+                if career_page_url_result:
+                    company_result["career_page_url"] = career_page_url_result
+
+            merged_extraction = _merge_company_search_result(reviewed_extraction, company_result)
+            _store_review_refresh_state(status, notes)
+            _store_pending_extraction(merged_extraction, reviewed_raw_job_description)
+            if _company_fields_changed(reviewed_extraction, merged_extraction):
+                _set_extraction_notice("success", "Company search completed. Fields refreshed.")
+            else:
+                _set_extraction_notice(
+                    "info",
+                    "Company search completed, but no new company details were found.",
+                )
+            st.rerun()
+        except (RuntimeError, ValueError) as exc:
+            st.warning(str(exc))
+        return
+
+    if not create_clicked:
+        return
+
     application = build_application_from_reviewed_extraction(
         reviewed_extraction,
         raw_job_description=reviewed_raw_job_description,
