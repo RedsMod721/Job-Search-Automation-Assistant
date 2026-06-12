@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 from app import (
+    _application_matches_filters,
     _build_company_search_request,
     _build_review_refresh_state,
     _merge_company_search_result,
     _review_refresh_defaults,
+    build_application_from_company_search_result,
     build_application_from_reviewed_extraction,
 )
 
@@ -143,3 +145,49 @@ def test_review_refresh_state_defaults_invalid_status() -> None:
 
     assert status == "To Apply"
     assert notes == "Keep this"
+
+
+def test_application_matches_tracker_filters() -> None:
+    application = {
+        "company_name": "Acme AI",
+        "job_domain": "AI consulting",
+        "location": "Geneva",
+        "source_platform": "LinkedIn",
+        "selected_cv": "ai",
+        "status": "Applied",
+        "archived": 0,
+    }
+
+    assert _application_matches_filters(
+        application,
+        status_filter="Applied",
+        company_query="acme",
+        domain_query="consult",
+        source_filter="LinkedIn",
+        cv_filter="ai",
+        location_query="geneva",
+    )
+    assert not _application_matches_filters(application, status_filter="Rejected")
+    assert not _application_matches_filters({**application, "archived": 1})
+
+
+def test_company_search_result_builds_application_payload() -> None:
+    application = build_application_from_company_search_result(
+        {
+            "company_name": "Acme AI",
+            "company_website": "https://acme.example",
+            "company_linkedin": "https://linkedin.example/acme",
+            "career_page_url": "https://acme.example/careers",
+            "company_industry": "AI",
+            "source_url": "https://source.example",
+        },
+        job_title="AI Analyst",
+        job_url="https://acme.example/jobs/ai-analyst",
+        notes="Review fit",
+    )
+
+    assert application["company_name"] == "Acme AI"
+    assert application["job_title"] == "AI Analyst"
+    assert application["source_platform"] == "Company Website"
+    assert application["application_channel"] == "Company Career Page"
+    assert "https://source.example" in application["notes"]

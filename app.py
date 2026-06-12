@@ -4,9 +4,19 @@ from typing import Any
 
 import streamlit as st
 
-from src import company_search, cv_matcher, database, extractor, form_helper, letter_generator, sheets_sync
+from src import (
+    company_search,
+    cv_matcher,
+    database,
+    excel_exporter,
+    extractor,
+    form_helper,
+    letter_generator,
+    sheets_sync,
+)
 from src.constants import (
     APPLICATION_CHANNEL_VALUES,
+    CONFIG_FILES,
     CONTRACT_TYPE_VALUES,
     CV_KEYS,
     EXTRACTION_LIST_FIELDS,
@@ -14,7 +24,7 @@ from src.constants import (
     SOURCE_PLATFORM_VALUES,
     STATUS_VALUES,
 )
-from src.utils import configure_logging, ensure_directories, load_app_config, resolve_path
+from src.utils import configure_logging, ensure_directories, load_app_config, resolve_path, write_yaml
 
 COMPANY_SEARCH_RESULT_FIELDS = (
     "company_name",
@@ -36,9 +46,12 @@ def bootstrap() -> dict[str, dict[str, Any]]:
     return configs
 
 
+def _db_path_from_configs(configs: dict[str, dict[str, Any]]) -> str:
+    return configs["settings"].get("database", {}).get("path", "database/applications.db")
+
+
 def load_applications(configs: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
-    db_path = configs["settings"].get("database", {}).get("path", "database/applications.db")
-    return database.list_applications(db_path=db_path)
+    return database.list_applications(db_path=_db_path_from_configs(configs))
 
 
 def _parse_review_list(value: Any) -> list[str]:
@@ -207,6 +220,82 @@ def _company_fields_changed(
     )
 
 
+def _application_label(item: dict[str, Any]) -> str:
+    company = item.get("company_name") or "Unknown company"
+    role = item.get("job_title") or "Unknown role"
+    application_id = str(item.get("application_id", ""))
+    short_id = application_id[:8] if application_id else "no-id"
+    return f"{company} - {role} ({short_id})"
+
+
+def _selected_cv_value(value: Any) -> str:
+    cv_value = str(value or "").strip()
+    return cv_value if cv_value in CV_KEYS else CV_KEYS[-1]
+
+
+def _application_matches_filters(
+    application: dict[str, Any],
+    *,
+    status_filter: str = "All",
+    company_query: str = "",
+    domain_query: str = "",
+    source_filter: str = "All",
+    cv_filter: str = "All",
+    location_query: str = "",
+    include_archived: bool = False,
+) -> bool:
+    if not include_archived and application.get("archived"):
+        return False
+    if status_filter != "All" and application.get("status") != status_filter:
+        return False
+    if source_filter != "All" and application.get("source_platform") != source_filter:
+        return False
+    if cv_filter != "All" and application.get("selected_cv") != cv_filter:
+        return False
+    searchable = {
+        "company": str(application.get("company_name", "")).lower(),
+        "domain": str(application.get("job_domain", "")).lower(),
+        "location": str(application.get("location", "")).lower(),
+    }
+    if company_query and company_query.lower() not in searchable["company"]:
+        return False
+    if domain_query and domain_query.lower() not in searchable["domain"]:
+        return False
+    if location_query and location_query.lower() not in searchable["location"]:
+        return False
+    return True
+
+
+def build_application_from_company_search_result(
+    company_result: dict[str, Any],
+    job_title: str = "",
+    job_url: str = "",
+    status: str = "Saved",
+    notes: str = "",
+) -> dict[str, Any]:
+    company_name = str(company_result.get("company_name", "")).strip()
+    source_url = str(company_result.get("source_url", "") or company_result.get("source", "")).strip()
+    provenance_notes = [
+        "Created from Company Search.",
+        f"Source: {source_url}" if source_url else "",
+        notes.strip(),
+    ]
+    return {
+        "company_name": company_name,
+        "company_size": str(company_result.get("company_size", "") or "").strip(),
+        "company_industry": str(company_result.get("company_industry", "") or "").strip(),
+        "company_website": str(company_result.get("company_website", "") or "").strip(),
+        "company_linkedin": str(company_result.get("company_linkedin", "") or "").strip(),
+        "career_page_url": str(company_result.get("career_page_url", "") or "").strip(),
+        "job_title": job_title.strip(),
+        "job_url": job_url.strip(),
+        "status": status if status in STATUS_VALUES else "Saved",
+        "source_platform": "Company Website",
+        "application_channel": "Company Career Page",
+        "notes": "\n".join(part for part in provenance_notes if part),
+    }
+
+
 def _build_review_refresh_state(status: str, notes: str) -> dict[str, str]:
     return {"status": status, "notes": notes}
 
@@ -244,6 +333,51 @@ def render_dashboard(configs: dict[str, dict[str, Any]]) -> None:
         st.info("No applications saved yet.")
         return
 
+    status_counts: dict[str, int] = {}
+    cv_counts: dict[str, int] = {}
+    source_counts: dict[str, int] = {}
+    upcoming_follow_ups: list[dict[str, Any]] = []
+    for item in active_applications:
+        status = item.get("status") or "Unknown"
+        selected_cv = item.get("selected_cv") or "Unselected"
+        source = item.get("source_platform") or "Unknown"
+        status_counts[status] = status_counts.get(status, 0) + 1
+        cv_counts[selected_cv] = cv_counts.get(selected_cv, 0) + 1
+        source_counts[source] = source_counts.get(source, 0) + 1
+        if item.get("follow_up_date"):
+            upcoming_follow_ups.append(item)
+
+    metric_cols = st.columns(3)
+    metric_cols[0].dataframe(
+        [{"Status": key, "Count": value} for key, value in sorted(status_counts.items())],
+        width="stretch",
+        hide_index=True,
+    )
+    metric_cols[1].dataframe(
+        [{"CV": key, "Count": value} for key, value in sorted(cv_counts.items())],
+        width="stretch",
+        hide_index=True,
+    )
+    metric_cols[2].dataframe(
+        [{"Source": key, "Count": value} for key, value in sorted(source_counts.items())],
+        width="stretch",
+        hide_index=True,
+    )
+
+    if upcoming_follow_ups:
+        st.subheader("Upcoming follow-ups")
+        follow_up_rows = [
+            {
+                "Company": item.get("company_name", ""),
+                "Role": item.get("job_title", ""),
+                "Follow-up": item.get("follow_up_date", ""),
+                "Status": item.get("status", ""),
+            }
+            for item in sorted(upcoming_follow_ups, key=lambda value: value.get("follow_up_date") or "")[:8]
+        ]
+        st.dataframe(follow_up_rows, width="stretch", hide_index=True)
+
+    st.subheader("Recent applications")
     recent_rows = [
         {
             "Company": item.get("company_name", ""),
@@ -635,12 +769,57 @@ def render_extraction_review(
 
 
 def render_tracker(configs: dict[str, dict[str, Any]]) -> None:
+    settings = configs["settings"]
+    db_path = _db_path_from_configs(configs)
     applications = load_applications(configs)
-    status_filter = st.selectbox("Status filter", ("All",) + STATUS_VALUES)
-    if status_filter != "All":
-        applications = [item for item in applications if item.get("status") == status_filter]
 
-    if not applications:
+    filter_cols = st.columns(4)
+    status_filter = filter_cols[0].selectbox("Status", ("All",) + STATUS_VALUES)
+    source_filter = filter_cols[1].selectbox("Source", ("All",) + SOURCE_PLATFORM_VALUES)
+    cv_filter = filter_cols[2].selectbox("Selected CV", ("All",) + CV_KEYS)
+    include_archived = filter_cols[3].checkbox("Include archived", value=False)
+    query_cols = st.columns(3)
+    company_query = query_cols[0].text_input("Company contains")
+    domain_query = query_cols[1].text_input("Domain contains")
+    location_query = query_cols[2].text_input("Location contains")
+
+    filtered_applications = [
+        item
+        for item in applications
+        if _application_matches_filters(
+            item,
+            status_filter=status_filter,
+            company_query=company_query,
+            domain_query=domain_query,
+            source_filter=source_filter,
+            cv_filter=cv_filter,
+            location_query=location_query,
+            include_archived=include_archived,
+        )
+    ]
+
+    action_cols = st.columns(2)
+    if action_cols[0].button("Export filtered applications to Excel"):
+        export_dir = settings.get("exports", {}).get("export_folder", "exports/excel")
+        try:
+            output_path = excel_exporter.export_applications_to_excel(filtered_applications, export_dir)
+            st.success(f"Excel export created: {output_path}")
+        except Exception as exc:
+            st.error(f"Excel export failed: {exc}")
+
+    if action_cols[1].button("Sync all applications to Google Sheets"):
+        result = sheets_sync.sync_applications_to_sheet(applications, settings, db_path=db_path)
+        if result.get("errors"):
+            st.error("; ".join(result["errors"]))
+        elif result.get("warnings"):
+            st.warning("; ".join(result["warnings"]))
+        else:
+            st.success(
+                f"Google Sheets sync complete: {result['synced']} synced, "
+                f"{result['created']} created, {result['updated']} updated."
+            )
+
+    if not filtered_applications:
         st.info("No matching applications.")
         return
 
@@ -653,14 +832,198 @@ def render_tracker(configs: dict[str, dict[str, Any]]) -> None:
             "Status": item.get("status", ""),
             "Selected CV": item.get("selected_cv", ""),
             "Source": item.get("source_platform", ""),
+            "Follow-up": item.get("follow_up_date", ""),
             "Updated": item.get("date_updated", ""),
         }
-        for item in applications
+        for item in filtered_applications
     ]
     st.dataframe(rows, width="stretch", hide_index=True)
 
+    st.subheader("Inspect and edit")
+    options = {_application_label(item): item["application_id"] for item in filtered_applications}
+    selected_label = st.selectbox("Application", list(options), key="tracker_application")
+    selected = next(item for item in filtered_applications if item["application_id"] == options[selected_label])
+
+    with st.form(f"tracker_edit_{selected['application_id']}", clear_on_submit=False):
+        company_col, role_col = st.columns(2)
+        company_name = company_col.text_input("Company name", value=selected.get("company_name", ""))
+        job_title = role_col.text_input("Job title", value=selected.get("job_title", ""))
+        company_size = company_col.text_input("Company size", value=selected.get("company_size", ""))
+        job_domain = role_col.text_input("Job domain", value=selected.get("job_domain", ""))
+        company_industry = company_col.text_input(
+            "Company industry",
+            value=selected.get("company_industry", ""),
+        )
+        seniority_level = role_col.text_input("Seniority level", value=selected.get("seniority_level", ""))
+        company_website = company_col.text_input("Company website", value=selected.get("company_website", ""))
+        contract_type = role_col.selectbox(
+            "Contract type",
+            CONTRACT_TYPE_VALUES,
+            index=CONTRACT_TYPE_VALUES.index(selected.get("contract_type"))
+            if selected.get("contract_type") in CONTRACT_TYPE_VALUES
+            else len(CONTRACT_TYPE_VALUES) - 1,
+        )
+        company_linkedin = company_col.text_input("Company LinkedIn", value=selected.get("company_linkedin", ""))
+        job_length = role_col.text_input("Job length", value=selected.get("job_length", ""))
+        career_page_url = company_col.text_input("Career page URL", value=selected.get("career_page_url", ""))
+        salary = role_col.text_input("Salary", value=selected.get("salary", ""))
+
+        location_col, tracking_col = st.columns(2)
+        location = location_col.text_input("Location", value=selected.get("location", ""))
+        source_platform = tracking_col.selectbox(
+            "Source platform",
+            SOURCE_PLATFORM_VALUES,
+            index=SOURCE_PLATFORM_VALUES.index(selected.get("source_platform"))
+            if selected.get("source_platform") in SOURCE_PLATFORM_VALUES
+            else len(SOURCE_PLATFORM_VALUES) - 1,
+        )
+        remote_policy = location_col.text_input("Remote policy", value=selected.get("remote_policy", ""))
+        application_channel = tracking_col.selectbox(
+            "Application channel",
+            APPLICATION_CHANNEL_VALUES,
+            index=APPLICATION_CHANNEL_VALUES.index(selected.get("application_channel"))
+            if selected.get("application_channel") in APPLICATION_CHANNEL_VALUES
+            else len(APPLICATION_CHANNEL_VALUES) - 1,
+        )
+        relocation_required = location_col.text_input(
+            "Relocation required",
+            value=selected.get("relocation_required", ""),
+        )
+        job_url = tracking_col.text_input("Job URL", value=selected.get("job_url", ""))
+
+        status_col, cv_col = st.columns(2)
+        status = status_col.selectbox(
+            "Status",
+            STATUS_VALUES,
+            index=STATUS_VALUES.index(selected.get("status"))
+            if selected.get("status") in STATUS_VALUES
+            else 0,
+        )
+        selected_cv = cv_col.selectbox(
+            "Selected CV override",
+            CV_KEYS,
+            index=CV_KEYS.index(_selected_cv_value(selected.get("selected_cv") or selected.get("recommended_cv"))),
+        )
+        date_applied = status_col.text_input("Date applied", value=selected.get("date_applied", ""))
+        follow_up_date = cv_col.text_input("Follow-up date", value=selected.get("follow_up_date", ""))
+        contact_person = status_col.text_input("Contact person", value=selected.get("contact_person", ""))
+        contact_url = cv_col.text_input("Contact URL", value=selected.get("contact_url", ""))
+
+        key_responsibilities = st.text_area(
+            "Key responsibilities",
+            value=_list_to_review_text(selected.get("key_responsibilities", [])),
+            height=100,
+        )
+        required_skills = st.text_area(
+            "Required skills",
+            value=_list_to_review_text(selected.get("required_skills", [])),
+            height=100,
+        )
+        preferred_qualifications = st.text_area(
+            "Preferred qualifications",
+            value=_list_to_review_text(selected.get("preferred_qualifications", [])),
+            height=100,
+        )
+        raw_job_description = st.text_area(
+            "Raw job description",
+            value=selected.get("raw_job_description", ""),
+            height=160,
+        )
+        notes = st.text_area("Notes", value=selected.get("notes", ""), height=120)
+        save_changes = st.form_submit_button("Save tracker changes")
+
+    if save_changes:
+        database.update_application(
+            selected["application_id"],
+            {
+                "company_name": company_name,
+                "company_size": company_size,
+                "company_industry": company_industry,
+                "company_website": company_website,
+                "company_linkedin": company_linkedin,
+                "career_page_url": career_page_url,
+                "job_title": job_title,
+                "job_domain": job_domain,
+                "seniority_level": seniority_level,
+                "contract_type": contract_type,
+                "job_length": job_length,
+                "salary": salary,
+                "location": location,
+                "remote_policy": remote_policy,
+                "relocation_required": relocation_required,
+                "source_platform": source_platform,
+                "application_channel": application_channel,
+                "job_url": job_url,
+                "status": status,
+                "date_applied": date_applied,
+                "follow_up_date": follow_up_date,
+                "contact_person": contact_person,
+                "contact_url": contact_url,
+                "selected_cv": selected_cv,
+                "key_responsibilities": _parse_review_list(key_responsibilities),
+                "required_skills": _parse_review_list(required_skills),
+                "preferred_qualifications": _parse_review_list(preferred_qualifications),
+                "raw_job_description": raw_job_description,
+                "notes": notes,
+                "archived": 1 if status == "Archived" else selected.get("archived", 0),
+            },
+            db_path=db_path,
+        )
+        st.success("Application updated.")
+        st.rerun()
+
+    destructive_cols = st.columns(2)
+    if destructive_cols[0].button("Archive selected application"):
+        database.archive_application(selected["application_id"], db_path=db_path)
+        st.success("Application archived.")
+        st.rerun()
+    confirm_delete = destructive_cols[1].checkbox("Confirm permanent delete")
+    if destructive_cols[1].button("Delete selected application", disabled=not confirm_delete):
+        database.delete_application(selected["application_id"], db_path=db_path)
+        st.success("Application deleted.")
+        st.rerun()
+
 
 def render_cv_matcher(configs: dict[str, dict[str, Any]]) -> None:
+    db_path = _db_path_from_configs(configs)
+    applications = load_applications(configs)
+    missing_cv_files = cv_matcher.validate_cv_files(configs["documents"])
+    if missing_cv_files:
+        st.warning(
+            "Missing configured CV files: "
+            + "; ".join(f"{cv_key}: {path}" for cv_key, path in missing_cv_files.items())
+        )
+
+    if applications:
+        st.subheader("Application recommendation")
+        options = _application_options(applications)
+        selected_label = st.selectbox("Application", list(options), key="cv_matcher_application")
+        selected = next(item for item in applications if item["application_id"] == options[selected_label])
+        recommendation = cv_matcher.recommend_cv(selected, configs["documents"])
+        st.json(recommendation)
+        selected_cv = st.selectbox(
+            "Selected CV",
+            CV_KEYS,
+            index=CV_KEYS.index(_selected_cv_value(selected.get("selected_cv") or recommendation["recommended_cv"])),
+            key=f"cv_override_{selected['application_id']}",
+        )
+        if st.button("Save CV recommendation and override"):
+            database.update_application(
+                selected["application_id"],
+                {
+                    "recommended_cv": recommendation["recommended_cv"],
+                    "selected_cv": selected_cv,
+                    "cv_confidence_score": recommendation["confidence_score"],
+                    "cv_recommendation_reason": recommendation["reason"],
+                    "cv_matched_keywords": recommendation["matched_keywords"],
+                },
+                db_path=db_path,
+            )
+            st.success("CV recommendation saved.")
+            st.rerun()
+
+    st.divider()
+    st.subheader("Ad-hoc recommendation")
     job_title = st.text_input("Job title", key="cv_job_title")
     job_domain = st.text_input("Job domain", key="cv_job_domain")
     required_skills = st.text_area("Required skills", key="cv_required_skills")
@@ -678,15 +1041,12 @@ def render_cv_matcher(configs: dict[str, dict[str, Any]]) -> None:
 
 
 def _application_options(applications: list[dict[str, Any]]) -> dict[str, str]:
-    return {
-        f"{item.get('company_name') or 'Unknown company'} - {item.get('job_title') or 'Unknown role'}": item[
-            "application_id"
-        ]
-        for item in applications
-    }
+    return {_application_label(item): item["application_id"] for item in applications}
 
 
 def render_motivation_letter(configs: dict[str, dict[str, Any]]) -> None:
+    settings = configs["settings"]
+    db_path = _db_path_from_configs(configs)
     applications = load_applications(configs)
     if not applications:
         st.info("No applications available.")
@@ -697,19 +1057,47 @@ def render_motivation_letter(configs: dict[str, dict[str, Any]]) -> None:
     selected = next(item for item in applications if item["application_id"] == options[selected_label])
     language = st.selectbox("Language", ("auto", "English", "French"))
     user_notes = st.text_area("Optional notes")
+    draft_key = f"letter_draft_{selected['application_id']}"
+    result_key = f"letter_result_{selected['application_id']}"
 
     if st.button("Generate draft"):
-        letter = letter_generator.generate_letter(
+        result = letter_generator.generate_letter(
             selected,
             selected.get("selected_cv") or selected.get("recommended_cv") or "ai",
             language=language,
             profile=configs["profile"],
             user_notes=user_notes,
+            documents_config=configs["documents"],
+            llm_settings=settings.get("llm", {}),
         )
-        st.text_area("Draft", value=letter, height=260)
+        st.session_state[draft_key] = result["letter_text"]
+        st.session_state[result_key] = result
+
+    result = st.session_state.get(result_key)
+    if result:
+        if result.get("warnings"):
+            st.warning("; ".join(result["warnings"]))
+        st.caption(f"Language: {result['language']} | Words: {result['word_count']}")
+
+    draft = st.text_area("Draft", key=draft_key, height=260)
+    if draft and st.button("Save letter locally and link to application"):
+        saved_language = (result or {}).get("language") or letter_generator.select_letter_language(selected, language)
+        file_path = letter_generator.save_letter(selected["application_id"], draft, saved_language)
+        database.update_application(
+            selected["application_id"],
+            {
+                "motivation_letter_file": file_path,
+                "motivation_letter_language": saved_language,
+            },
+            db_path=db_path,
+        )
+        st.success(f"Letter saved: {file_path}")
+        st.rerun()
 
 
 def render_form_helper(configs: dict[str, dict[str, Any]]) -> None:
+    settings = configs["settings"]
+    db_path = _db_path_from_configs(configs)
     applications = load_applications(configs)
     if not applications:
         st.info("No applications available.")
@@ -720,20 +1108,152 @@ def render_form_helper(configs: dict[str, dict[str, Any]]) -> None:
     selected = next(item for item in applications if item["application_id"] == options[selected_label])
     platforms = configs["settings"].get("form_helper", {}).get("supported_platforms", ["Other"])
     platform = st.selectbox("Platform", platforms)
+    result_key = f"form_answers_result_{selected['application_id']}"
 
     if st.button("Generate answers"):
-        answers = form_helper.generate_common_answers(
+        result = form_helper.generate_common_answers(
             selected,
             configs["profile"],
             platform,
             configs["form_answers"],
+            llm_settings=settings.get("llm", {}),
         )
-        st.json(answers)
+        st.session_state[result_key] = result
+
+    result = st.session_state.get(result_key)
+    if not result:
+        return
+
+    if result.get("warnings"):
+        st.warning("; ".join(result["warnings"]))
+
+    answers = result.get("answers", {})
+    personal_information = dict(answers.get("personal_information", {}))
+    common_questions = dict(answers.get("common_questions", {}))
+    with st.form(f"form_answers_edit_{selected['application_id']}", clear_on_submit=False):
+        st.subheader("Personal information")
+        edited_personal = {
+            key: st.text_input(key.replace("_", " ").title(), value=str(value or ""))
+            for key, value in personal_information.items()
+        }
+        st.subheader("Common answers")
+        edited_common = {
+            key: st.text_area(key.replace("_", " ").title(), value=str(value or ""), height=90)
+            for key, value in common_questions.items()
+        }
+        save_answers = st.form_submit_button("Save form answers locally and link to application")
+
+    if save_answers:
+        payload = {
+            "application_id": selected["application_id"],
+            "platform": platform,
+            "answers": {
+                "personal_information": edited_personal,
+                "common_questions": edited_common,
+            },
+            "file_path": "",
+            "warnings": result.get("warnings", []),
+        }
+        file_path = form_helper.save_form_answers(selected["application_id"], payload)
+        database.update_application(
+            selected["application_id"],
+            {"form_answers_file": file_path},
+            db_path=db_path,
+        )
+        st.success(f"Form answers saved: {file_path}")
+        st.rerun()
+
+
+def render_company_search(configs: dict[str, dict[str, Any]]) -> None:
+    db_path = _db_path_from_configs(configs)
+    with st.form("company_search_form", clear_on_submit=False):
+        col_a, col_b = st.columns(2)
+        sector = col_a.text_input("Sector", value="AI consulting")
+        location = col_b.text_input("Location", value="Geneva")
+        keywords_text = st.text_area(
+            "Keywords",
+            value="junior\nanalyst\nAI product\nbusiness analyst",
+            height=110,
+        )
+        search_clicked = st.form_submit_button("Search public company sources")
+
+    if search_clicked:
+        keywords = _parse_review_list(keywords_text)
+        try:
+            results = company_search.search_companies(sector, location, keywords)
+            enriched_results: list[dict[str, Any]] = []
+            for result in results:
+                enriched = dict(result)
+                enriched.setdefault("source", "Public company search")
+                enriched.setdefault("source_url", "")
+                if not enriched.get("career_page_url"):
+                    career_page_url = company_search.find_career_page(
+                        enriched.get("company_name", "") or sector,
+                        enriched.get("company_website"),
+                    )
+                    if career_page_url:
+                        enriched["career_page_url"] = career_page_url
+                enriched_results.append(enriched)
+            st.session_state["company_search_results"] = enriched_results
+        except Exception as exc:
+            st.error(f"Company search failed: {exc}")
+
+    results = st.session_state.get("company_search_results", [])
+    if not results:
+        st.info("No company search results yet.")
+        return
+
+    st.dataframe(results, width="stretch", hide_index=True)
+    result_options = {
+        f"{item.get('company_name') or 'Unknown company'} ({index + 1})": index
+        for index, item in enumerate(results)
+    }
+    selected_label = st.selectbox("Result", list(result_options), key="company_search_result")
+    selected_result = results[result_options[selected_label]]
+
+    action_cols = st.columns(2)
+    if action_cols[0].button("Save company"):
+        company_id = database.upsert_company(selected_result, db_path=db_path)
+        st.success(f"Company saved: {company_id}")
+
+    with st.form("company_search_create_application", clear_on_submit=False):
+        st.subheader("Create tracker record")
+        job_title = st.text_input("Job title", value="")
+        job_url = st.text_input(
+            "Job URL",
+            value=selected_result.get("career_page_url") or selected_result.get("company_website") or "",
+        )
+        status = st.selectbox("Status", STATUS_VALUES, index=0)
+        notes = st.text_area("Notes", value="", height=90)
+        create_clicked = st.form_submit_button("Create application from result")
+
+    if create_clicked:
+        application = build_application_from_company_search_result(
+            selected_result,
+            job_title=job_title,
+            job_url=job_url,
+            status=status,
+            notes=notes,
+        )
+        recommendation = cv_matcher.recommend_cv(application, configs["documents"])
+        application.update(
+            {
+                "recommended_cv": recommendation["recommended_cv"],
+                "selected_cv": recommendation["recommended_cv"],
+                "cv_confidence_score": recommendation["confidence_score"],
+                "cv_recommendation_reason": recommendation["reason"],
+                "cv_matched_keywords": recommendation["matched_keywords"],
+            }
+        )
+        application_id = database.add_application(application, db_path=db_path)
+        st.success(f"Application created: {application_id}")
+        st.rerun()
 
 
 def render_settings(configs: dict[str, dict[str, Any]]) -> None:
     settings = configs["settings"]
     db_path = resolve_path(settings.get("database", {}).get("path", "database/applications.db"))
+    missing_cv_files = cv_matcher.validate_cv_files(configs["documents"])
     st.write(
         {
             "database": str(db_path),
@@ -743,7 +1263,90 @@ def render_settings(configs: dict[str, dict[str, Any]]) -> None:
             "cv_keys": list(CV_KEYS),
         }
     )
-    if st.button("Check Google Sheets scaffold"):
+    if missing_cv_files:
+        st.warning(
+            "Missing configured CV files: "
+            + "; ".join(f"{cv_key}: {path}" for cv_key, path in missing_cv_files.items())
+        )
+
+    llm_settings = settings.get("llm", {})
+    sheets_settings = settings.get("google_sheets", {})
+    export_settings = settings.get("exports", {})
+
+    with st.form("settings_form", clear_on_submit=False):
+        st.subheader("Local model")
+        llm_model = st.text_input("Ollama model", value=llm_settings.get("model", "qwen2.5:7b"))
+        fallback_models_text = st.text_area(
+            "Fallback models",
+            value="\n".join(llm_settings.get("fallback_models", [])),
+            height=90,
+        )
+        timeout_seconds = st.number_input(
+            "Timeout seconds",
+            min_value=10,
+            max_value=600,
+            value=int(llm_settings.get("timeout_seconds", 120)),
+            step=10,
+        )
+        temperature = st.number_input(
+            "Temperature",
+            min_value=0.0,
+            max_value=1.0,
+            value=float(llm_settings.get("temperature", 0.2)),
+            step=0.05,
+        )
+
+        st.subheader("Google Sheets")
+        sheets_enabled = st.checkbox("Enable Google Sheets sync", value=bool(sheets_settings.get("enabled", False)))
+        spreadsheet_id = st.text_input("Spreadsheet ID or URL", value=sheets_settings.get("spreadsheet_id", ""))
+        worksheet_name = st.text_input("Worksheet name", value=sheets_settings.get("worksheet_name", "Applications"))
+        credentials_path = st.text_input(
+            "Credentials path",
+            value=sheets_settings.get("credentials_path", "config/google_service_account.json"),
+        )
+
+        st.subheader("Exports")
+        export_folder = st.text_input("Excel export folder", value=export_settings.get("export_folder", "exports/excel"))
+        save_settings = st.form_submit_button("Save settings")
+
+    if save_settings:
+        updated_settings = dict(settings)
+        updated_settings["llm"] = dict(llm_settings)
+        updated_settings["llm"].update(
+            {
+                "provider": llm_settings.get("provider", "ollama"),
+                "model": llm_model.strip() or "qwen2.5:7b",
+                "fallback_models": _parse_review_list(fallback_models_text),
+                "timeout_seconds": int(timeout_seconds),
+                "temperature": float(temperature),
+            }
+        )
+        updated_settings["google_sheets"] = dict(sheets_settings)
+        updated_settings["google_sheets"].update(
+            {
+                "enabled": bool(sheets_enabled),
+                "spreadsheet_id": spreadsheet_id.strip(),
+                "worksheet_name": worksheet_name.strip() or "Applications",
+                "credentials_path": credentials_path.strip() or "config/google_service_account.json",
+                "sqlite_is_source_of_truth": True,
+            }
+        )
+        updated_settings["exports"] = dict(export_settings)
+        updated_settings["exports"].update(
+            {
+                "excel_enabled": True,
+                "export_folder": export_folder.strip() or "exports/excel",
+                "timestamp_filenames": True,
+            }
+        )
+        write_yaml(CONFIG_FILES["settings"], updated_settings)
+        st.success("Settings saved. Reloading app configuration.")
+        st.rerun()
+
+    credentials_exists = resolve_path(sheets_settings.get("credentials_path", "config/google_service_account.json")).exists()
+    if sheets_settings.get("enabled") and not credentials_exists:
+        st.warning("Google Sheets is enabled, but the credentials file is missing.")
+    if st.button("Check Google Sheets sync setup"):
         result = sheets_sync.sync_applications_to_sheet([], settings)
         st.json(result)
 
@@ -761,6 +1364,7 @@ def main() -> None:
             "CV Matcher",
             "Motivation Letter",
             "Form Helper",
+            "Company Search",
             "Settings",
         ]
     )
@@ -777,6 +1381,8 @@ def main() -> None:
     with tabs[5]:
         render_form_helper(configs)
     with tabs[6]:
+        render_company_search(configs)
+    with tabs[7]:
         render_settings(configs)
 
 

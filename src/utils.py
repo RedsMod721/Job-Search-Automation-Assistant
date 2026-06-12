@@ -41,6 +41,13 @@ def load_app_config() -> dict[str, dict[str, Any]]:
     return {name: load_yaml(path) for name, path in CONFIG_FILES.items()}
 
 
+def write_yaml(path: str | Path, data: dict[str, Any]) -> None:
+    resolved = resolve_path(path)
+    resolved.parent.mkdir(parents=True, exist_ok=True)
+    with resolved.open("w", encoding="utf-8") as handle:
+        yaml.safe_dump(data, handle, sort_keys=False, allow_unicode=False)
+
+
 def configure_logging(settings: dict[str, Any] | None = None) -> None:
     ensure_directories()
     logging_settings = (settings or {}).get("logging", {})
@@ -130,4 +137,3 @@ def safe_filename(value: str, fallback: str = "untitled") -> str:
     cleaned = re.sub(r"[^A-Za-z0-9._-]+", "_", clean_string(value))
     cleaned = cleaned.strip("._-")
     return cleaned or fallback
-

@@ -1,6 +1,6 @@
 # Job Search Automation Assistant
 
-A local, user-controlled job search assistant for tracking applications, extracting job post data, recommending one of four fixed CVs, drafting motivation letters, preparing form answers, and later syncing to Google Sheets.
+A local, user-controlled job search assistant for tracking applications, extracting job post data, recommending one of four fixed CVs, drafting motivation letters, preparing form answers, exporting Excel files, and optionally syncing to Google Sheets.
 
 The app assists the user. It does not auto-submit applications, mass scrape LinkedIn, send messages, bypass CAPTCHA, or run hidden background application actions.
 
@@ -34,11 +34,15 @@ Install Ollama, then pull the default local model:
 ollama pull qwen2.5:7b
 ```
 
-If Ollama or the selected model is unavailable, the app should stay usable for manual tracking and deterministic CV matching.
+If Ollama or the selected model is unavailable, the app stays usable for manual tracking, deterministic CV matching, template-based letters, and deterministic form answers.
+
+## CV Files
+
+The app expects the four fixed CV PDFs configured in `config/documents.yaml` to be placed in `documents/cvs/`. The app does not create or edit CV PDFs. If any configured file is missing, the CV Matcher and Settings pages show a warning while still allowing keyword-based recommendations and manual overrides.
 
 ## Optional Google Sheets Setup
 
-Google Sheets sync is scaffolded but disabled by default in `config/settings.yaml`.
+Google Sheets sync is disabled by default in `config/settings.yaml`.
 
 To enable it later:
 
@@ -50,14 +54,16 @@ To enable it later:
 
 SQLite remains the source of truth for V1.
 
-## Current Foundation
+## Current V1 Features
 
-This skeleton includes:
-
-- Streamlit tabs for Dashboard, Add Job, Tracker, CV Matcher, Motivation Letter, Form Helper, and Settings.
-- Active YAML config loading.
+- Streamlit tabs for Dashboard, Add Job, Tracker, CV Matcher, Motivation Letter, Form Helper, Company Search, and Settings.
+- Active YAML config loading and editable runtime settings.
 - SQLite schema initialization for applications, companies, contacts, and documents.
-- Manual application save flow.
-- Deterministic CV recommendation using configured keywords.
-- Safe placeholder modules for local extraction, letters, form answers, Excel export, Google Sheets sync, and company search.
-- Pytest coverage for config loading, database initialization, module imports, and CV matching.
+- Manual application creation, extraction review, tracker editing, CV override, archive, and confirmed delete.
+- Local Ollama job extraction with schema normalization and editable review before saving.
+- Deterministic CV recommendation using configured keywords and missing-file validation.
+- Editable motivation letters and form answers, saved locally and linked back to application records.
+- Excel export from the tracker.
+- Google Sheets sync with header creation, row updates, duplicate avoidance, and stored sheet row IDs.
+- Basic public company/career-page search with save-to-company and create-application flows.
+- Pytest coverage for config loading, database operations, extraction, CV matching, generated assets, Excel export, Google Sheets sync, and company search.

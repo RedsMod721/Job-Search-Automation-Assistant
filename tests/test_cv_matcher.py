@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from src.cv_matcher import get_cv_file_path, recommend_cv, score_cv_matches
+from src.cv_matcher import get_cv_file_path, recommend_cv, score_cv_matches, validate_cv_files
+from src.constants import CV_KEYS, PROJECT_ROOT
 from src.utils import load_yaml
 
 
@@ -49,3 +50,17 @@ def test_get_cv_file_path_resolves_project_path() -> None:
         "documents/cvs/CV_Sebastian.Vazquez_Anglais-AI.pdf"
     )
 
+
+def test_validate_cv_files_reports_missing_paths() -> None:
+    documents_config = {
+        "documents": {
+            "cvs": {
+                cv_key: {"file_path": str(PROJECT_ROOT / "pytest-cache-files-missing-cvs" / f"{cv_key}.pdf")}
+                for cv_key in CV_KEYS
+            }
+        }
+    }
+
+    missing = validate_cv_files(documents_config)
+
+    assert set(missing) == set(CV_KEYS)

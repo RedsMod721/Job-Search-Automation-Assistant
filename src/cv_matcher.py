@@ -121,3 +121,14 @@ def get_cv_file_path(
         raise KeyError(f"Missing file path for CV key: {cv_key}")
     return str(resolve_path(file_path))
 
+
+def validate_cv_files(documents_config: dict[str, Any] | None = None) -> dict[str, str]:
+    config = _load_documents_config(documents_config)
+    cv_config = config.get("documents", {}).get("cvs", {})
+    missing: dict[str, str] = {}
+    for cv_key in CV_KEYS:
+        file_path = cv_config.get(cv_key, {}).get("file_path", "")
+        resolved = resolve_path(file_path) if file_path else None
+        if not resolved or not resolved.exists():
+            missing[cv_key] = str(resolved or file_path or "")
+    return missing
