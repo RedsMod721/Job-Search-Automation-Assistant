@@ -37,4 +37,3 @@ def export_applications_to_excel(
     dataframe = pd.DataFrame(rows, columns=GOOGLE_SHEETS_COLUMNS)
     dataframe.to_excel(output_path, index=False)
     return str(output_path)
-

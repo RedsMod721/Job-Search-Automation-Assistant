@@ -6,6 +6,15 @@ The app assists the user. It does not auto-submit applications, mass scrape Link
 
 ## Quick Start
 
+Recommended development setup:
+
+```powershell
+uv sync --group dev
+uv run streamlit run app.py
+```
+
+Fallback pip setup:
+
 ```powershell
 python -m venv .venv
 .\\.venv\\Scripts\\Activate.ps1
@@ -23,6 +32,20 @@ Active config lives in `config/`:
 - `documents.yaml`: fixed CV metadata, paths, keywords, and letter template paths.
 - `settings.yaml`: app, database, Ollama, export, Google Sheets, automation, and logging settings.
 - `form_answers.yaml`: reusable form answer defaults.
+
+Public-safe examples live in:
+
+- `config/profile.example.yaml`
+- `config/settings.example.yaml`
+
+Local overrides are supported and ignored by Git:
+
+- `config/profile.local.yaml`
+- `config/settings.local.yaml`
+- `config/documents.local.yaml`
+- `config/form_answers.local.yaml`
+
+Config precedence is base YAML, local YAML, then environment variables.
 
 Do not commit credentials. Use `.env` for local overrides and keep Google service account credentials at `config/google_service_account.json`, which is ignored by Git.
 
@@ -44,15 +67,55 @@ The app expects the four fixed CV PDFs configured in `config/documents.yaml` to 
 
 Google Sheets sync is disabled by default in `config/settings.yaml`.
 
+The app expects a standard Google Cloud service-account JSON key for Sheets access. The app itself does not require any paid Google Cloud feature to use the sync path documented here.
+
 To enable it later:
 
 1. Create a Google Cloud service account.
 2. Save the credential JSON as `config/google_service_account.json`.
 3. Share the target spreadsheet with the service account email.
-4. Set `google_sheets.enabled: true`.
-5. Fill `google_sheets.spreadsheet_id`.
+4. Put local sync settings in `config/settings.local.yaml`.
+5. Set `google_sheets.enabled: true`.
+6. Fill `google_sheets.spreadsheet_id` with the real spreadsheet ID or an editable Google Sheets URL.
+7. If you want to keep the sheet ID out of YAML, set `GOOGLE_SHEETS_SPREADSHEET_ID` locally instead.
 
-SQLite remains the source of truth for V1.
+The published `/pubhtml` link is not enough for sync. The app needs the underlying spreadsheet ID plus a sheet that the service account can edit.
+
+SQLite remains the source of truth for V1, and sync is still manual through the UI button until the later bidirectional sync stage.
+
+## Network Configuration
+
+TLS verification is enabled by default. Corporate proxy or custom CA settings should be explicit in `config/settings.local.yaml`:
+
+```yaml
+network:
+  verify_tls: true
+  custom_ca_bundle: ""
+  http_proxy: ""
+  https_proxy: ""
+  no_proxy: ""
+  request_timeout_seconds: 30
+```
+
+Environment variables are also supported for local overrides:
+
+- `JOB_SEARCH_VERIFY_TLS`
+- `JOB_SEARCH_CA_BUNDLE`
+- `JOB_SEARCH_HTTP_PROXY`
+- `JOB_SEARCH_HTTPS_PROXY`
+- `JOB_SEARCH_NO_PROXY`
+- `JOB_SEARCH_REQUEST_TIMEOUT_SECONDS`
+
+## Diagnostics
+
+Run local diagnostics from the project root:
+
+```powershell
+uv run python scripts/diagnostics.py
+uv run python scripts/diagnostics.py --json
+```
+
+The Settings tab also includes a health diagnostics panel.
 
 ## Current V1 Features
 

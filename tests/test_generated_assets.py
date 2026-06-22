@@ -5,8 +5,8 @@ import shutil
 from pathlib import Path
 from uuid import uuid4
 
-from src.constants import PROJECT_ROOT
 from src import form_helper, letter_generator
+from src.constants import PROJECT_ROOT
 
 
 def test_generate_letter_returns_schema_and_saves_file(

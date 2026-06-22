@@ -24,11 +24,25 @@ exports:
   timestamp_filenames: true
 
 google_sheets:
-  enabled: true
+  enabled: false
   spreadsheet_id: ""
   worksheet_name: "Applications"
   credentials_path: "config/google_service_account.json"
   sqlite_is_source_of_truth: true
+  startup_sync_enabled: true
+  timer_sync_enabled: true
+  change_triggered_sync_enabled: true
+  timer_interval_seconds: 60
+  max_retry_attempts: 5
+  retry_backoff_seconds: 60
+
+network:
+  verify_tls: true
+  custom_ca_bundle: ""
+  http_proxy: ""
+  https_proxy: ""
+  no_proxy: ""
+  request_timeout_seconds: 30
 
 automation:
   auto_submit_applications: false

@@ -9,7 +9,6 @@ import requests
 
 from src import company_search
 
-
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -18,9 +17,7 @@ from src import company_search
 def _resp(status: int = 200, data: Any = None, text: str = "") -> MagicMock:
     r = MagicMock(spec=requests.Response)
     r.status_code = status
-    r.raise_for_status = MagicMock(
-        side_effect=None if status < 400 else requests.HTTPError(f"HTTP {status}")
-    )
+    r.raise_for_status = MagicMock(side_effect=None if status < 400 else requests.HTTPError(f"HTTP {status}"))
     r.json = MagicMock(return_value=data if data is not None else {})
     r.text = text if text else (json.dumps(data) if data else "")
     return r
@@ -67,17 +64,9 @@ _WIKIDATA_CLAIMS = {
     }
 }
 
-_WIKIDATA_INDUSTRY_LABEL = {
-    "entities": {
-        "Q1048204": {
-            "labels": {"en": {"value": "professional services"}}
-        }
-    }
-}
+_WIKIDATA_INDUSTRY_LABEL = {"entities": {"Q1048204": {"labels": {"en": {"value": "professional services"}}}}}
 
-_DDG_HTML_WITH_LINKEDIN = (
-    '<a href="https://www.linkedin.com/company/deloitte">Deloitte LinkedIn</a>'
-)
+_DDG_HTML_WITH_LINKEDIN = '<a href="https://www.linkedin.com/company/deloitte">Deloitte LinkedIn</a>'
 
 
 # ---------------------------------------------------------------------------
@@ -102,7 +91,7 @@ def test_search_companies_happy_path(monkeypatch: pytest.MonkeyPatch) -> None:
                 return _resp(200, _WIKIDATA_INDUSTRY_LABEL)
         return _resp(404)
 
-    monkeypatch.setattr(company_search, "_make_session", lambda: _mock_session(fake_get))
+    monkeypatch.setattr(company_search, "_make_session", lambda network_settings=None: _mock_session(fake_get))
 
     results = company_search.search_companies("Professional Services", "New York", ["Deloitte"])
 
@@ -128,7 +117,7 @@ def test_search_companies_ddg_fails_linkedin_still_found(monkeypatch: pytest.Mon
             return _resp(200, {"Heading": "", "AbstractURL": "", "Results": [], "RelatedTopics": []})
         return _resp(404)
 
-    monkeypatch.setattr(company_search, "_make_session", lambda: _mock_session(fake_get))
+    monkeypatch.setattr(company_search, "_make_session", lambda network_settings=None: _mock_session(fake_get))
 
     results = company_search.search_companies("", "", ["Deloitte"])
 
@@ -153,7 +142,7 @@ def test_search_companies_wikidata_fails_partial_result(monkeypatch: pytest.Monk
             return _resp(500)
         return _resp(404)
 
-    monkeypatch.setattr(company_search, "_make_session", lambda: _mock_session(fake_get))
+    monkeypatch.setattr(company_search, "_make_session", lambda network_settings=None: _mock_session(fake_get))
 
     results = company_search.search_companies("", "", ["Deloitte"])
 
@@ -185,7 +174,7 @@ def test_search_companies_linkedin_scrape_429_no_field(monkeypatch: pytest.Monke
             return _resp(200, _WIKIDATA_INDUSTRY_LABEL)
         return _resp(404)
 
-    monkeypatch.setattr(company_search, "_make_session", lambda: _mock_session(fake_get))
+    monkeypatch.setattr(company_search, "_make_session", lambda network_settings=None: _mock_session(fake_get))
 
     results = company_search.search_companies("", "", ["Deloitte"])
 
@@ -225,7 +214,7 @@ def test_search_companies_skips_url_first_keyword(monkeypatch: pytest.MonkeyPatc
         searched.append(q)
         return _resp(200, {"Heading": "", "AbstractURL": "", "Results": [], "RelatedTopics": []})
 
-    monkeypatch.setattr(company_search, "_make_session", lambda: _mock_session(fake_get))
+    monkeypatch.setattr(company_search, "_make_session", lambda network_settings=None: _mock_session(fake_get))
 
     company_search.search_companies("", "", ["https://deloitte.com", "Deloitte"])
 
@@ -272,7 +261,9 @@ def test_find_career_page_suffix_hit(monkeypatch: pytest.MonkeyPatch) -> None:
     def fake_head(url: str, **kwargs: Any) -> MagicMock:
         return _resp(200 if url.endswith("/careers") else 404)
 
-    monkeypatch.setattr(company_search, "_make_session", lambda: _mock_session(head_side_effect=fake_head))
+    monkeypatch.setattr(
+        company_search, "_make_session", lambda network_settings=None: _mock_session(head_side_effect=fake_head)
+    )
 
     result = company_search.find_career_page("Deloitte", "https://www2.deloitte.com")
     assert result == "https://www2.deloitte.com/careers"
@@ -296,8 +287,9 @@ def test_find_career_page_fallback_to_ddg(monkeypatch: pytest.MonkeyPatch) -> No
         return _resp(200, _DDG_CAREERS)
 
     monkeypatch.setattr(
-        company_search, "_make_session",
-        lambda: _mock_session(fake_get, fake_head),
+        company_search,
+        "_make_session",
+        lambda network_settings=None: _mock_session(fake_get, fake_head),
     )
 
     result = company_search.find_career_page("Deloitte", "https://www2.deloitte.com")
@@ -319,7 +311,7 @@ def test_find_career_page_no_website_uses_ddg(monkeypatch: pytest.MonkeyPatch) -
     def fake_get(url: str, **kwargs: Any) -> MagicMock:
         return _resp(200, _DDG_CAREERS)
 
-    monkeypatch.setattr(company_search, "_make_session", lambda: _mock_session(fake_get))
+    monkeypatch.setattr(company_search, "_make_session", lambda network_settings=None: _mock_session(fake_get))
 
     result = company_search.find_career_page("Deloitte", None)
     assert result is not None
@@ -346,7 +338,7 @@ def test_search_companies_wikipedia_disambiguation_skipped(monkeypatch: pytest.M
             return _resp(200, {})
         return _resp(404)
 
-    monkeypatch.setattr(company_search, "_make_session", lambda: _mock_session(fake_get))
+    monkeypatch.setattr(company_search, "_make_session", lambda network_settings=None: _mock_session(fake_get))
 
     results = company_search.search_companies("", "", ["Deloitte"])
 

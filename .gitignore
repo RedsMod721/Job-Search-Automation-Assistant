@@ -18,6 +18,8 @@ pytest-temp-*/
 
 database/*.db
 database/*.db-*
+database/backups/
+database/recovery_exports/
 logs/*.log
 
 generated/motivation_letters/*
@@ -30,6 +32,8 @@ exports/excel/*
 
 config/google_service_account.json
 config/*credentials*.json
+config/*.local.yaml
+config/local_api_token
 
 documents/cvs/*.pdf
 !documents/cvs/.gitkeep

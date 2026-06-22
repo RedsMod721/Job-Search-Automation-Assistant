@@ -27,10 +27,7 @@ def test_database_init_creates_core_tables() -> None:
 
         with sqlite3.connect(db_path) as connection:
             tables = {
-                row[0]
-                for row in connection.execute(
-                    "SELECT name FROM sqlite_master WHERE type = 'table'"
-                ).fetchall()
+                row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type = 'table'").fetchall()
             }
 
         assert {"applications", "companies", "contacts", "documents"}.issubset(tables)

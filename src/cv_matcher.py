@@ -6,7 +6,6 @@ from typing import Any
 from .constants import CONFIG_FILES, CV_KEYS
 from .utils import deserialize_list, load_yaml, resolve_path
 
-
 FIELD_WEIGHTS = {
     "job_title": 3,
     "job_domain": 3,
@@ -88,8 +87,7 @@ def recommend_cv(
 
     if top_score:
         reason = (
-            f"The role matches the {scores[recommended_cv]['label']} profile through "
-            f"{', '.join(matched_keywords[:5])}."
+            f"The role matches the {scores[recommended_cv]['label']} profile through {', '.join(matched_keywords[:5])}."
         )
     else:
         reason = (

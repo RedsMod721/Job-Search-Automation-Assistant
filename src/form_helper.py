@@ -198,10 +198,7 @@ def generate_common_answers(
             llm_answers = _call_ollama_json(_build_form_prompt(application, profile, platform), llm_settings)
             answers = _normalize_answers(llm_answers, fallback)
         except RuntimeError as exc:
-            warnings.append(
-                "Ollama form answer generation failed; used deterministic answers instead. "
-                f"Details: {exc}"
-            )
+            warnings.append(f"Ollama form answer generation failed; used deterministic answers instead. Details: {exc}")
 
     return {
         "application_id": application.get("application_id", ""),

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime, timedelta
 from typing import Any
 
 import streamlit as st
@@ -7,42 +8,86 @@ import streamlit as st
 from src import (
     company_search,
     cv_matcher,
-    database,
+    diagnostics,
     excel_exporter,
-    extractor,
     form_helper,
     letter_generator,
-    sheets_sync,
 )
 from src.constants import (
     APPLICATION_CHANNEL_VALUES,
     CONFIG_FILES,
     CONTRACT_TYPE_VALUES,
     CV_KEYS,
-    EXTRACTION_LIST_FIELDS,
-    EXTRACTION_SCHEMA_KEYS,
     SOURCE_PLATFORM_VALUES,
     STATUS_VALUES,
 )
-from src.utils import configure_logging, ensure_directories, load_app_config, resolve_path, write_yaml
-
-COMPANY_SEARCH_RESULT_FIELDS = (
-    "company_name",
-    "company_size",
-    "company_industry",
-    "company_website",
-    "company_linkedin",
-    "career_page_url",
+from src.repositories.applications import ApplicationRepository, application_repository_from_settings
+from src.repositories.companies import CompanyRepository
+from src.services import deduplication_service, recovery_service
+from src.services.application_service import (
+    application_label as _application_label,
 )
+from src.services.application_service import (
+    application_matches_filters as _application_matches_filters,
+)
+from src.services.application_service import (
+    build_application_from_company_search_result,
+    build_application_from_reviewed_extraction,
+)
+from src.services.application_service import (
+    build_company_search_request as _build_company_search_request,
+)
+from src.services.application_service import (
+    build_review_refresh_state as _build_review_refresh_state,
+)
+from src.services.application_service import (
+    company_fields_changed as _company_fields_changed,
+)
+from src.services.application_service import (
+    has_company_search_input as _has_company_search_input,
+)
+from src.services.application_service import (
+    list_to_review_text as _list_to_review_text,
+)
+from src.services.application_service import (
+    merge_company_search_result as _merge_company_search_result,
+)
+from src.services.application_service import (
+    parse_review_list as _parse_review_list,
+)
+from src.services.application_service import (
+    review_refresh_defaults as _review_refresh_defaults,
+)
+from src.services.application_service import (
+    selected_cv_value as _selected_cv_value,
+)
+from src.services.extraction_service import run_extraction
+from src.services.sync_service import (
+    change_triggered_sync,
+    manual_sync_applications,
+    startup_sync,
+    sync_mode_summary,
+    sync_status_summary,
+    timer_sync,
+)
+from src.utils import (
+    apply_runtime_config_overrides,
+    configure_logging,
+    ensure_directories,
+    load_app_config,
+    local_config_path,
+    resolve_path,
+    write_yaml,
+)
+
 PENDING_REVIEW_STATE_KEY = "pending_job_extraction_review_state"
 
 
 def bootstrap() -> dict[str, dict[str, Any]]:
     ensure_directories()
-    configs = load_app_config()
+    configs = apply_runtime_config_overrides(load_app_config())
     configure_logging(configs.get("settings", {}))
-    db_path = configs["settings"].get("database", {}).get("path", "database/applications.db")
-    database.init_db(db_path)
+    application_repository_from_settings(configs["settings"]).init()
     return configs
 
 
@@ -51,69 +96,13 @@ def _db_path_from_configs(configs: dict[str, dict[str, Any]]) -> str:
 
 
 def load_applications(configs: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
-    return database.list_applications(db_path=_db_path_from_configs(configs))
-
-
-def _parse_review_list(value: Any) -> list[str]:
-    if isinstance(value, (list, tuple, set)):
-        return [str(item).strip() for item in value if str(item).strip()]
-
-    lines = []
-    for line in str(value or "").splitlines():
-        cleaned = line.strip().lstrip("-* ").strip()
-        if cleaned:
-            lines.append(cleaned)
-    return lines
-
-
-def _list_to_review_text(value: Any) -> str:
-    return "\n".join(_parse_review_list(value))
-
-
-def _coerce_motivation_letter_required(value: Any) -> bool | None:
-    if value is True:
-        return True
-    if value is False:
-        return False
-    if value is None:
-        return None
-
-    normalized = str(value or "").strip().lower()
-    if normalized in {"yes", "true", "required"}:
-        return True
-    if normalized in {"no", "false", "not required"}:
-        return False
-    return None
-
-
-def build_application_from_reviewed_extraction(
-    reviewed_extraction: dict[str, Any],
-    raw_job_description: str,
-    status: str = "To Apply",
-    notes: str = "",
-) -> dict[str, Any]:
-    application: dict[str, Any] = {}
-    for key in EXTRACTION_SCHEMA_KEYS:
-        value = reviewed_extraction.get(key, "")
-        if key in EXTRACTION_LIST_FIELDS:
-            application[key] = _parse_review_list(value)
-        elif key == "motivation_letter_required":
-            application[key] = _coerce_motivation_letter_required(value)
-        else:
-            application[key] = "" if value is None else str(value).strip()
-
-    application["raw_job_description"] = raw_job_description.strip()
-    application["status"] = status or "To Apply"
-    application["notes"] = notes.strip()
-    return application
+    return ApplicationRepository(_db_path_from_configs(configs)).list()
 
 
 def _store_pending_extraction(extraction: dict[str, Any], raw_text: str) -> None:
     st.session_state["pending_job_extraction"] = extraction
     st.session_state["pending_job_extraction_raw_text"] = raw_text
-    st.session_state["pending_job_extraction_version"] = (
-        st.session_state.get("pending_job_extraction_version", 0) + 1
-    )
+    st.session_state["pending_job_extraction_version"] = st.session_state.get("pending_job_extraction_version", 0) + 1
 
 
 def _clear_pending_extraction() -> None:
@@ -135,178 +124,104 @@ def _review_text(pending_extraction: dict[str, Any], key: str) -> str:
 
 
 def _run_extraction(raw_text: str, settings: dict[str, Any]) -> None:
-    llm_settings = settings.get("llm", {})
-    extraction = extractor.extract_job_post(
-        raw_text,
-        model=llm_settings.get("model", "qwen2.5:7b"),
-        fallback_models=list(llm_settings.get("fallback_models", [])),
-        timeout_seconds=int(llm_settings.get("timeout_seconds", 120)),
-        temperature=float(llm_settings.get("temperature", 0.2)),
-    )
-    _store_pending_extraction(extraction, raw_text)
+    _store_pending_extraction(run_extraction(raw_text, settings), raw_text)
 
 
-def _compact_review_keywords(values: list[Any]) -> list[str]:
-    keywords: list[str] = []
-    seen: set[str] = set()
-    for value in values:
-        candidates = _parse_review_list(value)
-        if not candidates and str(value or "").strip():
-            candidates = [str(value).strip()]
-        for candidate in candidates:
-            normalized = candidate.strip()
-            lookup_key = normalized.lower()
-            if normalized and lookup_key not in seen:
-                seen.add(lookup_key)
-                keywords.append(normalized)
-    return keywords
+def _google_sync_enabled(settings: dict[str, Any]) -> bool:
+    return bool(settings.get("google_sheets", {}).get("enabled", False))
 
 
-def _build_company_search_request(reviewed_extraction: dict[str, Any]) -> dict[str, Any]:
-    sector = next(
-        (
-            str(reviewed_extraction.get(key, "")).strip()
-            for key in ("company_industry", "job_domain", "job_title")
-            if str(reviewed_extraction.get(key, "")).strip()
-        ),
-        "",
-    )
-    location = str(reviewed_extraction.get("location", "")).strip()
-    keywords = _compact_review_keywords(
-        [
-            reviewed_extraction.get("company_name", ""),
-            reviewed_extraction.get("company_website", ""),
-            reviewed_extraction.get("company_linkedin", ""),
-            reviewed_extraction.get("career_page_url", ""),
-            reviewed_extraction.get("job_title", ""),
-            reviewed_extraction.get("job_url", ""),
-            reviewed_extraction.get("required_skills", ""),
-            reviewed_extraction.get("preferred_qualifications", ""),
-        ]
-    )
-    return {"sector": sector, "location": location, "keywords": keywords}
-
-
-def _has_company_search_input(search_request: dict[str, Any]) -> bool:
-    return bool(
-        search_request.get("sector")
-        or search_request.get("location")
-        or search_request.get("keywords")
-    )
-
-
-def _merge_company_search_result(
-    reviewed_extraction: dict[str, Any],
-    company_result: dict[str, Any],
-) -> dict[str, Any]:
-    merged = dict(reviewed_extraction)
-    for field in COMPANY_SEARCH_RESULT_FIELDS:
-        value = company_result.get(field)
-        if value is None:
-            continue
-        cleaned_value = str(value).strip()
-        if cleaned_value:
-            merged[field] = cleaned_value
-    return merged
-
-
-def _company_fields_changed(
-    before: dict[str, Any],
-    after: dict[str, Any],
-) -> bool:
-    return any(
-        str(before.get(field, "")).strip() != str(after.get(field, "")).strip()
-        for field in COMPANY_SEARCH_RESULT_FIELDS
-    )
-
-
-def _application_label(item: dict[str, Any]) -> str:
-    company = item.get("company_name") or "Unknown company"
-    role = item.get("job_title") or "Unknown role"
-    application_id = str(item.get("application_id", ""))
-    short_id = application_id[:8] if application_id else "no-id"
-    return f"{company} - {role} ({short_id})"
-
-
-def _selected_cv_value(value: Any) -> str:
-    cv_value = str(value or "").strip()
-    return cv_value if cv_value in CV_KEYS else CV_KEYS[-1]
-
-
-def _application_matches_filters(
-    application: dict[str, Any],
-    *,
-    status_filter: str = "All",
-    company_query: str = "",
-    domain_query: str = "",
-    source_filter: str = "All",
-    cv_filter: str = "All",
-    location_query: str = "",
-    include_archived: bool = False,
-) -> bool:
-    if not include_archived and application.get("archived"):
-        return False
-    if status_filter != "All" and application.get("status") != status_filter:
-        return False
-    if source_filter != "All" and application.get("source_platform") != source_filter:
-        return False
-    if cv_filter != "All" and application.get("selected_cv") != cv_filter:
-        return False
-    searchable = {
-        "company": str(application.get("company_name", "")).lower(),
-        "domain": str(application.get("job_domain", "")).lower(),
-        "location": str(application.get("location", "")).lower(),
-    }
-    if company_query and company_query.lower() not in searchable["company"]:
-        return False
-    if domain_query and domain_query.lower() not in searchable["domain"]:
-        return False
-    if location_query and location_query.lower() not in searchable["location"]:
-        return False
-    return True
-
-
-def build_application_from_company_search_result(
-    company_result: dict[str, Any],
-    job_title: str = "",
-    job_url: str = "",
-    status: str = "Saved",
-    notes: str = "",
-) -> dict[str, Any]:
-    company_name = str(company_result.get("company_name", "")).strip()
-    source_url = str(company_result.get("source_url", "") or company_result.get("source", "")).strip()
-    provenance_notes = [
-        "Created from Company Search.",
-        f"Source: {source_url}" if source_url else "",
-        notes.strip(),
-    ]
-    return {
-        "company_name": company_name,
-        "company_size": str(company_result.get("company_size", "") or "").strip(),
-        "company_industry": str(company_result.get("company_industry", "") or "").strip(),
-        "company_website": str(company_result.get("company_website", "") or "").strip(),
-        "company_linkedin": str(company_result.get("company_linkedin", "") or "").strip(),
-        "career_page_url": str(company_result.get("career_page_url", "") or "").strip(),
-        "job_title": job_title.strip(),
-        "job_url": job_url.strip(),
-        "status": status if status in STATUS_VALUES else "Saved",
-        "source_platform": "Company Website",
-        "application_channel": "Company Career Page",
-        "notes": "\n".join(part for part in provenance_notes if part),
+def _store_sync_notice(mode: str, result: Any) -> None:
+    if result is None:
+        return
+    st.session_state["google_sheets_sync_notice"] = {
+        "mode": mode,
+        "synced": getattr(result, "synced", 0),
+        "created": getattr(result, "created", 0),
+        "updated": getattr(result, "updated", 0),
+        "skipped": getattr(result, "skipped", 0),
+        "warnings": list(getattr(result, "warnings", [])),
+        "errors": list(getattr(result, "errors", [])),
     }
 
 
-def _build_review_refresh_state(status: str, notes: str) -> dict[str, str]:
-    return {"status": status, "notes": notes}
+def _show_sync_notice() -> None:
+    notice = st.session_state.get("google_sheets_sync_notice")
+    if not notice:
+        return
+    if notice.get("errors"):
+        st.warning(f"Google Sheets sync {notice['mode']} failed: {'; '.join(notice['errors'])}")
+        return
+    if notice.get("warnings"):
+        st.caption(f"Google Sheets sync {notice['mode']}: {'; '.join(notice['warnings'])}")
+        return
+    if notice.get("synced"):
+        st.caption(
+            f"Google Sheets sync {notice['mode']}: {notice['synced']} synced, "
+            f"{notice['created']} created, {notice['updated']} updated."
+        )
 
 
-def _review_refresh_defaults(state: dict[str, Any] | None) -> tuple[str, str]:
-    state = state or {}
-    status = str(state.get("status", "To Apply")).strip() or "To Apply"
-    if status not in STATUS_VALUES:
-        status = "To Apply"
-    notes = str(state.get("notes", ""))
-    return status, notes
+def _run_change_triggered_sync(configs: dict[str, dict[str, Any]]) -> None:
+    settings = configs["settings"]
+    if not _google_sync_enabled(settings):
+        return
+    try:
+        _store_sync_notice("change-triggered", change_triggered_sync(settings, db_path=_db_path_from_configs(configs)))
+    except Exception as exc:
+        st.session_state["google_sheets_sync_notice"] = {
+            "mode": "change-triggered",
+            "synced": 0,
+            "created": 0,
+            "updated": 0,
+            "skipped": 0,
+            "warnings": [],
+            "errors": [str(exc)],
+        }
+
+
+def _run_automatic_sync(configs: dict[str, dict[str, Any]]) -> None:
+    settings = configs["settings"]
+    if not _google_sync_enabled(settings):
+        return
+    db_path = _db_path_from_configs(configs)
+    sheet_settings = settings.get("google_sheets", {})
+    now = datetime.now().replace(microsecond=0)
+
+    if sheet_settings.get("startup_sync_enabled", True) and not st.session_state.get("google_sheets_startup_sync_done"):
+        try:
+            _store_sync_notice("startup", startup_sync(settings, db_path=db_path))
+        except Exception as exc:
+            st.session_state["google_sheets_sync_notice"] = {
+                "mode": "startup",
+                "synced": 0,
+                "created": 0,
+                "updated": 0,
+                "skipped": 0,
+                "warnings": [],
+                "errors": [str(exc)],
+            }
+        st.session_state["google_sheets_startup_sync_done"] = True
+
+    if sheet_settings.get("timer_sync_enabled", True):
+        interval_seconds = int(sheet_settings.get("timer_interval_seconds", 60) or 60)
+        last_timer_sync = st.session_state.get("google_sheets_last_timer_sync_at")
+        due = not isinstance(last_timer_sync, datetime) or now - last_timer_sync >= timedelta(seconds=interval_seconds)
+        if due:
+            try:
+                _store_sync_notice("timer", timer_sync(settings, db_path=db_path))
+            except Exception as exc:
+                st.session_state["google_sheets_sync_notice"] = {
+                    "mode": "timer",
+                    "synced": 0,
+                    "created": 0,
+                    "updated": 0,
+                    "skipped": 0,
+                    "warnings": [],
+                    "errors": [str(exc)],
+                }
+            st.session_state["google_sheets_last_timer_sync_at"] = now
+        st.markdown(f"<meta http-equiv='refresh' content='{max(interval_seconds, 10)}'>", unsafe_allow_html=True)
 
 
 def _store_review_refresh_state(status: str, notes: str) -> None:
@@ -394,6 +309,7 @@ def render_dashboard(configs: dict[str, dict[str, Any]]) -> None:
 def render_add_job(configs: dict[str, dict[str, Any]]) -> None:
     settings = configs["settings"]
     db_path = settings.get("database", {}).get("path", "database/applications.db")
+    application_repository = ApplicationRepository(db_path)
 
     with st.form("add_application_form", clear_on_submit=False):
         company_name = st.text_input("Company name")
@@ -433,7 +349,8 @@ def render_add_job(configs: dict[str, dict[str, Any]]) -> None:
                 "cv_matched_keywords": recommendation["matched_keywords"],
             }
         )
-        application_id = database.add_application(application, db_path=db_path)
+        application_id = application_repository.add(application)
+        _run_change_triggered_sync(configs)
         st.success(f"Application saved: {application_id}")
 
     st.divider()
@@ -466,9 +383,7 @@ def render_extraction_review(
 ) -> None:
     version = st.session_state.get("pending_job_extraction_version", 0)
     raw_job_description = st.session_state.get("pending_job_extraction_raw_text", "")
-    restored_status, restored_notes = _review_refresh_defaults(
-        st.session_state.pop(PENDING_REVIEW_STATE_KEY, None)
-    )
+    restored_status, restored_notes = _review_refresh_defaults(st.session_state.pop(PENDING_REVIEW_STATE_KEY, None))
 
     st.subheader("Review extracted job")
     with st.form(f"extraction_review_form_{version}", clear_on_submit=False):
@@ -583,11 +498,7 @@ def render_extraction_review(
         }
         motivation_value = pending_extraction.get("motivation_letter_required")
         motivation_label = next(
-            (
-                label
-                for label, option_value in motivation_options.items()
-                if option_value is motivation_value
-            ),
+            (label for label, option_value in motivation_options.items() if option_value is motivation_value),
             "Unknown",
         )
         motivation_letter_required = st.selectbox(
@@ -637,9 +548,7 @@ def render_extraction_review(
 
         create_col, company_search_col, retry_col, cancel_col = st.columns(4)
         create_clicked = create_col.form_submit_button("Create application")
-        company_search_clicked = company_search_col.form_submit_button(
-            "Launch company search and fill fields"
-        )
+        company_search_clicked = company_search_col.form_submit_button("Launch company search and fill fields")
         retry_clicked = retry_col.form_submit_button("Retry extraction")
         cancel_clicked = cancel_col.form_submit_button("Cancel")
 
@@ -713,15 +622,9 @@ def render_extraction_review(
             company_result = dict(company_results[0] or {})
             if not str(company_result.get("career_page_url", "")).strip():
                 career_page_url_result = company_search.find_career_page(
+                    str(company_result.get("company_name") or reviewed_extraction.get("company_name") or "").strip(),
                     str(
-                        company_result.get("company_name")
-                        or reviewed_extraction.get("company_name")
-                        or ""
-                    ).strip(),
-                    str(
-                        company_result.get("company_website")
-                        or reviewed_extraction.get("company_website")
-                        or ""
+                        company_result.get("company_website") or reviewed_extraction.get("company_website") or ""
                     ).strip()
                     or None,
                 )
@@ -762,7 +665,8 @@ def render_extraction_review(
             "cv_matched_keywords": recommendation["matched_keywords"],
         }
     )
-    application_id = database.add_application(application, db_path=db_path)
+    application_id = ApplicationRepository(db_path).add(application)
+    _run_change_triggered_sync(configs)
     _clear_pending_extraction()
     _set_extraction_notice("success", f"Application created from extraction: {application_id}")
     st.rerun()
@@ -771,6 +675,7 @@ def render_extraction_review(
 def render_tracker(configs: dict[str, dict[str, Any]]) -> None:
     settings = configs["settings"]
     db_path = _db_path_from_configs(configs)
+    application_repository = ApplicationRepository(db_path)
     applications = load_applications(configs)
 
     filter_cols = st.columns(4)
@@ -808,15 +713,15 @@ def render_tracker(configs: dict[str, dict[str, Any]]) -> None:
             st.error(f"Excel export failed: {exc}")
 
     if action_cols[1].button("Sync all applications to Google Sheets"):
-        result = sheets_sync.sync_applications_to_sheet(applications, settings, db_path=db_path)
-        if result.get("errors"):
-            st.error("; ".join(result["errors"]))
-        elif result.get("warnings"):
-            st.warning("; ".join(result["warnings"]))
+        result = manual_sync_applications(applications, settings, db_path=db_path)
+        if result.errors:
+            st.error("; ".join(result.errors))
+        elif result.warnings:
+            st.warning("; ".join(result.warnings))
         else:
             st.success(
-                f"Google Sheets sync complete: {result['synced']} synced, "
-                f"{result['created']} created, {result['updated']} updated."
+                f"Google Sheets sync complete: {result.synced} synced, "
+                f"{result.created} created, {result.updated} updated."
             )
 
     if not filtered_applications:
@@ -895,9 +800,7 @@ def render_tracker(configs: dict[str, dict[str, Any]]) -> None:
         status = status_col.selectbox(
             "Status",
             STATUS_VALUES,
-            index=STATUS_VALUES.index(selected.get("status"))
-            if selected.get("status") in STATUS_VALUES
-            else 0,
+            index=STATUS_VALUES.index(selected.get("status")) if selected.get("status") in STATUS_VALUES else 0,
         )
         selected_cv = cv_col.selectbox(
             "Selected CV override",
@@ -933,7 +836,7 @@ def render_tracker(configs: dict[str, dict[str, Any]]) -> None:
         save_changes = st.form_submit_button("Save tracker changes")
 
     if save_changes:
-        database.update_application(
+        application_repository.update(
             selected["application_id"],
             {
                 "company_name": company_name,
@@ -967,25 +870,28 @@ def render_tracker(configs: dict[str, dict[str, Any]]) -> None:
                 "notes": notes,
                 "archived": 1 if status == "Archived" else selected.get("archived", 0),
             },
-            db_path=db_path,
         )
+        _run_change_triggered_sync(configs)
         st.success("Application updated.")
         st.rerun()
 
     destructive_cols = st.columns(2)
     if destructive_cols[0].button("Archive selected application"):
-        database.archive_application(selected["application_id"], db_path=db_path)
+        application_repository.archive(selected["application_id"])
+        _run_change_triggered_sync(configs)
         st.success("Application archived.")
         st.rerun()
-    confirm_delete = destructive_cols[1].checkbox("Confirm permanent delete")
-    if destructive_cols[1].button("Delete selected application", disabled=not confirm_delete):
-        database.delete_application(selected["application_id"], db_path=db_path)
-        st.success("Application deleted.")
+    confirm_delete = destructive_cols[1].checkbox("Confirm soft delete")
+    if destructive_cols[1].button("Soft-delete selected application", disabled=not confirm_delete):
+        application_repository.delete(selected["application_id"])
+        _run_change_triggered_sync(configs)
+        st.success("Application soft-deleted.")
         st.rerun()
 
 
 def render_cv_matcher(configs: dict[str, dict[str, Any]]) -> None:
     db_path = _db_path_from_configs(configs)
+    application_repository = ApplicationRepository(db_path)
     applications = load_applications(configs)
     missing_cv_files = cv_matcher.validate_cv_files(configs["documents"])
     if missing_cv_files:
@@ -1008,7 +914,7 @@ def render_cv_matcher(configs: dict[str, dict[str, Any]]) -> None:
             key=f"cv_override_{selected['application_id']}",
         )
         if st.button("Save CV recommendation and override"):
-            database.update_application(
+            application_repository.update(
                 selected["application_id"],
                 {
                     "recommended_cv": recommendation["recommended_cv"],
@@ -1017,8 +923,8 @@ def render_cv_matcher(configs: dict[str, dict[str, Any]]) -> None:
                     "cv_recommendation_reason": recommendation["reason"],
                     "cv_matched_keywords": recommendation["matched_keywords"],
                 },
-                db_path=db_path,
             )
+            _run_change_triggered_sync(configs)
             st.success("CV recommendation saved.")
             st.rerun()
 
@@ -1047,6 +953,7 @@ def _application_options(applications: list[dict[str, Any]]) -> dict[str, str]:
 def render_motivation_letter(configs: dict[str, dict[str, Any]]) -> None:
     settings = configs["settings"]
     db_path = _db_path_from_configs(configs)
+    application_repository = ApplicationRepository(db_path)
     applications = load_applications(configs)
     if not applications:
         st.info("No applications available.")
@@ -1073,24 +980,26 @@ def render_motivation_letter(configs: dict[str, dict[str, Any]]) -> None:
         st.session_state[draft_key] = result["letter_text"]
         st.session_state[result_key] = result
 
-    result = st.session_state.get(result_key)
-    if result:
-        if result.get("warnings"):
-            st.warning("; ".join(result["warnings"]))
-        st.caption(f"Language: {result['language']} | Words: {result['word_count']}")
+    stored_letter_result = st.session_state.get(result_key)
+    if stored_letter_result:
+        if stored_letter_result.get("warnings"):
+            st.warning("; ".join(stored_letter_result["warnings"]))
+        st.caption(f"Language: {stored_letter_result['language']} | Words: {stored_letter_result['word_count']}")
 
     draft = st.text_area("Draft", key=draft_key, height=260)
     if draft and st.button("Save letter locally and link to application"):
-        saved_language = (result or {}).get("language") or letter_generator.select_letter_language(selected, language)
+        saved_language = (stored_letter_result or {}).get("language") or letter_generator.select_letter_language(
+            selected, language
+        )
         file_path = letter_generator.save_letter(selected["application_id"], draft, saved_language)
-        database.update_application(
+        application_repository.update(
             selected["application_id"],
             {
                 "motivation_letter_file": file_path,
                 "motivation_letter_language": saved_language,
             },
-            db_path=db_path,
         )
+        _run_change_triggered_sync(configs)
         st.success(f"Letter saved: {file_path}")
         st.rerun()
 
@@ -1098,6 +1007,7 @@ def render_motivation_letter(configs: dict[str, dict[str, Any]]) -> None:
 def render_form_helper(configs: dict[str, dict[str, Any]]) -> None:
     settings = configs["settings"]
     db_path = _db_path_from_configs(configs)
+    application_repository = ApplicationRepository(db_path)
     applications = load_applications(configs)
     if not applications:
         st.info("No applications available.")
@@ -1120,14 +1030,14 @@ def render_form_helper(configs: dict[str, dict[str, Any]]) -> None:
         )
         st.session_state[result_key] = result
 
-    result = st.session_state.get(result_key)
-    if not result:
+    stored_answers_result = st.session_state.get(result_key)
+    if not stored_answers_result:
         return
 
-    if result.get("warnings"):
-        st.warning("; ".join(result["warnings"]))
+    if stored_answers_result.get("warnings"):
+        st.warning("; ".join(stored_answers_result["warnings"]))
 
-    answers = result.get("answers", {})
+    answers = stored_answers_result.get("answers", {})
     personal_information = dict(answers.get("personal_information", {}))
     common_questions = dict(answers.get("common_questions", {}))
     with st.form(f"form_answers_edit_{selected['application_id']}", clear_on_submit=False):
@@ -1152,20 +1062,23 @@ def render_form_helper(configs: dict[str, dict[str, Any]]) -> None:
                 "common_questions": edited_common,
             },
             "file_path": "",
-            "warnings": result.get("warnings", []),
+            "warnings": stored_answers_result.get("warnings", []),
         }
         file_path = form_helper.save_form_answers(selected["application_id"], payload)
-        database.update_application(
+        application_repository.update(
             selected["application_id"],
             {"form_answers_file": file_path},
-            db_path=db_path,
         )
+        _run_change_triggered_sync(configs)
         st.success(f"Form answers saved: {file_path}")
         st.rerun()
 
 
 def render_company_search(configs: dict[str, dict[str, Any]]) -> None:
+    network_settings = configs["settings"].get("network", {})
     db_path = _db_path_from_configs(configs)
+    application_repository = ApplicationRepository(db_path)
+    company_repository = CompanyRepository(db_path)
     with st.form("company_search_form", clear_on_submit=False):
         col_a, col_b = st.columns(2)
         sector = col_a.text_input("Sector", value="AI consulting")
@@ -1180,7 +1093,7 @@ def render_company_search(configs: dict[str, dict[str, Any]]) -> None:
     if search_clicked:
         keywords = _parse_review_list(keywords_text)
         try:
-            results = company_search.search_companies(sector, location, keywords)
+            results = company_search.search_companies(sector, location, keywords, network_settings=network_settings)
             enriched_results: list[dict[str, Any]] = []
             for result in results:
                 enriched = dict(result)
@@ -1190,6 +1103,7 @@ def render_company_search(configs: dict[str, dict[str, Any]]) -> None:
                     career_page_url = company_search.find_career_page(
                         enriched.get("company_name", "") or sector,
                         enriched.get("company_website"),
+                        network_settings=network_settings,
                     )
                     if career_page_url:
                         enriched["career_page_url"] = career_page_url
@@ -1205,15 +1119,14 @@ def render_company_search(configs: dict[str, dict[str, Any]]) -> None:
 
     st.dataframe(results, width="stretch", hide_index=True)
     result_options = {
-        f"{item.get('company_name') or 'Unknown company'} ({index + 1})": index
-        for index, item in enumerate(results)
+        f"{item.get('company_name') or 'Unknown company'} ({index + 1})": index for index, item in enumerate(results)
     }
     selected_label = st.selectbox("Result", list(result_options), key="company_search_result")
     selected_result = results[result_options[selected_label]]
 
     action_cols = st.columns(2)
     if action_cols[0].button("Save company"):
-        company_id = database.upsert_company(selected_result, db_path=db_path)
+        company_id = company_repository.upsert(selected_result)
         st.success(f"Company saved: {company_id}")
 
     with st.form("company_search_create_application", clear_on_submit=False):
@@ -1245,7 +1158,8 @@ def render_company_search(configs: dict[str, dict[str, Any]]) -> None:
                 "cv_matched_keywords": recommendation["matched_keywords"],
             }
         )
-        application_id = database.add_application(application, db_path=db_path)
+        application_id = application_repository.add(application)
+        _run_change_triggered_sync(configs)
         st.success(f"Application created: {application_id}")
         st.rerun()
 
@@ -1269,9 +1183,56 @@ def render_settings(configs: dict[str, dict[str, Any]]) -> None:
             + "; ".join(f"{cv_key}: {path}" for cv_key, path in missing_cv_files.items())
         )
 
+    st.subheader("Health diagnostics")
+    diagnostic_report = diagnostics.collect_diagnostics(configs)
+    sheet_sync_summary = sync_mode_summary(settings)
+    sheet_status_summary = sync_status_summary(db_path)
+    st.write(diagnostics.diagnostics_summary(diagnostic_report))
+    with st.expander("Detailed diagnostics"):
+        st.json(
+            {
+                "diagnostics": diagnostic_report,
+                "google_sheets_sync_modes": sheet_sync_summary.model_dump(),
+                "google_sheets_sync_status": sheet_status_summary,
+            }
+        )
+
+    st.subheader("Google Sheets sync status")
+    st.json(sheet_status_summary)
+
+    st.subheader("Database safety")
+    safety_cols = st.columns(4)
+    if safety_cols[0].button("Run integrity check"):
+        st.json(recovery_service.run_integrity_check(db_path))
+    if safety_cols[1].button("Create database backup"):
+        try:
+            backup_path = recovery_service.create_backup(db_path)
+            st.success(f"Backup created: {backup_path}")
+        except Exception as exc:
+            st.error(f"Backup failed: {exc}")
+    if safety_cols[2].button("Export recovery SQL"):
+        try:
+            export_path = recovery_service.create_recovery_export(db_path)
+            st.success(f"Recovery export created: {export_path}")
+        except Exception as exc:
+            st.error(f"Recovery export failed: {exc}")
+    if safety_cols[3].button("Scan duplicates"):
+        st.json(deduplication_service.find_all_duplicates(db_path))
+
+    restore_path = st.text_input("Backup path to restore", value="", key="restore_backup_path")
+    confirm_restore = st.checkbox("Confirm database restore", value=False)
+    if st.button("Restore database backup", disabled=not (restore_path and confirm_restore)):
+        try:
+            pre_restore_backup = recovery_service.restore_backup(restore_path, db_path)
+            st.success(f"Database restored. Pre-restore backup: {pre_restore_backup}")
+            st.rerun()
+        except Exception as exc:
+            st.error(f"Restore failed: {exc}")
+
     llm_settings = settings.get("llm", {})
     sheets_settings = settings.get("google_sheets", {})
     export_settings = settings.get("exports", {})
+    network_settings = settings.get("network", {})
 
     with st.form("settings_form", clear_on_submit=False):
         st.subheader("Local model")
@@ -1304,9 +1265,60 @@ def render_settings(configs: dict[str, dict[str, Any]]) -> None:
             "Credentials path",
             value=sheets_settings.get("credentials_path", "config/google_service_account.json"),
         )
+        startup_sync_enabled = st.checkbox(
+            "Sync on app startup",
+            value=bool(sheets_settings.get("startup_sync_enabled", True)),
+        )
+        timer_sync_enabled = st.checkbox(
+            "Sync on timer",
+            value=bool(sheets_settings.get("timer_sync_enabled", True)),
+        )
+        change_triggered_sync_enabled = st.checkbox(
+            "Sync after local changes",
+            value=bool(sheets_settings.get("change_triggered_sync_enabled", True)),
+        )
+        timer_interval_seconds = st.number_input(
+            "Timer sync interval seconds",
+            min_value=10,
+            max_value=3600,
+            value=int(sheets_settings.get("timer_interval_seconds", 60)),
+            step=10,
+        )
+        max_retry_attempts = st.number_input(
+            "Max sync retry attempts",
+            min_value=1,
+            max_value=20,
+            value=int(sheets_settings.get("max_retry_attempts", 5)),
+            step=1,
+        )
+        retry_backoff_seconds = st.number_input(
+            "Retry backoff seconds",
+            min_value=10,
+            max_value=3600,
+            value=int(sheets_settings.get("retry_backoff_seconds", 60)),
+            step=10,
+        )
+
+        st.subheader("Network")
+        verify_tls = st.checkbox("Verify TLS certificates", value=bool(network_settings.get("verify_tls", True)))
+        custom_ca_bundle = st.text_input(
+            "Custom CA bundle",
+            value=network_settings.get("custom_ca_bundle", ""),
+        )
+        http_proxy = st.text_input("HTTP proxy", value=network_settings.get("http_proxy", ""))
+        https_proxy = st.text_input("HTTPS proxy", value=network_settings.get("https_proxy", ""))
+        request_timeout_seconds = st.number_input(
+            "Network timeout seconds",
+            min_value=3,
+            max_value=180,
+            value=int(network_settings.get("request_timeout_seconds", 30)),
+            step=1,
+        )
 
         st.subheader("Exports")
-        export_folder = st.text_input("Excel export folder", value=export_settings.get("export_folder", "exports/excel"))
+        export_folder = st.text_input(
+            "Excel export folder", value=export_settings.get("export_folder", "exports/excel")
+        )
         save_settings = st.form_submit_button("Save settings")
 
     if save_settings:
@@ -1329,6 +1341,22 @@ def render_settings(configs: dict[str, dict[str, Any]]) -> None:
                 "worksheet_name": worksheet_name.strip() or "Applications",
                 "credentials_path": credentials_path.strip() or "config/google_service_account.json",
                 "sqlite_is_source_of_truth": True,
+                "startup_sync_enabled": bool(startup_sync_enabled),
+                "timer_sync_enabled": bool(timer_sync_enabled),
+                "change_triggered_sync_enabled": bool(change_triggered_sync_enabled),
+                "timer_interval_seconds": int(timer_interval_seconds),
+                "max_retry_attempts": int(max_retry_attempts),
+                "retry_backoff_seconds": int(retry_backoff_seconds),
+            }
+        )
+        updated_settings["network"] = dict(network_settings)
+        updated_settings["network"].update(
+            {
+                "verify_tls": bool(verify_tls),
+                "custom_ca_bundle": custom_ca_bundle.strip(),
+                "http_proxy": http_proxy.strip(),
+                "https_proxy": https_proxy.strip(),
+                "request_timeout_seconds": int(request_timeout_seconds),
             }
         )
         updated_settings["exports"] = dict(export_settings)
@@ -1339,22 +1367,30 @@ def render_settings(configs: dict[str, dict[str, Any]]) -> None:
                 "timestamp_filenames": True,
             }
         )
-        write_yaml(CONFIG_FILES["settings"], updated_settings)
-        st.success("Settings saved. Reloading app configuration.")
+        write_yaml(local_config_path(CONFIG_FILES["settings"]), updated_settings)
+        st.success("Local settings saved. Reloading app configuration.")
         st.rerun()
 
-    credentials_exists = resolve_path(sheets_settings.get("credentials_path", "config/google_service_account.json")).exists()
+    credentials_exists = resolve_path(
+        sheets_settings.get("credentials_path", "config/google_service_account.json")
+    ).exists()
     if sheets_settings.get("enabled") and not credentials_exists:
         st.warning("Google Sheets is enabled, but the credentials file is missing.")
     if st.button("Check Google Sheets sync setup"):
-        result = sheets_sync.sync_applications_to_sheet([], settings)
-        st.json(result)
+        result = manual_sync_applications([], settings)
+        st.json(result.model_dump())
+    if st.button("Force sync all applications now"):
+        applications = load_applications(configs)
+        result = manual_sync_applications(applications, settings, db_path=db_path)
+        st.json(result.model_dump())
 
 
 def main() -> None:
     st.set_page_config(page_title="Job Search Automation Assistant", layout="wide")
     configs = bootstrap()
     st.title("Job Search Automation Assistant")
+    _run_automatic_sync(configs)
+    _show_sync_notice()
 
     tabs = st.tabs(
         [

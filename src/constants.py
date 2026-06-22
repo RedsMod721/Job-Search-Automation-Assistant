@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 CONFIG_DIR = PROJECT_ROOT / "config"
 DEFAULT_DATABASE_PATH = PROJECT_ROOT / "database" / "applications.db"
@@ -23,6 +22,8 @@ REQUIRED_DIRECTORIES = (
     PROJECT_ROOT / "generated" / "form_answers",
     PROJECT_ROOT / "exports" / "excel",
     PROJECT_ROOT / "logs",
+    PROJECT_ROOT / "database" / "backups",
+    PROJECT_ROOT / "database" / "recovery_exports",
     PROJECT_ROOT / "samples" / "sample_job_posts",
 )
 
@@ -127,6 +128,20 @@ APPLICATION_COLUMNS = (
     "motivation_letter_file",
     "form_answers_file",
     "google_sheet_row_id",
+    "normalized_company_name",
+    "canonical_job_url",
+    "external_job_id",
+    "job_description_hash",
+    "deleted_at",
+    "tombstone_reason",
+    "record_version",
+    "sync_status",
+    "sync_pending",
+    "sync_hash",
+    "sync_last_attempt_at",
+    "sync_last_success_at",
+    "sync_last_error",
+    "sync_last_source",
     "archived",
 )
 
@@ -203,6 +218,14 @@ GOOGLE_SHEETS_COLUMNS = (
     "Motivation Letter Language",
     "Motivation Letter File",
     "Form Answers File",
+    "Google Sheet Row ID",
+    "Record Version",
+    "Last Synced At",
+    "Last Sync Source",
+    "Local Updated At",
+    "Sync Hash",
+    "Deleted At",
+    "Tombstone Reason",
     "Archived",
 )
 
@@ -247,6 +270,13 @@ GOOGLE_COLUMN_TO_FIELD = {
     "Motivation Letter Language": "motivation_letter_language",
     "Motivation Letter File": "motivation_letter_file",
     "Form Answers File": "form_answers_file",
+    "Google Sheet Row ID": "google_sheet_row_id",
+    "Record Version": "record_version",
+    "Last Synced At": "sync_last_success_at",
+    "Last Sync Source": "sync_last_source",
+    "Local Updated At": "date_updated",
+    "Sync Hash": "sync_hash",
+    "Deleted At": "deleted_at",
+    "Tombstone Reason": "tombstone_reason",
     "Archived": "archived",
 }
-

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from src.cv_matcher import get_cv_file_path, recommend_cv, score_cv_matches, validate_cv_files
 from src.constants import CV_KEYS, PROJECT_ROOT
+from src.cv_matcher import get_cv_file_path, recommend_cv, score_cv_matches, validate_cv_files
 from src.utils import load_yaml
 
 

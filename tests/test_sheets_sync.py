@@ -65,7 +65,7 @@ def _cleanup_db(path: Path) -> None:
 def test_sync_applications_to_sheet_creates_updates_and_stores_row_id(monkeypatch) -> None:
     worksheet = FakeWorksheet()
     client = FakeClient(worksheet)
-    monkeypatch.setattr(sheets_sync, "init_sheets_client", lambda credentials_path: client)
+    monkeypatch.setattr(sheets_sync, "init_sheets_client", lambda credentials_path, network_settings=None: client)
     db_path = _test_db_path()
 
     try:
@@ -87,26 +87,70 @@ def test_sync_applications_to_sheet_creates_updates_and_stores_row_id(monkeypatc
             }
         }
 
-        first = sheets_sync.sync_applications_to_sheet(
-            [database.get_application(application_id, db_path=db_path)],
-            settings,
-            db_path=db_path,
-        )
+        application = database.get_application(application_id, db_path=db_path)
+        assert application is not None
 
-        assert first == {"synced": 1, "updated": 0, "created": 1, "warnings": [], "errors": []}
+        first = sheets_sync.sync_applications_to_sheet([application], settings, db_path=db_path)
+
+        assert first["synced"] == 1
+        assert first["updated"] == 0
+        assert first["created"] == 1
+        assert first["warnings"] == []
+        assert first["errors"] == []
+        assert first["application_results"][application_id]["row_id"] == "2"
         assert client.opened_key == "sheet-123"
         assert worksheet.rows[0] == list(GOOGLE_SHEETS_COLUMNS)
-        assert database.get_application(application_id, db_path=db_path)["google_sheet_row_id"] == "2"
+        stored_application = database.get_application(application_id, db_path=db_path)
+        assert stored_application is not None
+        assert stored_application["google_sheet_row_id"] == "2"
+        assert stored_application["sync_status"] == "SYNCED"
+        assert stored_application["sync_hash"]
 
         database.update_application(application_id, {"status": "Applied"}, db_path=db_path)
-        second = sheets_sync.sync_applications_to_sheet(
-            [database.get_application(application_id, db_path=db_path)],
-            settings,
-            db_path=db_path,
-        )
+        updated_application = database.get_application(application_id, db_path=db_path)
+        assert updated_application is not None
+        second = sheets_sync.sync_applications_to_sheet([updated_application], settings, db_path=db_path)
 
         status_index = list(GOOGLE_SHEETS_COLUMNS).index("Status")
-        assert second == {"synced": 1, "updated": 1, "created": 0, "warnings": [], "errors": []}
+        assert second["synced"] == 1
+        assert second["updated"] == 1
+        assert second["created"] == 0
+        assert second["warnings"] == []
+        assert second["errors"] == []
         assert worksheet.rows[1][status_index] == "Applied"
     finally:
         _cleanup_db(db_path)
+
+
+def test_sync_passes_network_settings_to_sheets_client(monkeypatch) -> None:
+    worksheet = FakeWorksheet()
+    client = FakeClient(worksheet)
+    captured: dict[str, object] = {}
+
+    def fake_init_sheets_client(credentials_path: str, network_settings: dict[str, object] | None = None) -> FakeClient:
+        captured["credentials_path"] = credentials_path
+        captured["network_settings"] = network_settings
+        return client
+
+    monkeypatch.setattr(sheets_sync, "init_sheets_client", fake_init_sheets_client)
+    settings = {
+        "google_sheets": {
+            "enabled": True,
+            "spreadsheet_id": "sheet-123",
+            "worksheet_name": "Applications",
+            "credentials_path": "config/google_service_account.json",
+        },
+        "network": {"https_proxy": "https://proxy.local:8443"},
+    }
+
+    result = sheets_sync.sync_applications_to_sheet([], settings)
+
+    assert result["synced"] == 0
+    assert result["updated"] == 0
+    assert result["created"] == 0
+    assert result["warnings"] == []
+    assert result["errors"] == []
+    assert captured == {
+        "credentials_path": "config/google_service_account.json",
+        "network_settings": {"https_proxy": "https://proxy.local:8443"},
+    }

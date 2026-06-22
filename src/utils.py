@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import re
 import uuid
+from collections.abc import Mapping
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -37,8 +39,93 @@ def load_yaml(path: str | Path) -> dict[str, Any]:
     return data
 
 
-def load_app_config() -> dict[str, dict[str, Any]]:
-    return {name: load_yaml(path) for name, path in CONFIG_FILES.items()}
+def local_config_path(path: str | Path) -> Path:
+    resolved = resolve_path(path)
+    return resolved.with_name(f"{resolved.stem}.local{resolved.suffix}")
+
+
+def merge_dicts(base: Mapping[str, Any], override: Mapping[str, Any]) -> dict[str, Any]:
+    merged = dict(base)
+    for key, value in override.items():
+        existing = merged.get(key)
+        if isinstance(existing, Mapping) and isinstance(value, Mapping):
+            merged[key] = merge_dicts(existing, value)
+        else:
+            merged[key] = value
+    return merged
+
+
+def load_yaml_with_local(path: str | Path, include_local: bool = True) -> dict[str, Any]:
+    base = load_yaml(path)
+    if not include_local:
+        return base
+
+    local_path = local_config_path(path)
+    if not local_path.exists():
+        return base
+    return merge_dicts(base, load_yaml(local_path))
+
+
+def load_app_config(
+    include_local: bool = True,
+    include_env: bool = True,
+) -> dict[str, dict[str, Any]]:
+    configs = {name: load_yaml_with_local(path, include_local=include_local) for name, path in CONFIG_FILES.items()}
+    if include_env:
+        apply_runtime_config_overrides(configs)
+    return configs
+
+
+def apply_runtime_config_overrides(configs: dict[str, dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    settings = configs.setdefault("settings", {})
+    llm = settings.setdefault("llm", {})
+    google_sheets = settings.setdefault("google_sheets", {})
+    network = settings.setdefault("network", {})
+
+    ollama_host = os.getenv("OLLAMA_HOST", "").strip()
+    if ollama_host:
+        llm["host"] = ollama_host
+
+    spreadsheet_id = (
+        os.getenv("STAGE1_GOOGLE_SHEETS_SPREADSHEET_ID") or os.getenv("GOOGLE_SHEETS_SPREADSHEET_ID") or ""
+    ).strip()
+    if spreadsheet_id:
+        google_sheets["spreadsheet_id"] = spreadsheet_id
+
+    credentials_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "").strip()
+    if credentials_path:
+        google_sheets["credentials_path"] = credentials_path
+
+    verify_tls = os.getenv("JOB_SEARCH_VERIFY_TLS", "").strip().lower()
+    if verify_tls in {"0", "false", "no", "off"}:
+        network["verify_tls"] = False
+    elif verify_tls in {"1", "true", "yes", "on"}:
+        network["verify_tls"] = True
+
+    ca_bundle = (
+        os.getenv("JOB_SEARCH_CA_BUNDLE") or os.getenv("REQUESTS_CA_BUNDLE") or os.getenv("CURL_CA_BUNDLE") or ""
+    ).strip()
+    if ca_bundle:
+        network["custom_ca_bundle"] = ca_bundle
+
+    http_proxy = os.getenv("JOB_SEARCH_HTTP_PROXY", "").strip()
+    if http_proxy:
+        network["http_proxy"] = http_proxy
+    https_proxy = os.getenv("JOB_SEARCH_HTTPS_PROXY", "").strip()
+    if https_proxy:
+        network["https_proxy"] = https_proxy
+    no_proxy = os.getenv("JOB_SEARCH_NO_PROXY", "").strip()
+    if no_proxy:
+        network["no_proxy"] = no_proxy
+
+    timeout = os.getenv("JOB_SEARCH_REQUEST_TIMEOUT_SECONDS", "").strip()
+    if timeout:
+        try:
+            network["request_timeout_seconds"] = int(timeout)
+        except ValueError:
+            pass
+
+    return configs
 
 
 def write_yaml(path: str | Path, data: dict[str, Any]) -> None:

@@ -2,20 +2,18 @@ from __future__ import annotations
 
 import logging
 import re
-import warnings
 from typing import Any
 from urllib.parse import quote
 
 import requests
-import urllib3
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+from .network import make_session, request_timeout
 
 _log = logging.getLogger(__name__)
 
 _USER_AGENT = "Mozilla/5.0 (compatible; JobSearchBot/1.0)"
-_TIMEOUT = 8
-_HEAD_TIMEOUT = 5
+_TIMEOUT_SECONDS = 8
+_HEAD_TIMEOUT_SECONDS = 5
 
 _DDG_API_URL = "https://api.duckduckgo.com/"
 _DDG_HTML_URL = "https://html.duckduckgo.com/html/"
@@ -45,11 +43,19 @@ _CAREER_KW_RE = re.compile(
 )
 
 
-def _make_session() -> requests.Session:
-    session = requests.Session()
-    session.headers["User-Agent"] = _USER_AGENT
-    session.verify = False  # corporate proxy uses self-signed certs
+def _make_session(network_settings: dict[str, Any] | None = None) -> requests.Session:
+    session = make_session(network_settings, user_agent=_USER_AGENT)
+    session.request_timeout_seconds = request_timeout(network_settings, default=_TIMEOUT_SECONDS)  # type: ignore[attr-defined]
+    session.head_timeout_seconds = request_timeout(network_settings, default=_HEAD_TIMEOUT_SECONDS)  # type: ignore[attr-defined]
     return session
+
+
+def _timeout(session: requests.Session) -> int:
+    return int(getattr(session, "request_timeout_seconds", _TIMEOUT_SECONDS))
+
+
+def _head_timeout(session: requests.Session) -> int:
+    return int(getattr(session, "head_timeout_seconds", _HEAD_TIMEOUT_SECONDS))
 
 
 # ---------------------------------------------------------------------------
@@ -62,7 +68,7 @@ def _query_ddg_instant_answer(session: requests.Session, company_name: str) -> d
         resp = session.get(
             _DDG_API_URL,
             params={"q": company_name, "format": "json", "no_html": "1", "skip_disambig": "1"},
-            timeout=_TIMEOUT,
+            timeout=_timeout(session),
         )
         resp.raise_for_status()
         data = resp.json()
@@ -81,17 +87,13 @@ def _query_ddg_instant_answer(session: requests.Session, company_name: str) -> d
 def _query_wikipedia_summary(session: requests.Session, wiki_title: str) -> dict[str, Any] | None:
     try:
         url = _WIKI_SUMMARY_URL.format(title=quote(wiki_title, safe=""))
-        resp = session.get(url, timeout=_TIMEOUT)
+        resp = session.get(url, timeout=_timeout(session))
         resp.raise_for_status()
         data = resp.json()
         if data.get("type") != "standard":
             return None
         entity_id: str = data.get("wikibase_item", "") or ""
-        canonical: str = (
-            (data.get("titles") or {}).get("canonical")
-            or data.get("title")
-            or ""
-        )
+        canonical: str = (data.get("titles") or {}).get("canonical") or data.get("title") or ""
         if not entity_id:
             return None
         return {"entity_id": entity_id, "canonical_name": canonical}
@@ -105,13 +107,11 @@ def _query_wikidata_claims(session: requests.Session, entity_id: str) -> dict[st
         resp = session.get(
             _WIKIDATA_API_URL,
             params={"action": "wbgetentities", "ids": entity_id, "props": "claims", "format": "json"},
-            timeout=_TIMEOUT,
+            timeout=_timeout(session),
         )
         resp.raise_for_status()
         data = resp.json()
-        claims: dict = (
-            data.get("entities", {}).get(entity_id, {}).get("claims", {})
-        )
+        claims: dict = data.get("entities", {}).get(entity_id, {}).get("claims", {})
 
         result: dict[str, Any] = {}
 
@@ -130,9 +130,7 @@ def _query_wikidata_claims(session: requests.Session, entity_id: str) -> dict[st
 
         # P452 — industry (entity reference; need label lookup)
         try:
-            result["industry_entity_id"] = (
-                claims["P452"][0]["mainsnak"]["datavalue"]["value"]["id"]
-            )
+            result["industry_entity_id"] = claims["P452"][0]["mainsnak"]["datavalue"]["value"]["id"]
         except (KeyError, IndexError, TypeError):
             pass
 
@@ -159,7 +157,7 @@ def _fetch_wikidata_label(session: requests.Session, entity_id: str) -> str | No
                 "languages": "en",
                 "format": "json",
             },
-            timeout=_TIMEOUT,
+            timeout=_timeout(session),
         )
         resp.raise_for_status()
         data = resp.json()
@@ -175,7 +173,7 @@ def _scrape_ddg_linkedin(session: requests.Session, company_name: str) -> str | 
         resp = session.get(
             _DDG_HTML_URL,
             params={"q": f"{company_name} linkedin company"},
-            timeout=_TIMEOUT,
+            timeout=_timeout(session),
         )
         if resp.status_code != 200:
             return None
@@ -197,10 +195,11 @@ def _probe_career_suffixes(session: requests.Session, base_url: str) -> str | No
     for suffix in _CAREER_SUFFIXES:
         url = base_url + suffix
         try:
-            r = session.head(url, timeout=_HEAD_TIMEOUT, allow_redirects=True)
+            r = session.head(url, timeout=_head_timeout(session), allow_redirects=True)
             if r.status_code < 400:
                 return url
-        except Exception:
+        except requests.RequestException as exc:
+            _log.debug("Career suffix probe failed for %s: %s", url, exc)
             continue
     return None
 
@@ -210,7 +209,7 @@ def _search_career_ddg(session: requests.Session, company_name: str) -> str | No
         resp = session.get(
             _DDG_API_URL,
             params={"q": f"{company_name} careers", "format": "json", "no_html": "1"},
-            timeout=_TIMEOUT,
+            timeout=_timeout(session),
         )
         resp.raise_for_status()
         data = resp.json()
@@ -255,6 +254,7 @@ def search_companies(
     sector: str,
     location: str,
     keywords: list[str] | None = None,
+    network_settings: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     keywords = keywords or []
 
@@ -270,7 +270,7 @@ def search_companies(
         return []
 
     result: dict[str, Any] = {}
-    session = _make_session()
+    session = _make_session(network_settings)
 
     # Source 1 — DDG Instant Answer → Wikipedia title + heading
     wiki_title: str | None = None
@@ -303,9 +303,7 @@ def search_companies(
                 if label:
                     result["company_industry"] = label
             if claims.get("linkedin_slug"):
-                wikidata_linkedin = (
-                    f"https://www.linkedin.com/company/{claims['linkedin_slug']}"
-                )
+                wikidata_linkedin = f"https://www.linkedin.com/company/{claims['linkedin_slug']}"
 
     # Source 4 — LinkedIn URL: prefer Wikidata P4264 slug; fall back to DDG HTML scrape
     if wikidata_linkedin:
@@ -318,8 +316,12 @@ def search_companies(
     return [result] if result else []
 
 
-def find_career_page(company_name: str, website: str | None = None) -> str | None:
-    session = _make_session()
+def find_career_page(
+    company_name: str,
+    website: str | None = None,
+    network_settings: dict[str, Any] | None = None,
+) -> str | None:
+    session = _make_session(network_settings)
 
     if website:
         base = website.rstrip("/")

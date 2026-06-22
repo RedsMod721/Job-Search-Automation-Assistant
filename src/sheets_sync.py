@@ -1,26 +1,47 @@
 from __future__ import annotations
 
+import hashlib
+import json
 import re
 from pathlib import Path
 from typing import Any
 
 from .constants import GOOGLE_SHEETS_COLUMNS
-from .database import update_application
+from .database import update_application, update_application_sync_success
 from .excel_exporter import format_application_for_excel
+from .network import configure_session
 from .utils import resolve_path
 
+GOOGLE_SHEETS_SCOPES = (
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive",
+)
 
-def init_sheets_client(credentials_path: str | Path):
+
+def init_sheets_client(credentials_path: str | Path, network_settings: dict[str, Any] | None = None):
     resolved = resolve_path(credentials_path)
     if not resolved.exists():
         raise FileNotFoundError(
-            "Google Sheets credentials are missing. Add a service account JSON file "
-            "and keep it out of Git."
+            "Google Sheets credentials are missing. Add a service account JSON file and keep it out of Git."
         )
 
     import gspread
+    from google.auth.transport.requests import AuthorizedSession
+    from google.oauth2 import service_account
 
-    return gspread.service_account(filename=str(resolved))
+    credentials = service_account.Credentials.from_service_account_file(str(resolved), scopes=GOOGLE_SHEETS_SCOPES)
+    session = AuthorizedSession(credentials)
+    configure_session(session, network_settings)
+
+    # AuthorizedSession uses a separate internal session for token-refresh requests
+    # (_auth_request.session). Patch it too, otherwise it inherits system proxy settings.
+    auth_request = getattr(session, "_auth_request", None)
+    if auth_request is not None:
+        inner_session = getattr(auth_request, "session", None)
+        if inner_session is not None and inner_session is not session:
+            configure_session(inner_session, network_settings)
+
+    return gspread.Client(auth=credentials, session=session)
 
 
 def normalize_spreadsheet_id(value: str) -> str:
@@ -47,10 +68,35 @@ def ensure_worksheet(spreadsheet_id: str, worksheet_name: str, client=None):
     return worksheet
 
 
+def normalize_sheet_value(value: Any) -> str:
+    if isinstance(value, bool):
+        return "TRUE" if value else "FALSE"
+    if value is None:
+        return ""
+    return str(value).replace("\r\n", "\n").replace("\r", "\n").strip()
+
+
+def calculate_application_sync_hash(application: dict[str, Any]) -> str:
+    excluded_columns = {
+        "Google Sheet Row ID",
+        "Last Synced At",
+        "Last Sync Source",
+        "Sync Hash",
+    }
+    normalized = {
+        column: normalize_sheet_value(value)
+        for column, value in format_application_for_excel(application).items()
+        if column not in excluded_columns
+    }
+    payload = json.dumps(normalized, ensure_ascii=True, sort_keys=True)
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
 def sync_applications_to_sheet(
     applications: list[dict[str, Any]],
     settings: dict[str, Any],
     db_path: str | Path | None = None,
+    sync_source: str = "manual",
 ) -> dict[str, Any]:
     sheet_settings = settings.get("google_sheets", {})
     if not sheet_settings.get("enabled", False):
@@ -64,6 +110,7 @@ def sync_applications_to_sheet(
 
     warnings: list[str] = []
     errors: list[str] = []
+    application_results: dict[str, dict[str, Any]] = {}
     created = 0
     updated = 0
 
@@ -78,7 +125,7 @@ def sync_applications_to_sheet(
         }
 
     try:
-        client = init_sheets_client(sheet_settings["credentials_path"])
+        client = init_sheets_client(sheet_settings["credentials_path"], settings.get("network", {}))
         worksheet = ensure_worksheet(
             spreadsheet_id,
             sheet_settings.get("worksheet_name", "Applications"),
@@ -101,7 +148,9 @@ def sync_applications_to_sheet(
                 warnings.append("Skipped an application without application_id.")
                 continue
 
-            row_values = list(format_application_for_excel(application).values())
+            sync_hash = calculate_application_sync_hash(application)
+            application["sync_hash"] = sync_hash
+            row_values = [normalize_sheet_value(value) for value in format_application_for_excel(application).values()]
             stored_row_id = str(application.get("google_sheet_row_id", "") or "").strip()
             target_row: int | None = None
             if stored_row_id.isdigit():
@@ -132,8 +181,22 @@ def sync_applications_to_sheet(
                     application_id,
                     {"google_sheet_row_id": str(target_row)},
                     db_path=db_path,
+                    audit_action=None,
+                    enqueue_sync=False,
                 )
                 application["google_sheet_row_id"] = str(target_row)
+            if db_path is not None:
+                update_application_sync_success(
+                    application_id,
+                    row_id=str(target_row),
+                    sync_hash=sync_hash,
+                    source=sync_source,
+                    db_path=db_path,
+                )
+            application_results[application_id] = {
+                "row_id": str(target_row),
+                "sync_hash": sync_hash,
+            }
     except Exception as exc:
         errors.append(str(exc))
 
@@ -143,6 +206,7 @@ def sync_applications_to_sheet(
         "created": created,
         "warnings": warnings,
         "errors": errors,
+        "application_results": application_results,
     }
 
 

@@ -1,0 +1,50 @@
+user:
+  first_name: "Your first name"
+  last_name: "Your last name"
+  email: "you@example.com"
+  phone: ""
+  current_location: "Your city, country"
+  location_usage_rule: "Use open to relocation when possible. Use current location only when required."
+  linkedin_url: ""
+  github_url: ""
+  portfolio_url: null
+  personal_website: null
+  personal_website_note: ""
+
+languages:
+  french: ""
+  spanish: ""
+  english: ""
+  open_to_learning: []
+
+education: []
+
+work_preferences:
+  target_countries: []
+  priority_cities: []
+  preferred_work_mode: "Hybrid"
+  contract_preferences:
+    preferred:
+      - "Permanent contract"
+      - "CDI"
+    open_to: []
+    not_looking_for:
+      - "Internship"
+  availability: "Immediate"
+  salary_strategy: "Flexible depending on the role, location, company, and market."
+  salary_private_reference: ""
+  work_authorization: ""
+
+job_target_order_if_needed:
+  - "AI Consultant / AI Product"
+  - "Data Analyst / Business Analyst"
+  - "Junior Consultant / Strategy Analyst"
+  - "Marketing Analyst"
+
+motivation_letters:
+  default_language: "English"
+  allow_french: true
+  language_selection_rule: "Match the job post and company language when useful."
+  tone: "Professional, energetic, and specific."
+  max_words: 250
+  generate_only_when_needed: true

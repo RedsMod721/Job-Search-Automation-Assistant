@@ -152,9 +152,7 @@ def extract_job_post(
         except RuntimeError as exc:
             last_error = f"{candidate_model} {exc}"
     else:
-        raise RuntimeError(
-            "All LLM extraction attempts failed: " + (last_error or "no model response was available.")
-        )
+        raise RuntimeError("All LLM extraction attempts failed: " + (last_error or "no model response was available."))
 
     if source_platform:
         extraction["source_platform"] = source_platform
@@ -193,4 +191,3 @@ def normalize_extraction(extraction: dict[str, Any]) -> dict[str, Any]:
         else:
             normalized[key] = "" if value is None else str(value).strip()
     return normalized
-

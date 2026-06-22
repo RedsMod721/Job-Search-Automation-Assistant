@@ -1,12 +1,11 @@
 from __future__ import annotations
 
 import re
-from pathlib import Path
 from typing import Any
 
 import requests
 
-from .utils import load_yaml, now_iso, resolve_path, safe_filename
+from .utils import now_iso, resolve_path, safe_filename
 
 
 def select_letter_language(
@@ -36,8 +35,7 @@ def _profile_summary(profile: dict[str, Any] | None) -> str:
     if education:
         first = education[0]
         parts.append(
-            f"education: {first.get('degree_name') or first.get('degree', '')} "
-            f"in {first.get('major', '')}".strip()
+            f"education: {first.get('degree_name') or first.get('degree', '')} in {first.get('major', '')}".strip()
         )
     return "; ".join(part for part in parts if part)
 
@@ -187,10 +185,7 @@ def generate_letter(
         try:
             letter_text = _call_ollama_text(prompt, llm_settings)
         except RuntimeError as exc:
-            warnings.append(
-                "Ollama letter generation failed; used the configured template instead. "
-                f"Details: {exc}"
-            )
+            warnings.append(f"Ollama letter generation failed; used the configured template instead. Details: {exc}")
 
     if not letter_text:
         letter_text = _format_template_letter(
