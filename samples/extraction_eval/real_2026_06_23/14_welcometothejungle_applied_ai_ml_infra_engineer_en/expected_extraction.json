@@ -1,0 +1,43 @@
+{
+  "company_name": "Mistral AI",
+  "job_title": "Applied AI Engineer, ML Infrastructure Engineer / Devops - EMEA",
+  "company_size": "not included",
+  "company_industry": "Artificial intelligence software, models and enterprise AI platform",
+  "job_domain": "Applied AI engineering, ML infrastructure, DevOps and customer deployment",
+  "seniority_level": "Mid-level / experienced (2+ years)",
+  "contract_type": "Permanent contract",
+  "salary": "not specified",
+  "location": "Paris, France",
+  "remote_policy": "No remote work",
+  "key_responsibilities": [
+    "Onboard customers onto Mistral AI products and guide deployment and integration.",
+    "Design and ensure production setups spanning GPU infrastructure, back-end systems and front-end interfaces.",
+    "Deploy state-of-the-art AI applications across consumer and industrial use cases.",
+    "Work with researchers, AI engineers and product engineers on complex customer projects involving deployment and scaling.",
+    "Contribute to open-source codebases for tasks such as inference and fine-tuning.",
+    "Participate in pre-sales calls to understand client needs, challenges and objectives.",
+    "Provide technical guidance on Mistral AI products and explain the technology to technical and non-technical stakeholders.",
+    "Own end-to-end execution of high-stakes projects in small teams."
+  ],
+  "required_skills": [
+    "Be fluent in English.",
+    "Hold a Bachelor's or Master's degree in Computer Science, Engineering or a related field.",
+    "Have at least 2 years of experience in a DevOps or Site Reliability Engineering role.",
+    "Have experience deploying and managing AI-based products in production environments.",
+    "Be fluent in Python.",
+    "Have experience with Docker and Kubernetes.",
+    "Have experience with CI/CD pipelines and automated deployment tools.",
+    "Have a deep understanding of AWS, Azure or GCP and of on-premises infrastructure.",
+    "Have experience with infrastructure-as-code tools such as Terraform or Ansible.",
+    "Possess strong communication skills and be able to explain complex technical concepts simply."
+  ],
+  "preferred_qualifications": [
+    "Experience as a Customer Engineer, Forward Deployed Engineer, Sales Engineer, Solutions Architect or Technical Product Manager.",
+    "Familiarity with AI frameworks such as PyTorch or TensorFlow.",
+    "Contributions to open-source projects in DevOps or AI."
+  ],
+  "detected_language": "English",
+  "source_platform": "Welcome to the Jungle",
+  "application_channel": "Application initiated through Welcome to the Jungle; resume attachment required; final submission destination not confirmed",
+  "motivation_letter_required": true
+}

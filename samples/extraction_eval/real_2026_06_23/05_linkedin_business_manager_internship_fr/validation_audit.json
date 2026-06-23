@@ -1,0 +1,289 @@
+{
+  "company_name": {
+    "final_value": "KAIRDAN",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employer name appears at the top of the posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The same name is repeated in the role body and company-profile panel without contradiction."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "KAIRDAN",
+      "Bienvenue chez Kairdan"
+    ]
+  },
+  "job_title": {
+    "final_value": "Stage Ingénieur d'affaires / Business Manager",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The complete title appears directly below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The internship nature and dual French/English role naming are preserved."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Stage Ingénieur d'affaires / Business Manager"
+    ]
+  },
+  "company_size": {
+    "final_value": "from outside source: 11-50 employees",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employee range appears in the separate LinkedIn company-profile panel, not in the job-description body."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The exact range 11-50 employees is preserved and explicitly marked as outside source."
+    },
+    "provenance": "outside source: LinkedIn company profile panel",
+    "evidence": [
+      "11-50 employees"
+    ]
+  },
+  "company_industry": {
+    "final_value": "from outside source: Business Consulting and Services",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The industry label is displayed in the separate company-profile panel."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The exact label Business Consulting and Services is preserved and marked as outside source."
+    },
+    "provenance": "outside source: LinkedIn company profile panel",
+    "evidence": [
+      "Business Consulting and Services"
+    ]
+  },
+  "job_domain": {
+    "final_value": "Business development, consultant recruitment, team management, and profit-center management in engineering consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post explicitly covers commercial development, consultant recruitment, management, and profit-center oversight."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain reflects all three mission sections and the explicit engineering-consulting context."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Développement commercial",
+      "Recrutement & management",
+      "Pilotage d’un centre de profit",
+      "société de conseil spécialisée dans les métiers de l’ingénierie"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Internship / entry level",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The title and contract identify an internship, and the profile explicitly says beginners are accepted."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Internship / entry level is faithful and does not infer prior experience."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Stage Ingénieur d'affaires",
+      "Débutant(e) accepté(e)",
+      "Stage de fin d’études"
+    ]
+  },
+  "contract_type": {
+    "final_value": "Stage de fin d'études en école d'ingénieur",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post explicitly states a final-year internship for an engineering-school student."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No duration, apprenticeship, CDD, CDI, or freelance arrangement is added."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Type de contrat : Stage de fin d’études école d'ingénieur"
+    ]
+  },
+  "salary": {
+    "final_value": "Fixe + variable + primes liées notamment au recrutement et au démarrage de mission; montants non inclus",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The compensation structure explicitly includes fixed, variable, and bonus components."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Recruitment and mission-start bonuses are preserved, while no amount or currency is invented."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Rémunération : fixe + variable + primes (recrutement, démarrage mission…)"
+    ]
+  },
+  "location": {
+    "final_value": "Boulogne-Billancourt, Île-de-France, France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The full city, region, and country appear in the posting header."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The role body independently confirms that the position is based in Boulogne-Billancourt."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Boulogne-Billancourt, Île-de-France, France",
+      "Poste basé à Boulogne-Billancourt"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No remote, hybrid, telework, or home-office arrangement is stated."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The fixed office location is not converted into an explicit on-site policy."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Identifier et développer un portefeuille de clients industriels et techniques.",
+      "Comprendre les enjeux clients, proposer les profils adaptés, négocier et conclure.",
+      "Assurer le suivi et la satisfaction des clients dans la durée.",
+      "Recruter les consultants les plus adaptés aux projets identifiés.",
+      "Créer une relation de confiance avec les consultants et piloter leur évolution.",
+      "Manager une équipe avec proximité et exigence.",
+      "Piloter un centre de profit en suivant le chiffre d'affaires, la marge et la dynamique d'équipe.",
+      "Travailler directement avec le fondateur et contribuer à la construction de l'entreprise."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted duty appears under one of the three mission sections."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Responsibilities are non-duplicative and exclude benefits, profile traits, and general company values."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Identifier et développer un portefeuille de clients industriels et techniques",
+      "Comprendre leurs enjeux, proposer les bons profils, négocier et conclure",
+      "Assurer le suivi et la satisfaction client dans la durée",
+      "Recruter les consultants les plus adaptés aux projets identifiés",
+      "Créer une relation de confiance et piloter leur évolution",
+      "Manager son équipe avec proximité et exigence",
+      "Suivre la performance globale : chiffre, marge, dynamique d’équipe",
+      "contribuer activement à la construction de l’entreprise"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Suivre une formation d'ingénieur ou un bi-diplôme commerce après une formation en ingénierie.",
+      "Faire preuve d'aisance relationnelle.",
+      "Être curieux(se) et avoir le sens de l'engagement.",
+      "Avoir un esprit compétitif et le goût du challenge.",
+      "Faire preuve d'autonomie et avoir envie de construire.",
+      "Avoir envie d'apprendre, de progresser rapidement et de prendre des responsabilités."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "All education and behavioral requirements appear in the Profil recherché section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No years-of-experience threshold, software skill, language requirement, or certification is invented."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Formation d’ingénieur ou Bi diplôme commerce à la suite d'une formation en ingénierie",
+      "Aisance relationnelle, curiosité, sens de l'engagement",
+      "Esprit compétitif, goût du challenge, autonomie, envie de construire",
+      "Envie d’apprendre, de progresser vite et de prendre des responsabilités"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [],
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post does not identify any qualification as preferred, optional, a plus, or nice to have."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Beginner acceptance is an eligibility statement and is not converted into a preferred criterion."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive posting and company profile are predominantly written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "English labels such as Business Manager do not change the primary language."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Missions principales",
+      "Profil recherché",
+      "Pourquoi rejoindre Kairdan ?"
+    ]
+  },
+  "source_platform": {
+    "final_value": "LinkedIn",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The submitted content includes LinkedIn-specific company metrics such as followers and members on LinkedIn."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The page layout includes a LinkedIn-style About the job section and separate company panel."
+    },
+    "provenance": "submitted page text",
+    "evidence": [
+      "2,424 followers",
+      "7 on LinkedIn",
+      "About the job"
+    ]
+  },
+  "application_channel": {
+    "final_value": "from outside source: company profile lists aameganvilawson@kairdan.fr and 06 50 93 44 97; role-specific application method not explicitly stated",
+    "stamp_1": {
+      "status": "passed",
+      "check": "An email address and phone number appear only in the separate company-profile panel."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Because the role body does not explicitly direct applicants to those contacts, the field marks them as outside source and keeps the role-specific method unresolved."
+    },
+    "provenance": "outside source: LinkedIn company profile panel",
+    "evidence": [
+      "aameganvilawson@kairdan.fr",
+      "06 50 93 44 97"
+    ]
+  },
+  "motivation_letter_required": {
+    "final_value": null,
+    "stamp_1": {
+      "status": "passed",
+      "check": "No motivation letter, cover letter, written statement, or equivalent document is requested."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The value remains null because the complete application flow is not shown."
+    },
+    "provenance": "not stated in job post",
+    "evidence": []
+  }
+}

@@ -1,0 +1,82 @@
+Skapa
+AI Engineer – IA Générative & Systèmes Agentiques (H/F)
+Job summary
+Permanent contract
+Paris
+A few days at home
+Salary:
+Not specified
+Starting date:
+July 01, 2026
+Experience:
+> 2 years
+
+Job description
+Votre mission
+
+Au sein d’une squad pluridisciplinaire, vous concevez, développez et déployez des solutions d’IA générative et agentique destinées à des usages à fort impact métier.
+
+Vous intervenez à l’interface entre les équipes Produit, Data, IT et Sécurité afin de transformer les besoins métiers en solutions robustes, performantes et conformes aux exigences réglementaires.
+
+Preferred experience
+Vos responsabilités
+Concevoir et développer des applications basées sur les LLM et les architectures agentiques.
+
+Développer des agents autonomes et des systèmes multi-agents.
+
+Intégrer et optimiser des modèles de langage open-source et propriétaires.
+
+Concevoir des pipelines de traitement, d’évaluation et de monitoring des modèles.
+
+Mettre en œuvre des mécanismes de contrôle qualité, de détection des hallucinations et de limitation des biais.
+
+Collaborer avec les équipes DevOps pour industrialiser et sécuriser les déploiements.
+
+Participer à l’amélioration continue des pratiques IA et au partage de connaissances au sein de l’organisation.
+
+Expertise IA Générative
+Expérience significative sur les LLM (Mistral, OpenAI, Anthropic, Llama ou équivalents).
+
+Maîtrise du prompt engineering et des techniques d’optimisation des performances des modèles.
+
+Bonne compréhension du fine-tuning, du RAG et des mécanismes internes des modèles de langage.
+
+Connaissance des problématiques liées aux hallucinations, biais et gouvernance des modèles.
+
+Agentic AI
+Expérience de développement d’agents IA et de systèmes multi-agents.
+
+Maîtrise d’au moins un framework tel que LangChain, LangGraph, CrewAI, AutoGen ou équivalent.
+
+Capacité à concevoir des workflows complexes intégrant raisonnement, planification et prise de décision.
+
+Engineering & MLOps
+Excellente maîtrise de Python.
+
+Expérience avec Docker, Kubernetes et les pipelines CI/CD.
+
+Connaissance des pratiques MLOps et du déploiement de modèles en production.
+
+Expérience de développement dans des environnements cloud ou hybrides.
+
+Sécurité & Conformité
+Sensibilité forte aux enjeux de sécurité, protection des données et IA responsable.
+
+Connaissance du RGPD, de l’AI Act ou d’environnements réglementés appréciée.
+
+Is it mandatory to attach a resume?
+Yes, you are required to attach your resume to apply for this job.
+
+Does this position allow remote work?
+Remote work is allowed for this position.
+
+What type of contract is offered for this position?
+Type of contract for this position: Permanent contract
+
+Is a cover letter mandatory to apply for this position?
+A cover letter is optional to apply for this position.
+
+What is the start date of the contract?
+The contract for this position starts on July 1, 2026
+
+https://www.welcometothejungle.com/en/companies/skapa/jobs/ai-engineer-ia-generative-systemes-agentiques-h-f_paris

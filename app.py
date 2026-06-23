@@ -61,6 +61,8 @@ from src.services.application_service import (
 from src.services.application_service import (
     selected_cv_value as _selected_cv_value,
 )
+from src.services.extraction_correction_service import record_review_corrections
+from src.services.extraction_evaluation_service import latest_evaluation_summary, run_evaluation
 from src.services.extraction_service import run_extraction
 from src.services.sync_service import (
     change_triggered_sync,
@@ -666,9 +668,26 @@ def render_extraction_review(
         }
     )
     application_id = ApplicationRepository(db_path).add(application)
+    correction_count = 0
+    correction_warning = ""
+    try:
+        correction_count = record_review_corrections(
+            pending_extraction,
+            reviewed_extraction,
+            raw_text=reviewed_raw_job_description,
+            application_id=application_id,
+            settings=settings,
+            db_path=db_path,
+        )
+    except Exception as exc:
+        correction_warning = f" Correction logging failed: {exc}"
     _run_change_triggered_sync(configs)
     _clear_pending_extraction()
-    _set_extraction_notice("success", f"Application created from extraction: {application_id}")
+    correction_message = f" Logged {correction_count} extraction correction(s)." if correction_count else ""
+    _set_extraction_notice(
+        "success" if not correction_warning else "warning",
+        f"Application created from extraction: {application_id}.{correction_message}{correction_warning}",
+    )
     st.rerun()
 
 
@@ -1197,6 +1216,38 @@ def render_settings(configs: dict[str, dict[str, Any]]) -> None:
             }
         )
 
+    st.subheader("Extraction quality")
+    extraction_eval_settings = settings.get("extraction_evaluation", {})
+    latest_eval = latest_evaluation_summary(extraction_eval_settings.get("output_dir", ".tmp/extraction_evaluations"))
+    st.json(
+        {
+            "latest_evaluation": latest_eval,
+            "database_summary": diagnostic_report.get("extraction_quality", {}).get("database_summary", {}),
+        }
+    )
+    if st.button("Run fixture extraction evaluation"):
+        try:
+            result = run_evaluation(
+                settings,
+                dataset_path=extraction_eval_settings.get("dataset_path", "samples/extraction_eval/v1/manifest.yaml"),
+                output_dir=extraction_eval_settings.get("output_dir", ".tmp/extraction_evaluations"),
+                runner="fixture",
+                db_path=db_path,
+                fail_under=float(extraction_eval_settings.get("min_field_accuracy", 0.8)),
+            )
+            st.json(
+                {
+                    "status": result["status"],
+                    "dataset_version": result["dataset_version"],
+                    "prompt_version": result["prompt_version"],
+                    "model_name": result["model_name"],
+                    "aggregate_metrics": result["aggregate_metrics"],
+                    "output_path": result["output_path"],
+                }
+            )
+        except Exception as exc:
+            st.error(f"Extraction evaluation failed: {exc}")
+
     st.subheader("Google Sheets sync status")
     st.json(sheet_status_summary)
 
@@ -1237,6 +1288,10 @@ def render_settings(configs: dict[str, dict[str, Any]]) -> None:
     with st.form("settings_form", clear_on_submit=False):
         st.subheader("Local model")
         llm_model = st.text_input("Ollama model", value=llm_settings.get("model", "qwen2.5:7b"))
+        extraction_prompt_version = st.text_input(
+            "Extraction prompt version",
+            value=llm_settings.get("extraction_prompt_version", "stage6-v2"),
+        )
         fallback_models_text = st.text_area(
             "Fallback models",
             value="\n".join(llm_settings.get("fallback_models", [])),
@@ -1328,6 +1383,7 @@ def render_settings(configs: dict[str, dict[str, Any]]) -> None:
             {
                 "provider": llm_settings.get("provider", "ollama"),
                 "model": llm_model.strip() or "qwen2.5:7b",
+                "extraction_prompt_version": extraction_prompt_version.strip() or "stage6-v2",
                 "fallback_models": _parse_review_list(fallback_models_text),
                 "timeout_seconds": int(timeout_seconds),
                 "temperature": float(temperature),
@@ -1377,12 +1433,12 @@ def render_settings(configs: dict[str, dict[str, Any]]) -> None:
     if sheets_settings.get("enabled") and not credentials_exists:
         st.warning("Google Sheets is enabled, but the credentials file is missing.")
     if st.button("Check Google Sheets sync setup"):
-        result = manual_sync_applications([], settings)
-        st.json(result.model_dump())
+        sync_result = manual_sync_applications([], settings)
+        st.json(sync_result.model_dump())
     if st.button("Force sync all applications now"):
         applications = load_applications(configs)
-        result = manual_sync_applications(applications, settings, db_path=db_path)
-        st.json(result.model_dump())
+        sync_result = manual_sync_applications(applications, settings, db_path=db_path)
+        st.json(sync_result.model_dump())
 
 
 def main() -> None:

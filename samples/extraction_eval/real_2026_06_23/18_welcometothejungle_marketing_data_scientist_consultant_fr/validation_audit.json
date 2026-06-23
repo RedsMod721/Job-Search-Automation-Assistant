@@ -1,0 +1,311 @@
+{
+  "company_name": {
+    "final_value": "Sia",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employer name appears at the top of the submitted posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The same name is used consistently throughout the description."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Sia"
+    ]
+  },
+  "job_title": {
+    "final_value": "Marketing Data Scientist Consultant",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The exact advertised title appears directly below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The role description's consultant Data Scientist wording is consistent with the displayed title."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Marketing Data Scientist Consultant",
+      "consultant(e) Data Scientist"
+    ]
+  },
+  "company_size": {
+    "final_value": "3,000 consultants",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The company description explicitly states that Sia has 3,000 consultants."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The figure is used as the company-size value without extrapolating a broader employee total."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "nos 3 000 consultants"
+    ]
+  },
+  "company_industry": {
+    "final_value": "Management consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "Sia explicitly describes itself as an international next-generation management consulting group."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized industry preserves the explicit consulting classification without adding unsupported sub-industries."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "groupe international de conseil en management"
+    ]
+  },
+  "job_domain": {
+    "final_value": "Marketing data science, AI and strategic analytics consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role combines marketing, Data Science, AI, customer analytics and strategic decision support."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain reflects the title and responsibilities without adding unrelated consulting specialties."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Marketing Data Scientist Consultant",
+      "analyse de données et des outils IA",
+      "stratégie marketing",
+      "aide à la décision stratégique"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Consultant / experience level not specified",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The title states Consultant but the posting gives no years-of-experience threshold or junior/senior designation."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No seniority is inferred from the degree level or technical expectations alone."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "consultant(e) Data Scientist"
+    ]
+  },
+  "contract_type": {
+    "final_value": "Permanent contract",
+    "stamp_1": {
+      "status": "passed",
+      "check": "Permanent contract is stated in the job summary."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The role-specific Q&A independently confirms the same contract type."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Permanent contract",
+      "Type of contract for this position: Permanent contract"
+    ]
+  },
+  "salary": {
+    "final_value": "not specified",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The job summary explicitly marks the salary as not specified."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No amount, range or compensation details appear elsewhere in the post."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Salary: Not specified"
+    ]
+  },
+  "location": {
+    "final_value": "Paris, France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "Paris is explicitly listed in the job summary."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The international-office information describes company presence, not an alternate role location."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Paris",
+      "48 bureaux répartis dans 19 pays"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "Occasional remote work is allowed",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The summary and Q&A both state that occasional remote work is allowed."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No exact number of remote days or hybrid schedule is provided, so none is inferred."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Occasional remote",
+      "Occasional remote work is allowed for this position."
+    ]
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Accompagner les équipes opérationnelles et les directions marketing et stratégie dans la définition de leurs besoins data.",
+      "Analyser les données clients et déployer des algorithmes de Data Science afin d'éclairer la prise de décision stratégique.",
+      "Mettre en œuvre des traitements complexes en IA générative, Machine Learning, statistiques, Data Engineering et DevOps.",
+      "Développer des solutions de détection et de classification de besoins utilisateurs à l'aide de l'IA générative, du NLP et du clustering.",
+      "Construire des modèles de prévision des ventes pour optimiser l'assortiment de produits.",
+      "Analyser et segmenter les comportements clients afin d'améliorer le ciblage marketing et la stratégie commerciale.",
+      "Contribuer au développement des offres du cabinet par des formations, groupes de travail et supports internes ou externes.",
+      "Participer à la politique de publication du cabinet.",
+      "Contribuer au développement commercial en aidant à définir les besoins et en participant aux actions commerciales."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each responsibility appears in the role description, mission examples or internal-activity section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The list distinguishes duties from candidate qualifications and company benefits."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "définition de leurs besoins data",
+      "analyse de leurs données",
+      "déploiement d’algorithme de data science",
+      "aide à la décision stratégique",
+      "IA Générative, Machine Learning & Statistiques",
+      "Détection et classification automatique",
+      "Prévision de ventes",
+      "Analyse des comportements clients",
+      "développement ou le renforcement de nos offres",
+      "politique de publication",
+      "développement commercial"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Être titulaire d'un diplôme Bac+5 d'une école d'ingénieurs, d'une école de commerce ou d'une formation équivalente.",
+      "Avoir une spécialisation en Data Science, statistiques et marketing.",
+      "Maîtriser Python, SQL et la modélisation de données.",
+      "Maîtriser les algorithmes de Data Science, l'IA générative et le Machine Learning supervisé et non supervisé.",
+      "Avoir une forte appétence pour les sujets liés à la data et à l'IA.",
+      "Être capable de monter rapidement en compétences.",
+      "Faire preuve de curiosité, d'esprit d'équipe et de sens de l'analyse.",
+      "Parler couramment français et anglais dans un contexte professionnel."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "The degree and technical requirements appear under Qualifications and 'Ce que nous attendons de vous'."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The fluency, curiosity, teamwork, analytical mindset and learning-agility expectations are also explicitly stated outside the preferred-assets subsection."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Diplômé d’un niveau Bac+5",
+      "spécialisation dans le domaine de la data science, des statistiques, et du marketing",
+      "Python, SQL et modélisation de données",
+      "IA Générative et Machine Learning",
+      "appétence pour les enjeux liés à la data et l’IA",
+      "capacité à monter en compétences rapidement",
+      "curieux(se) et aimez travailler en équipe",
+      "sens de l’analyse",
+      "français et anglais couramment"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [
+      "Connaître un environnement cloud tel que GCP, AWS ou Azure.",
+      "Comprendre les secteurs du luxe, de la grande consommation, de l'énergie, de la banque ou de l'assurance.",
+      "Avoir une expérience en analyse de données dans un contexte marketing.",
+      "Maîtriser des outils de BI tels que Power BI, Tableau ou Qlik.",
+      "Maîtriser des outils de visualisation tels que Dash ou Plotly."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted item appears under the explicit 'Atouts supplémentaires appréciés' section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Cloud, sector knowledge, marketing-data experience, BI and visualisation tools remain preferred rather than mandatory."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Atouts supplémentaires appréciés",
+      "environnement Cloud appréciée",
+      "Compréhension des secteurs",
+      "Expérience en analyse de données dans un contexte marketing",
+      "outils de BI",
+      "visualisation"
+    ]
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive company description, role, qualifications and additional information are written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "English interface labels and technical terms do not change the primary language."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Description de l’entreprise",
+      "Description du poste",
+      "Qualifications"
+    ]
+  },
+  "source_platform": {
+    "final_value": "Welcome to the Jungle",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The posting explicitly references its Welcome to the Jungle showcase."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The Job summary and role-specific Q&A structure are consistent with the user-confirmed Welcome to the Jungle source series."
+    },
+    "provenance": "job post and user-provided source metadata",
+    "evidence": [
+      "parcourez notre vitrine Welcome To The Jungle",
+      "User confirmation: all sources starting from Lendable are Welcome to the Jungle"
+    ]
+  },
+  "application_channel": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No résumé requirement, application button type, email address or external ATS instruction is included."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The source platform alone is not treated as proof of the final application channel."
+    },
+    "provenance": "absence confirmed in submitted content",
+    "evidence": []
+  },
+  "motivation_letter_required": {
+    "final_value": null,
+    "stamp_1": {
+      "status": "passed",
+      "check": "No cover-letter or motivation-letter requirement appears in the supplied post."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The value remains null because the application-document requirements are not shown."
+    },
+    "provenance": "not stated in job post",
+    "evidence": []
+  }
+}

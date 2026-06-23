@@ -1,0 +1,309 @@
+{
+  "company_name": {
+    "final_value": "Inetum",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employer name appears at the top of the submitted posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The same name is repeated in the company description and the separate company-profile panel."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Inetum"
+    ]
+  },
+  "job_title": {
+    "final_value": "Business Analyst RPA",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The exact advertised title appears directly below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The body describes the position as Consultant Smart Automation, but this is treated as a functional description rather than replacing the advertised title."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Business Analyst RPA",
+      "En tant que Consultant Smart automation"
+    ]
+  },
+  "company_size": {
+    "final_value": "28,000 consultants and specialists",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The job-description body explicitly states that the group has 28,000 consultants and specialists."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The separate LinkedIn company panel states 26,000 consultants and 10001+ employees; because these conflict with the role text, the post-body figure is retained and the discrepancy is documented rather than merged."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "les 28 000 consultants et spécialistes du groupe"
+    ],
+    "conflicting_outside_source_evidence": [
+      "10001+ employees",
+      "Inetum’s team of 26,000 consultants and specialists"
+    ]
+  },
+  "company_industry": {
+    "final_value": "Digital services / IT services and consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post explicitly describes Inetum as a European leader in digital services and lists consulting, managed infrastructure/applications, software implementation, and software publishing activities."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized value is consistent with the job-post description and with, but does not depend on, the separate LinkedIn industry label."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "leader européen des services numériques",
+      "le conseil",
+      "la gestion des infrastructures et applications à façon",
+      "l'implémentation de progiciels",
+      "activité d'éditeur de logiciels"
+    ]
+  },
+  "job_domain": {
+    "final_value": "RPA, intelligent automation and AI business analysis / consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role explicitly covers RPA, AI, Smart Automation, process analysis, business cases, technology selection, and client consulting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain reflects both the advertised Business Analyst title and the Smart Automation consulting responsibilities."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Business Analyst RPA",
+      "Consultant Smart automation",
+      "projets RPA et IA"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Confirmed / mid-level (3+ years)",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The profile explicitly requires confirmed experience with a minimum of three years in hyperautomation."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Confirmed / mid-level is used rather than senior because the posting does not use a senior title, despite including supervision of junior consultants."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "expérience confirmée",
+      "trois années minimum",
+      "Encadrer et piloter les consultants juniors"
+    ]
+  },
+  "contract_type": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No CDI, CDD, freelance, temporary, internship, apprenticeship, or other contract form is stated."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The confirmed seniority level is not used to infer a permanent contract."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "salary": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The submitted content contains no salary amount, range, bonus plan, or compensation package."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Company revenue figures are not confused with candidate compensation."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "location": {
+    "final_value": "Saint-Ouen, Centre-Val de Loire, France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The full city, region, and country appear in the posting header."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No alternate work location appears elsewhere in the submitted job text."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Saint-Ouen, Centre-Val de Loire, France"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No remote, hybrid, telework, or on-site arrangement is stated."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The client-facing nature of the role and the listed location are not used to infer a work-location policy."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Intervenir auprès de grands comptes dans le cadrage, la mise en œuvre et la maintenance de projets RPA et IA.",
+      "Aider les clients à formaliser leur vision et leur ambition métier en identifiant les usages pertinents de l'automatisation et de l'IA.",
+      "Étudier et auditer les processus métier afin de les optimiser à l'aide de techniques de lean management.",
+      "Animer des ateliers métier pour cartographier les processus et évaluer la rentabilité de leur automatisation au moyen de business cases.",
+      "Comparer plusieurs technologies afin d'aider les métiers à sélectionner la solution cible.",
+      "Proposer des solutions innovantes créatrices de valeur.",
+      "Accompagner la conduite du changement et collecter des indicateurs de satisfaction client.",
+      "Participer à la rédaction de réponses aux appels d'offres RFI et RFP.",
+      "Encadrer et piloter des consultants juniors.",
+      "Contribuer à la croissance de la Business Unit Smart Automation en automatisant les tâches à faible valeur ajoutée."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted duty appears in the role overview or explicit task list."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The duties cover the full list without adding generic Business Analyst tasks absent from the post."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "l’étude de cadrage, la mise en œuvre et la maintenance de leurs projets RPA et IA",
+      "formalisation de leur vision et leur ambition métier",
+      "étude et l’audit des process métier",
+      "Animer les ateliers métier",
+      "Réaliser le benchmark entre plusieurs technologies",
+      "Proposer et créer de la valeur",
+      "conduite du changement",
+      "réponses aux appels d’offre (RFI et RFP)",
+      "Encadrer et piloter les consultants juniors",
+      "Participer à la croissance de notre business Unit Smart Automation"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Être titulaire d'un diplôme d'école d'ingénieur, d'école de commerce ou d'une formation universitaire.",
+      "Avoir une forte appétence pour la transformation et l'optimisation de l'entreprise grâce à l'automatisation, l'IA et l'innovation.",
+      "Justifier d'au moins trois ans d'expérience en hyperautomatisation, notamment en RPA, BPA et IA.",
+      "Posséder une connaissance approfondie des logiciels d'automatisation, par exemple UiPath ou Blue Prism.",
+      "Avoir déjà travaillé sur des visions produit avec une roadmap.",
+      "Avoir de l'expérience dans la mise en place de grands projets de transformation digitale.",
+      "Avoir déjà travaillé dans un environnement agile.",
+      "Posséder de bonnes capacités d'écoute, d'analyse et de communication client.",
+      "Savoir prendre de la hauteur et du recul.",
+      "Aimer travailler en équipe avec ouverture d'esprit et proactivité.",
+      "Être curieux(se), volontaire et prêt(e) à relever des défis.",
+      "Être force de proposition et capable de mener des sujets en autonomie.",
+      "Avoir une très bonne capacité d'organisation."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "All education, experience, tooling, product, transformation, agile, and soft-skill requirements are explicitly present."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No unlisted programming language, certification, English requirement, or specific years of UiPath experience has been added."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "diplôme d'une école d'ingénieur, d'une école de commerce ou d'une formation universitaire",
+      "trois années minimum en hyper automatisation (RPA, BPA & IA)",
+      "UiPath, Blueprism",
+      "visions produits avec Roadmap",
+      "grands projets de la transformation digitale",
+      "environnement agile",
+      "capacité d’écoute et de communication avec un client",
+      "hauteur de vue et prise de recul",
+      "esprit ouvert et proactivité",
+      "force de proposition",
+      "toute autonomie",
+      "très bonne capacité d’organisation"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [],
+    "stamp_1": {
+      "status": "passed",
+      "check": "No qualification is labeled as preferred, optional, a plus, or nice to have."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Examples such as UiPath and Blue Prism illustrate the required automation-software knowledge and are not presented as optional preferences."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive job description is written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "English technical terms and the English company-profile panel do not change the primary language of the vacancy."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Description de l'entreprise",
+      "Description du poste",
+      "Qualifications",
+      "Profil"
+    ]
+  },
+  "source_platform": {
+    "final_value": "LinkedIn",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The submitted content includes LinkedIn-specific follower and member metrics."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The page layout also contains LinkedIn-style About the job, Follow, industry, and employee-count elements."
+    },
+    "provenance": "submitted page text",
+    "evidence": [
+      "1,472,657 followers",
+      "18,160 on LinkedIn",
+      "Follow",
+      "About the job"
+    ]
+  },
+  "application_channel": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No apply button type, email address, external portal, or company-career instruction is included."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The presence of a LinkedIn page does not prove LinkedIn Easy Apply or another specific application channel."
+    },
+    "provenance": "absence confirmed in submitted content",
+    "evidence": []
+  },
+  "motivation_letter_required": {
+    "final_value": null,
+    "stamp_1": {
+      "status": "passed",
+      "check": "No cover letter, motivation letter, written statement, or equivalent document is requested."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The value remains null because the full application workflow is not shown."
+    },
+    "provenance": "not stated in job post",
+    "evidence": []
+  }
+}

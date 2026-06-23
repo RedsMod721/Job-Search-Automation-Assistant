@@ -1,0 +1,266 @@
+{
+  "company_name": {
+    "final_value": "Extia",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employer name appears at the top of the submitted posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The same company name is repeated in the company-description section without contradiction."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Extia"
+    ]
+  },
+  "job_title": {
+    "final_value": "Business Analyst Confirmé H/F",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The full role title appears directly below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The confirmed-experience level and H/F marker are preserved exactly."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Business Analyst Confirmé H/F"
+    ]
+  },
+  "company_size": {
+    "final_value": "from outside source: 1001-5000 employees",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The size range is shown in the separate company-profile section, not in the job-description body."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The exact profile value 1001-5000 employees is preserved and marked as outside source."
+    },
+    "provenance": "outside source: LinkedIn company profile panel",
+    "evidence": [
+      "1001-5000 employees"
+    ]
+  },
+  "company_industry": {
+    "final_value": "from outside source: IT Services and IT Consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The industry label is shown in the separate company-profile section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The exact label IT Services and IT Consulting is preserved and marked as outside source."
+    },
+    "provenance": "outside source: LinkedIn company profile panel",
+    "evidence": [
+      "IT Services and IT Consulting"
+    ]
+  },
+  "job_domain": {
+    "final_value": "Business analysis / product ownership in IT consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The title explicitly identifies a Business Analyst role, while the accepted prior experience includes Business Analyst or Product Owner."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The separate company profile identifies Extia as an IT consulting company; the normalized domain does not invent a narrower business sector."
+    },
+    "provenance": "derived from job post and outside-source company context",
+    "evidence": [
+      "Business Analyst Confirmé H/F",
+      "Business Analyste ou Product Owner",
+      "IT consulting company"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Confirmed / experienced",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The title explicitly says Confirmé and the profile requires at least four years of relevant experience."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Confirmed / experienced accurately reflects the explicit experience threshold without upgrading it to senior or lead."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Business Analyst Confirmé",
+      "au moins 4 ans d'expérience"
+    ]
+  },
+  "contract_type": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No CDI, CDD, freelance, temporary, internship, apprenticeship, or other contract form is stated."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The experienced nature of the role is not used to infer a permanent contract."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "salary": {
+    "final_value": "Performance- and involvement-based bonuses; base salary and exact amounts not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post explicitly mentions bonuses tied to annual performance and involvement."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No base salary, range, bonus rate, or currency amount is present, so none is inferred."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Des primes à hauteur des performances de l'année et de l'implication"
+    ]
+  },
+  "location": {
+    "final_value": "Orléans, Centre-Val de Loire, France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The full city, region, and country appear in the posting header."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The company profile also lists Orléans among its French agencies, with no conflicting location."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Orléans, Centre-Val de Loire, France"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "Télétravail possible; frequency and conditions not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post explicitly states that remote work is possible."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No number of remote days or eligibility condition is stated, so the field preserves that limitation."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Télétravail possible"
+    ]
+  },
+  "key_responsibilities": {
+    "final_value": [],
+    "stamp_1": {
+      "status": "passed",
+      "check": "The submitted job-description body contains no duties, missions, deliverables, or day-to-day responsibility section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Business Analyst responsibilities are not inferred from the title, experience requirements, recruitment process, or general company activity."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "required_skills": {
+    "final_value": [
+      "Être titulaire d'un diplôme Bac+4/Bac+5.",
+      "Justifier d'au moins 4 ans d'expérience en tant que Business Analyst ou Product Owner.",
+      "Maîtriser Jira.",
+      "Maîtriser au moins un outil de tests fonctionnels parmi Xray, Postman ou Squash TM.",
+      "Avoir déjà travaillé en méthodologie agile."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Every extracted education, experience, tool, testing, and methodology requirement appears in the Profil recherché section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The minimum four-year threshold and the requirement for at least one named testing tool are preserved accurately."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "diplôme bac+4/+5",
+      "au moins 4 ans d'expérience sur un poste de Business Analyste ou Product Owner",
+      "Jira",
+      "au moins un outil de tests fonctionnels (xray, postman, squash TM)",
+      "méthodologie agile"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [],
+    "stamp_1": {
+      "status": "passed",
+      "check": "No criterion is identified as preferred, optional, a plus, or nice to have."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Potential technical tests are part of the recruitment process and are not candidate qualifications."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive job description is written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The English company-profile paragraphs do not change the primary language of the actual posting."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "PROFIL RECHERCHE",
+      "Processus de recrutement",
+      "Les petits plus"
+    ]
+  },
+  "source_platform": {
+    "final_value": "LinkedIn",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The submitted content includes the LinkedIn-specific company-profile metric '1,828 on LinkedIn'."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The page structure also uses a LinkedIn-style About the job section and company panel."
+    },
+    "provenance": "submitted page text",
+    "evidence": [
+      "1,828 on LinkedIn",
+      "About the job"
+    ]
+  },
+  "application_channel": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The text promotes joining Extia and discovering job offers but gives no specific application route."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The company website reference is informational and is not explicitly stated as the application channel for this role."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": [
+      "Extia is recruiting 👉 join the adventure!",
+      "Discover our job offers & much more on extia-group.com/fr-en."
+    ]
+  },
+  "motivation_letter_required": {
+    "final_value": null,
+    "stamp_1": {
+      "status": "passed",
+      "check": "No motivation letter, cover letter, written statement, or equivalent document is requested."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The value remains null because the actual application form is not provided."
+    },
+    "provenance": "not stated in job post",
+    "evidence": []
+  }
+}

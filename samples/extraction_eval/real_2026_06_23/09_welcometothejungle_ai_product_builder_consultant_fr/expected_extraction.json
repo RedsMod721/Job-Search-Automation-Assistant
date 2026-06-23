@@ -1,0 +1,48 @@
+{
+  "company_name": "IKXO",
+  "job_title": "Consultant.e Product Builder",
+  "company_size": "not included",
+  "company_industry": "not included",
+  "job_domain": "AI product building, Product Discovery and digital transformation consulting",
+  "seniority_level": "Experienced / mid-level (ideally 3+ years)",
+  "contract_type": "Permanent contract",
+  "salary": "not included",
+  "location": "not included",
+  "remote_policy": "Remote work is allowed; frequency and exact arrangement not included",
+  "key_responsibilities": [
+    "Identifier les opportunités d'usage de l'IA au sein des produits, des parcours utilisateurs et des organisations.",
+    "Mener des démarches de Product Discovery pour faire émerger et prioriser les cas d'usage les plus pertinents.",
+    "Explorer les besoins utilisateurs et business afin de transformer les opportunités IA en produits, fonctionnalités et prototypes concrets.",
+    "Expérimenter avec les LLM, les API et les outils d'IA pour concevoir, prototyper et tester rapidement de nouvelles solutions.",
+    "Évaluer l'intérêt, la faisabilité et la valeur des expérimentations.",
+    "Collaborer avec les équipes Produit, Tech, Design, Data et Business pour intégrer les solutions aux produits existants.",
+    "Accompagner la priorisation, le déploiement et l'adoption des initiatives les plus prometteuses.",
+    "Mesurer l'impact des expérimentations au moyen d'indicateurs clairs.",
+    "Assurer une veille sur l'IA, les agents IA, les LLM et les nouveaux outils, puis diffuser les bonnes pratiques.",
+    "Contribuer aux projets internes, aux collectifs, au recrutement, à la formation, au coaching et au mentorat de jeunes consultants ainsi qu'à l'organisation d'événements."
+  ],
+  "required_skills": [
+    "Posséder un niveau d'anglais permettant de travailler dans les domaines de l'IA et du produit."
+  ],
+  "preferred_qualifications": [
+    "Avoir suivi une formation universitaire, une école de commerce, une école d'ingénieurs ou un parcours autodidacte.",
+    "Avoir une expérience significative en Product Management ou en construction de produits, idéalement trois ans ou plus.",
+    "Maintenir une veille active sur les nouveaux usages et outils liés à l'IA.",
+    "Faire preuve d'écoute, de diplomatie, de tact et d'empathie.",
+    "Savoir convaincre et fédérer autour d'un objectif.",
+    "Savoir s'adapter, valoriser le feedback et distinguer les effets de mode des opportunités créatrices de valeur.",
+    "Adopter une approche product-minded en partant d'un problème utilisateur ou business.",
+    "Savoir transformer rapidement une idée en expérimentation concrète puis en livrable.",
+    "Maîtriser tout ou partie d'un écosystème d'outils tel que ChatGPT, Claude, Mistral, Cursor, Lovable, Bolt, v0, Make, n8n ou Dify.",
+    "Comprendre les grands principes des LLM, des API, des agents et des automatisations.",
+    "Mesurer l'impact des solutions construites et prendre des décisions à partir de données.",
+    "Avoir une expérience dans le conseil.",
+    "Avoir déjà construit et mis en ligne un produit, une fonctionnalité, une automatisation ou un agent IA dans un cadre professionnel ou personnel.",
+    "Expérimenter régulièrement de nouveaux outils et diffuser une culture AI native.",
+    "Participer à la communauté Produit et partager sa passion."
+  ],
+  "detected_language": "French",
+  "source_platform": "Welcome to the Jungle",
+  "application_channel": "Application initiated through Welcome to the Jungle; resume attachment required; final submission destination not confirmed",
+  "motivation_letter_required": true
+}

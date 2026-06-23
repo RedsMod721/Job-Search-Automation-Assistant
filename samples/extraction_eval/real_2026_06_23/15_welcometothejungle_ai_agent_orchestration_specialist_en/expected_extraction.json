@@ -1,0 +1,48 @@
+{
+  "company_name": "Edflex",
+  "job_title": "AI Agent Orchestration Specialist",
+  "company_size": "not included",
+  "company_industry": "Corporate learning technology / B2B SaaS",
+  "job_domain": "AI agent orchestration, automation and business transformation",
+  "seniority_level": "Experienced / mid-level (3-5 years)",
+  "contract_type": "Permanent contract",
+  "salary": "€50 to €70; unit not specified",
+  "location": "Paris, France",
+  "remote_policy": "Hybrid: 2 remote days per week plus 2 fully remote weeks per year",
+  "key_responsibilities": [
+    "Prioritise, prototype, deploy and ship internal and client-facing AI agents and AI-assisted workflows.",
+    "Integrate agents with HubSpot, Planhat, Slack, the Edflex SaaS platform and internal APIs.",
+    "Architect multi-agent pipelines combining curation, recommendation and analytics agents.",
+    "Implement guardrails, monitoring, audit logging and human-in-the-loop patterns for critical decisions.",
+    "Ensure the consistency and quality of agent outputs in production.",
+    "Translate business-team expertise into agent instructions and train colleagues on AI-augmented ways of working.",
+    "Measure and communicate business impact, including time saved, leads generated, customer satisfaction improvements and churn reduction.",
+    "Define quality, security and compliance standards for AI agents, including GDPR and client-data requirements.",
+    "Own the performance-monitoring framework covering accuracy, latency and API costs.",
+    "Lead technology monitoring and propose or arbitrate the AI-agent roadmap with the COO and CTO."
+  ],
+  "required_skills": [
+    "Hold a Master's degree.",
+    "Have more than 3 years of professional experience.",
+    "Have 3 to 5 years of professional experience, including 1 to 2 years on LLM or AI automation projects.",
+    "Have solid experience with AI orchestration frameworks such as LangChain, LangGraph, CrewAI or AutoGen.",
+    "Have hands-on knowledge of LLMs such as GPT, Claude or Mistral and of advanced prompt engineering.",
+    "Be proficient with REST APIs, webhooks and automation tools such as n8n, Make or Zapier.",
+    "Have programming skills in Python and/or TypeScript.",
+    "Be familiar with CI/CD and AWS.",
+    "Have experience in B2B SaaS environments.",
+    "Be able to translate business needs into technical solutions.",
+    "Have experience working cross-functionally with non-technical teams.",
+    "Possess process-engineering and change-management capabilities.",
+    "Communicate clearly and concisely.",
+    "Demonstrate autonomy, proactivity and ownership."
+  ],
+  "preferred_qualifications": [
+    "Experience in edtech or HR tech.",
+    "A background as a business analyst, technical product manager, solutions engineer or automation engineer."
+  ],
+  "detected_language": "English",
+  "source_platform": "Welcome to the Jungle",
+  "application_channel": "Application initiated through Welcome to the Jungle; resume attachment required; final submission destination not confirmed",
+  "motivation_letter_required": true
+}

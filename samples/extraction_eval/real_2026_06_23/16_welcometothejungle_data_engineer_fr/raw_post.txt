@@ -1,0 +1,45 @@
+ADVANCED SCHEMA
+Data Engineer
+Job summary
+Permanent contract
+Paris
+No remote work
+Salary:
+Not specified
+Experience:
+> 1 year
+Education:
+BAC+3
+Job description
+En tant que Data Engineer, vous aurez les missions suivantes : 
+
+Concevoir des modélisations physiques
+Construire des mappings techniques et rédaction de spécifications d’alimentation. 
+Développer des flux des données
+Contribuer au pilotage de projets, de proof of concepts
+Participer à des missions d’expertise
+N'hésitez pas à postuler même si vous ne répondez pas à toutes les exigences. Nous accordons autant d'importance à la capacité d'apprendre qu'à la maîtrise d'une technologie. 
+
+Ce poste est à pourvoir en stage et CDI 
+
+Preferred experience
+Compétences professionnelles & niveau d'études requis :
+
+Vous êtes titulaire d'un diplôme Bac +3 minimum dans le domaine de la data
+Vous possédez minimum 1 an d'expérience dans le métier 
+Être enthousiaste à l'idée d'apprendre de nouvelles technologies
+Expérience de la méthodologie Agile / Scrum
+Capacité à planifier et à prioriser les tâches et les activités confiées en autonomie
+Maîtrise de l’anglais oral et technique obligatoire
+Expérience avérée dans l'écriture de code propre avec 2 ou plusieurs des technologies suivantes : BASH, SQL, Java, Python, NoSQL
+Is it mandatory to attach a resume?
+Yes, you are required to attach your resume to apply for this job.
+
+Does this position allow remote work?
+This position does not offer a remote work option.
+
+What type of contract is offered for this position?
+Type of contract for this position: Permanent contract
+
+Is a cover letter mandatory to apply for this position?
+A cover letter is mandatory to apply for this position.

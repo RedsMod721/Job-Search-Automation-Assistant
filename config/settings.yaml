@@ -13,6 +13,14 @@ llm:
   timeout_seconds: 120
   temperature: 0.2
   require_review_before_save: true
+  extraction_prompt_version: "stage6-v2"
+
+extraction_evaluation:
+  dataset_path: "samples/extraction_eval/v1/manifest.yaml"
+  real_dataset_path: "samples/extraction_eval/real_2026_06_23/MANIFEST.json"
+  output_dir: ".tmp/extraction_evaluations"
+  default_runner: "fixture"
+  min_field_accuracy: 0.8
 
 database:
   type: "sqlite"

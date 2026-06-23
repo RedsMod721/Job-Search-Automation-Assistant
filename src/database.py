@@ -1010,3 +1010,202 @@ def sync_status_summary(db_path: str | Path | None = None) -> dict[str, Any]:
         "applications": application_counts,
         "last_run": dict(last_run) if last_run else None,
     }
+
+
+def record_extraction_corrections(
+    corrections: list[dict[str, Any]],
+    db_path: str | Path | None = None,
+) -> int:
+    if not corrections:
+        return 0
+    timestamp = now_iso()
+    with _connect(db_path) as connection:
+        for correction in corrections:
+            connection.execute(
+                """
+                INSERT INTO extraction_corrections (
+                    correction_id,
+                    date_created,
+                    application_id,
+                    fixture_id,
+                    raw_text_hash,
+                    field_name,
+                    original_value_json,
+                    corrected_value_json,
+                    prompt_version,
+                    model_name,
+                    model_parameters_json,
+                    source,
+                    notes
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    correction.get("correction_id") or generate_uuid(),
+                    correction.get("date_created") or timestamp,
+                    correction.get("application_id", ""),
+                    correction.get("fixture_id", ""),
+                    correction.get("raw_text_hash", ""),
+                    correction.get("field_name", ""),
+                    json.dumps(correction.get("original_value"), ensure_ascii=True, default=str),
+                    json.dumps(correction.get("corrected_value"), ensure_ascii=True, default=str),
+                    correction.get("prompt_version", ""),
+                    correction.get("model_name", ""),
+                    _json_payload(correction.get("model_parameters")),
+                    correction.get("source", "review_form"),
+                    correction.get("notes", ""),
+                ),
+            )
+        connection.commit()
+    return len(corrections)
+
+
+def list_extraction_corrections(
+    db_path: str | Path | None = None,
+    *,
+    application_id: str | None = None,
+    limit: int = 100,
+) -> list[dict[str, Any]]:
+    where_clauses: list[str] = []
+    values: list[Any] = []
+    if application_id:
+        where_clauses.append("application_id = ?")
+        values.append(application_id)
+    where_sql = f" WHERE {' AND '.join(where_clauses)}" if where_clauses else ""
+    values.append(limit)
+    with _connect(db_path) as connection:
+        rows = connection.execute(
+            f"""
+            SELECT *
+            FROM extraction_corrections
+            {where_sql}
+            ORDER BY date_created DESC
+            LIMIT ?
+            """,
+            values,
+        ).fetchall()
+    return [dict(row) for row in rows]
+
+
+def record_extraction_evaluation_run(
+    run: dict[str, Any],
+    fixture_results: list[dict[str, Any]],
+    db_path: str | Path | None = None,
+) -> str:
+    evaluation_run_id = str(run.get("evaluation_run_id") or generate_uuid())
+    with _connect(db_path) as connection:
+        connection.execute(
+            """
+            INSERT OR REPLACE INTO extraction_evaluation_runs (
+                evaluation_run_id,
+                dataset_version,
+                prompt_version,
+                model_name,
+                model_parameters_json,
+                started_at,
+                completed_at,
+                runner,
+                status,
+                aggregate_metrics_json,
+                output_path,
+                notes
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                evaluation_run_id,
+                run.get("dataset_version", ""),
+                run.get("prompt_version", ""),
+                run.get("model_name", ""),
+                _json_payload(run.get("model_parameters")),
+                run.get("started_at", now_iso()),
+                run.get("completed_at", ""),
+                run.get("runner", ""),
+                run.get("status", ""),
+                _json_payload(run.get("aggregate_metrics")),
+                run.get("output_path", ""),
+                run.get("notes", ""),
+            ),
+        )
+        connection.execute(
+            "DELETE FROM extraction_evaluation_results WHERE evaluation_run_id = ?",
+            (evaluation_run_id,),
+        )
+        for result in fixture_results:
+            aggregate = result.get("aggregate", {})
+            connection.execute(
+                """
+                INSERT INTO extraction_evaluation_results (
+                    result_id,
+                    evaluation_run_id,
+                    fixture_id,
+                    role_family,
+                    language,
+                    source_platform,
+                    ats_source,
+                    json_valid,
+                    latency_seconds,
+                    aggregate_metrics_json,
+                    validation_issues_json,
+                    field_results_json
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    generate_uuid(),
+                    evaluation_run_id,
+                    result.get("fixture_id", ""),
+                    result.get("role_family", ""),
+                    result.get("language", ""),
+                    result.get("source_platform", ""),
+                    result.get("ats_source", ""),
+                    1 if aggregate.get("json_valid", True) else 0,
+                    float(aggregate.get("latency_seconds", 0.0) or 0.0),
+                    _json_payload(aggregate),
+                    json.dumps(result.get("validation_issues", []), ensure_ascii=True, default=str),
+                    _json_payload(result.get("field_results")),
+                ),
+            )
+        connection.commit()
+    return evaluation_run_id
+
+
+def extraction_quality_summary(db_path: str | Path | None = None) -> dict[str, Any]:
+    with _connect(db_path) as connection:
+        table_names = {
+            str(row[0]) for row in connection.execute("SELECT name FROM sqlite_master WHERE type = 'table'").fetchall()
+        }
+        if "extraction_corrections" not in table_names or "extraction_evaluation_runs" not in table_names:
+            return {"pending_migration": True, "corrections": {}, "latest_evaluation": None}
+        correction_counts = {
+            str(row[0]): int(row[1])
+            for row in connection.execute(
+                """
+                SELECT field_name, COUNT(*)
+                FROM extraction_corrections
+                GROUP BY field_name
+                ORDER BY COUNT(*) DESC, field_name
+                """
+            ).fetchall()
+        }
+        latest_run = connection.execute(
+            """
+            SELECT *
+            FROM extraction_evaluation_runs
+            ORDER BY started_at DESC
+            LIMIT 1
+            """
+        ).fetchone()
+    latest_evaluation = dict(latest_run) if latest_run else None
+    if latest_evaluation:
+        try:
+            latest_evaluation["aggregate_metrics"] = json.loads(
+                str(latest_evaluation.pop("aggregate_metrics_json") or "{}")
+            )
+        except json.JSONDecodeError:
+            latest_evaluation["aggregate_metrics"] = {}
+    return {
+        "pending_migration": False,
+        "corrections": correction_counts,
+        "latest_evaluation": latest_evaluation,
+    }

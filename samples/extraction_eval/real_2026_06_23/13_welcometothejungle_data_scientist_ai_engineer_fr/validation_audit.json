@@ -1,0 +1,316 @@
+{
+  "company_name": {
+    "final_value": "Wivoo, a Wavestone company",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The complete employer name appears at the top of the submitted posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The Wavestone affiliation is part of the displayed employer name and is preserved."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Wivoo, a Wavestone company"
+    ]
+  },
+  "job_title": {
+    "final_value": "Data Scientist / AI Engineer",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The exact role title appears directly below the employer name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Both Data Scientist and AI Engineer components are retained."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Data Scientist / AI Engineer"
+    ]
+  },
+  "company_size": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post mentions a collective of 130+ product managers but does not state the company's total workforce."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The product-manager collective is not treated as a complete company-size figure."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": [
+      "collectif de 130+ product managers"
+    ]
+  },
+  "company_industry": {
+    "final_value": "Product, data and AI consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post describes teams delivering product, data and AI solutions for large corporate clients."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized industry is limited to consulting and delivery activities explicitly described in the post."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "product managers qui livrent des produits data et IA pour de grands comptes",
+      "accompagnement 360° sur l’impact business et le product management"
+    ]
+  },
+  "job_domain": {
+    "final_value": "Senior Data Science and AI engineering with GenAI, MLOps and production deployment",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role explicitly covers Data Science, AI engineering, GenAI, MLOps and production deployment."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain reflects the technical scope and senior production responsibility without adding unrelated functions."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Data Scientist / AI Engineer",
+      "GenAI",
+      "ML / Data Science",
+      "MLOps",
+      "mise en production"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Senior / experienced (5+ years; target range 4-8 years)",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The summary states more than five years of experience and the profile targets four to eight years, ideally five or more."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The body also refers to senior AI expertise and mentoring junior profiles, supporting a senior classification."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Experience: > 5 years",
+      "4 à 8 ans d’expérience (idéalement 5+)",
+      "premières expertises IA senior",
+      "mentorer les profils plus juniors"
+    ]
+  },
+  "contract_type": {
+    "final_value": "Permanent contract",
+    "stamp_1": {
+      "status": "passed",
+      "check": "Permanent contract appears in the job summary."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The role-specific Q&A independently confirms the same permanent contract type."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Permanent contract",
+      "Type of contract for this position: Permanent contract"
+    ]
+  },
+  "salary": {
+    "final_value": "€60K to €75K",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The salary range is explicitly stated in the job summary."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The lower and upper bounds and euro currency are preserved without adding a period not shown in the source."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "€60K to 75K"
+    ]
+  },
+  "location": {
+    "final_value": "Paris, France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "Paris is explicitly listed in the job summary."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No alternate work base is given, so Paris, France is retained."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Paris"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "Hybrid; remote work is allowed for a few days from home, exact frequency not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The summary states 'A few days at home' and the Q&A confirms that remote work is allowed."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The exact number of remote days is not specified and is therefore not inferred."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "A few days at home",
+      "Remote work is allowed for this position."
+    ]
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Cadrer les besoins métier avec les product managers, vérifier la disponibilité et la qualité des données et sélectionner l'approche et l'architecture adaptées.",
+      "Concevoir et industrialiser des systèmes GenAI, notamment des solutions RAG, des agents et des intégrations d'API LLM.",
+      "Développer des solutions de Machine Learning et Data Science incluant modélisation avancée, feature engineering, scoring, prévision et Marketing Mix Modeling.",
+      "Produire du code Python industrialisable avec FastAPI et programmation asynchrone.",
+      "Mettre en place des pipelines de données, la conteneurisation Docker, la CI/CD, le MLOps, le déploiement cloud et le passage à l'échelle.",
+      "Définir les métriques de qualité, surveiller les performances en production et arbitrer entre coût, latence et qualité.",
+      "Garantir la robustesse et la qualité des systèmes livrés jusqu'à leur utilisation réelle en production.",
+      "Définir des standards techniques réutilisables, le socle MLOps, les standards d'évaluation LLM/RAG et des patterns d'architecture agentique.",
+      "Mentorer les profils plus juniors et vulgariser les sujets techniques auprès de décideurs non techniques."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted responsibility appears in the role description, production-accountability section or standards-setting section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The list covers framing, building, industrialisation, production measurement, standards, mentoring and business communication without including profile criteria."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Cadrer",
+      "GenAI",
+      "ML / Data Science",
+      "Industrialiser",
+      "Mesurer et arbitrer",
+      "Diffuser",
+      "vous restez responsable de ce que vous livrez",
+      "définissez concrètement : le socle MLOps",
+      "mentorer les profils plus juniors"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Justifier de plus de 5 ans d'expérience selon le résumé de l'offre.",
+      "Être titulaire d'un diplôme de niveau Master.",
+      "Avoir mené au moins un système data ou IA jusqu'en production avec de vrais utilisateurs."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "The job summary explicitly states more than five years of experience and a Master's degree."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The production-system requirement is explicitly called a central criterion verified during interview, so it is treated as mandatory despite appearing under Preferred experience."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Experience: > 5 years",
+      "Education: Master's Degree",
+      "au moins un système que vous avez mené jusqu’en production",
+      "critère central, vérifié en entretien"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [
+      "Avoir 4 à 8 ans d'expérience en conception de solutions data ou IA, idéalement 5 ans ou plus.",
+      "Maîtriser Python à un niveau expert et posséder une solide culture d'ingénierie logicielle.",
+      "Maîtriser les API FastAPI et REST, la programmation asynchrone, Git, Docker et la CI/CD.",
+      "Maîtriser le Machine Learning appliqué et l'IA générative avec une dominante claire en GenAI ou en ML/Data Science.",
+      "Avoir une expérience en MLOps, industrialisation de workflows IA et déploiement cloud sur AWS, GCP ou Azure.",
+      "Maîtriser les pipelines de données, SQL et idéalement NoSQL.",
+      "Comprendre les frameworks d'agents, les API LLM, le RAG, les bases vectorielles, Airflow et MLflow.",
+      "Être capable de s'adapter rapidement à une stack imposée par le contexte.",
+      "Savoir relier les choix techniques à la valeur métier et les expliquer simplement.",
+      "Être bilingue français et anglais.",
+      "Avoir suivi une formation quantitative supérieure en statistiques, mathématiques appliquées, informatique, école d'ingénieurs ou équivalent."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "The remaining technical, cloud, tooling, business, language and education details appear under Preferred experience or Stack technique."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The explicit hard requirements from the summary and central production criterion are excluded from the preferred list as standalone requirements."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Preferred experience",
+      "Python expert",
+      "FastAPI, REST",
+      "Git, Docker, CI/CD",
+      "ML appliqué et de l’IA générative",
+      "MLOps et cloud",
+      "AWS (ou GCP/Azure)",
+      "SQL, idéalement NoSQL",
+      "Bilingue français / anglais",
+      "Formation supérieure quantitative"
+    ]
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive role description, profile and recruitment process are written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "English interface labels and technical terminology do not change the primary language."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Ce que vous allez construire",
+      "Le poste, concrètement",
+      "Pourquoi c’est différent ici"
+    ]
+  },
+  "source_platform": {
+    "final_value": "Welcome to the Jungle",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The user previously confirmed that all sources from the Lendable post onward are from Welcome to the Jungle."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The Job summary, Preferred experience, View less and role-specific Q&A structure are consistent with Welcome to the Jungle."
+    },
+    "provenance": "user-provided source metadata",
+    "evidence": [
+      "User confirmation: all sources starting from Lendable are Welcome to the Jungle"
+    ]
+  },
+  "application_channel": {
+    "final_value": "Application initiated through Welcome to the Jungle; resume attachment required; final submission destination not confirmed",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The Q&A states that applicants must attach a résumé when applying."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The source platform is confirmed, but the text does not prove whether final submission remains on Welcome to the Jungle or redirects externally."
+    },
+    "provenance": "job post and user-provided source metadata",
+    "evidence": [
+      "Yes, you are required to attach your resume to apply for this job.",
+      "User confirmation: source platform is Welcome to the Jungle"
+    ]
+  },
+  "motivation_letter_required": {
+    "final_value": false,
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific Q&A explicitly states that the cover letter is optional."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Optional means it is not mandatory, supporting the boolean value false."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "A cover letter is optional to apply for this position."
+    ]
+  }
+}

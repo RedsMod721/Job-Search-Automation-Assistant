@@ -1,0 +1,296 @@
+{
+  "company_name": {
+    "final_value": "ADVANCED SCHEMA",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employer name appears at the top of the submitted posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No alternate employer name appears elsewhere in the text."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "ADVANCED SCHEMA"
+    ]
+  },
+  "job_title": {
+    "final_value": "Data Engineer",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The exact role title appears directly below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No competing role title appears elsewhere in the posting."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Data Engineer"
+    ]
+  },
+  "company_size": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No employee count, workforce figure or company-size range is provided."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No external estimate is introduced."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "company_industry": {
+    "final_value": "Data engineering and information systems consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The posting describes data-engineering delivery, integration specifications, project work and expertise missions."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized industry is limited to data engineering and consulting activities directly supported by the role text."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Data Engineer",
+      "mappings techniques",
+      "spécifications d’alimentation",
+      "pilotage de projets",
+      "missions d’expertise"
+    ]
+  },
+  "job_domain": {
+    "final_value": "Data engineering, data integration and technical project delivery",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The duties explicitly concern data modelling, mappings, data flows and technical project delivery."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain does not add analytics, machine learning or architecture responsibilities absent from the post."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "modélisations physiques",
+      "mappings techniques",
+      "Développer des flux des données",
+      "pilotage de projets"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Junior / early-career (1+ year)",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The job summary requires more than one year of experience and the profile states a minimum of one year."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Junior / early-career is used because the threshold is low and the post does not use a senior title."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Experience: > 1 year",
+      "minimum 1 an d'expérience"
+    ]
+  },
+  "contract_type": {
+    "final_value": "Permanent contract; job body also states the position is available as an internship and CDI",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The summary and role-specific Q&A both state Permanent contract."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The body also says the role is available as both internship and CDI, so the contradiction is preserved rather than silently resolved."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Permanent contract",
+      "Type of contract for this position: Permanent contract",
+      "Ce poste est à pourvoir en stage et CDI"
+    ]
+  },
+  "salary": {
+    "final_value": "not specified",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The job summary explicitly says the salary is not specified."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No amount, range, bonus or compensation detail appears elsewhere in the posting."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Salary: Not specified"
+    ]
+  },
+  "location": {
+    "final_value": "Paris, France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "Paris is explicitly listed in the job summary."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No alternate work location appears elsewhere in the post."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Paris"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "No remote work",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The summary explicitly states 'No remote work'."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The role-specific Q&A independently confirms that the position offers no remote-work option."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "No remote work",
+      "This position does not offer a remote work option."
+    ]
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Concevoir des modélisations physiques de données.",
+      "Construire des mappings techniques et rédiger des spécifications d'alimentation.",
+      "Développer des flux de données.",
+      "Contribuer au pilotage de projets et de proofs of concept.",
+      "Participer à des missions d'expertise."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted responsibility directly matches an item in the mission list."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The list excludes qualifications, application instructions and recruitment metadata."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Concevoir des modélisations physiques",
+      "Construire des mappings techniques",
+      "rédaction de spécifications d’alimentation",
+      "Développer des flux des données",
+      "Contribuer au pilotage de projets, de proof of concepts",
+      "Participer à des missions d’expertise"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Être titulaire d'un diplôme Bac+3 minimum dans le domaine de la data.",
+      "Posséder au moins un an d'expérience dans le métier.",
+      "Maîtriser l'anglais oral et technique.",
+      "Avoir une expérience avérée dans l'écriture de code propre avec au moins deux technologies parmi Bash, SQL, Java, Python et NoSQL."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "The Bac+3 and one-year thresholds are explicitly marked as minimum requirements, English is explicitly mandatory, and the coding requirement calls for proven experience."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "These explicit requirement markers override the generic page heading 'Preferred experience' for those specific criteria."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "niveau d'études requis",
+      "Bac +3 minimum",
+      "minimum 1 an d'expérience",
+      "anglais oral et technique obligatoire",
+      "Expérience avérée",
+      "2 ou plusieurs des technologies suivantes"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [
+      "Être enthousiaste à l'idée d'apprendre de nouvelles technologies.",
+      "Avoir une expérience de la méthodologie Agile ou Scrum.",
+      "Savoir planifier et prioriser les tâches confiées en autonomie."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Learning enthusiasm, Agile/Scrum exposure and autonomous prioritisation are listed without explicit mandatory wording."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "These softer criteria remain preferred and are not upgraded to hard requirements."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Être enthousiaste à l'idée d'apprendre de nouvelles technologies",
+      "Expérience de la méthodologie Agile / Scrum",
+      "Capacité à planifier et à prioriser"
+    ]
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive job description and profile are written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "English interface labels and Q&A prompts do not change the primary language."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "En tant que Data Engineer",
+      "Compétences professionnelles",
+      "N'hésitez pas à postuler"
+    ]
+  },
+  "source_platform": {
+    "final_value": "Welcome to the Jungle",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The user previously confirmed that all sources from the Lendable post onward are from Welcome to the Jungle."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The Job summary, Preferred experience and role-specific Q&A structure are consistent with Welcome to the Jungle."
+    },
+    "provenance": "user-provided source metadata",
+    "evidence": [
+      "User confirmation: all sources starting from Lendable are Welcome to the Jungle"
+    ]
+  },
+  "application_channel": {
+    "final_value": "Application initiated through Welcome to the Jungle; resume attachment required; final submission destination not confirmed",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The Q&A confirms that applicants must attach a résumé."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The source platform is confirmed, but the supplied text does not establish whether final submission remains on-platform or redirects externally."
+    },
+    "provenance": "job post and user-provided source metadata",
+    "evidence": [
+      "Yes, you are required to attach your resume to apply for this job.",
+      "User confirmation: source platform is Welcome to the Jungle"
+    ]
+  },
+  "motivation_letter_required": {
+    "final_value": true,
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific Q&A explicitly states that a cover letter is mandatory."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The explicit mandatory wording supports the boolean value true."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "A cover letter is mandatory to apply for this position."
+    ]
+  }
+}

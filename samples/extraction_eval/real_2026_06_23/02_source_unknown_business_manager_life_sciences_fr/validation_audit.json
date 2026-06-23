@@ -1,0 +1,271 @@
+{
+  "company_name": {
+    "final_value": "PRIME ENGINEERING France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The company name is shown at the beginning of the submitted posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The body also repeatedly identifies the employer as Prime Engineering; the displayed header form is preserved."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "PRIME ENGINEERING France",
+      "À propos de Prime Engineering"
+    ]
+  },
+  "job_title": {
+    "final_value": "Ingénieur d'Affaires / Business Manager (H/F) - Life Sciences",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The complete title appears directly after the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The Life Sciences specialization and H/F marker are retained without alteration."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Ingénieur d'Affaires / Business Manager (H/F) - Life Sciences"
+    ]
+  },
+  "company_size": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No employee count, size band, or workforce figure appears in the submitted text."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The description 'structure en pleine croissance' is qualitative and is not converted into a company-size estimate."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "company_industry": {
+    "final_value": "Engineering consulting and technology services",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The company explicitly describes itself as operating in engineering consulting and technology services."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized industry uses only the two activities explicitly stated in the company description."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Acteur incontournable du conseil en ingénierie et des services technologiques"
+    ]
+  },
+  "job_domain": {
+    "final_value": "Business development and profit-center management in Life Sciences engineering consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role combines business development, recruitment, team management, and profit-center management in the Life Sciences sector."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain reflects both the commercial function and the explicit Life Sciences specialization."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Business Development",
+      "Recrutement",
+      "Management d’équipe",
+      "Gestion du centre de profit",
+      "dans le secteur Life Sciences"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Entry level / recent graduate",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post explicitly addresses recent graduates and states that no previous experience is required."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Entry level / recent graduate is a faithful normalization and does not imply prior professional experience."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Jeune diplômé(e)",
+      "aucune expérience préalable n’est exigée"
+    ]
+  },
+  "contract_type": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post does not state CDI, CDD, internship, apprenticeship, freelance, temporary, or another contract form."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Recent-graduate targeting is not treated as evidence of a permanent contract."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "salary": {
+    "final_value": "Salaire fixe compétitif complété par des primes déplafonnées; montant exact non inclus",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The compensation structure explicitly includes a competitive fixed salary and uncapped bonuses."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No amount or range is present, so none has been inferred or added."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Un salaire fixe compétitif complété par des primes déplafonnées"
+    ]
+  },
+  "location": {
+    "final_value": "Lyon, Auvergne-Rhône-Alpes, France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The city, region, and country appear in the posting header."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The body confirms the Lyon location and specifies the Presqu'île area without contradicting the header."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Lyon, Auvergne-Rhône-Alpes, France",
+      "à Lyon, au cœur de la Presqu’île"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No remote, hybrid, on-site, telework, or home-office arrangement is stated."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The Lyon office location is not used to infer a mandatory on-site policy."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Créer un réseau de partenaires à partir de zéro grâce à une prospection active et identifier leurs besoins en compétences.",
+      "Identifier, recruter et constituer une équipe de consultants à l'aide des différents outils de recrutement.",
+      "Piloter et accompagner les équipes tout au long de leur parcours professionnel.",
+      "Gérer un centre de profit en construisant des offres sur mesure, en négociant les contrats et en garantissant leur rentabilité."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each item directly corresponds to one of the four duties listed under 'Votre quotidien chez nous'."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The responsibilities are complete, non-duplicative, and separated from benefits and candidate requirements."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Créez votre réseau de partenaires \"from scratch\" grâce à une prospection active et identifiez leurs besoins en compétences",
+      "Identifiez et constituez votre équipe de consultants",
+      "Pilotez et accompagnez vos équipes tout au long de leur parcours professionnel",
+      "Construisez des offres sur mesure, négociez les contrats et garantissez leur rentabilité"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Être diplômé(e) d'une école d'ingénieurs ou titulaire d'un Master en école de commerce.",
+      "Avoir une âme d'entrepreneur, le goût du challenge et une forte fibre commerciale.",
+      "Posséder un excellent relationnel.",
+      "Faire preuve d'autonomie et de rigueur.",
+      "Avoir l'esprit d'équipe.",
+      "Avoir une appétence pour le secteur Life Sciences."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Every listed qualification or trait appears in the explicit candidate-profile section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No technical tool, language, years-of-experience threshold, or certification has been invented."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "diplômé(e) d’une école d’ingénieurs ou titulaire d’un Master en école de commerce",
+      "une âme d’entrepreneur, le goût du challenge et une forte fibre commerciale",
+      "excellent relationnel, autonomie, rigueur, esprit d’équipe",
+      "une appétence pour le secteur Life Sciences"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [],
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post does not identify any qualification as optional, preferred, a plus, or nice to have."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The Life Sciences interest is included in the explicit profile list and is therefore retained as required rather than preferred."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive content is written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "English role labels and expressions such as Business Development and from scratch do not change the primary detected language."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Votre quotidien chez nous",
+      "Votre profil"
+    ]
+  },
+  "source_platform": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No URL, platform name, or uniquely identifying application-system information was provided with this post."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The phrase 'About the job' and the copied layout are not considered sufficient proof of LinkedIn or another specific platform."
+    },
+    "provenance": "absence confirmed in submitted content",
+    "evidence": []
+  },
+  "application_channel": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post invites candidates to apply but gives no method, URL, email address, or named application flow."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The generic phrase 'postulez dès maintenant' is not converted into a specific application channel."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": [
+      "postulez dès maintenant"
+    ]
+  },
+  "motivation_letter_required": {
+    "final_value": null,
+    "stamp_1": {
+      "status": "passed",
+      "check": "No cover letter, motivation letter, personal statement, or written response is requested."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The value remains null because the application workflow itself was not provided."
+    },
+    "provenance": "not stated in job post",
+    "evidence": []
+  }
+}

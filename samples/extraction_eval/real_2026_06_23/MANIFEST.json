@@ -1,0 +1,349 @@
+{
+  "corpus_name": "Stage 6 Real Job Posts",
+  "generated_at_utc": "2026-06-23T13:22:39.341052+00:00",
+  "post_count": 20,
+  "schema_field_count": 17,
+  "validation_status": "passed",
+  "posts": [
+    {
+      "post_number": 1,
+      "folder": "01_linkedin_business_engineer_fr",
+      "company_name": "CLEEVEN",
+      "job_title": "Stage/PFE - Business Engineer",
+      "source_platform": "LinkedIn",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "bc840305caef54c5193ef2e31608d98a179e489caddf0bef79f8e8f64555a9b9",
+        "raw_post.txt": "59fea11c1ed22b9fb021080d08398f521f26afd039188233aa2e0d02777a678e",
+        "validation_audit.json": "8f393ebf1ba7a05e09b61c6ce3e27b8ac24d12f70fe3080668e0343e46f63276"
+      }
+    },
+    {
+      "post_number": 2,
+      "folder": "02_source_unknown_business_manager_life_sciences_fr",
+      "company_name": "PRIME ENGINEERING France",
+      "job_title": "Ingénieur d'Affaires / Business Manager (H/F) - Life Sciences",
+      "source_platform": "not included",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "05dbe2a68d693d09333f1e47519eed5396ae29ca447a0ed8784d293a268f8482",
+        "raw_post.txt": "4eefbc24a836dda97ba157c68ad31db91e198fe5323d37d4c31f79424f8a2de8",
+        "validation_audit.json": "ca8fc077ebaf7d51afbbb36d35c30562ef66fb13cd317dd39cf4182fe44d3eed"
+      }
+    },
+    {
+      "post_number": 3,
+      "folder": "03_linkedin_ai_engineer_internship_fr",
+      "company_name": "ALTEN",
+      "job_title": "Stage Innovation : Ingénieur Intelligence Artificielle",
+      "source_platform": "LinkedIn",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "e80cebb45d5de181a262ca5ce68c89482c65edf6bc2b79a3ac4f1a916d9cb826",
+        "raw_post.txt": "edef0433a9583c10b1fd3ad130bc4069441db8e3aeff122562ff61e0515f8266",
+        "validation_audit.json": "38ed59e3dbc474248845cd98be3733ee85f2325cd4e1593f6ed506c1099ab28c"
+      }
+    },
+    {
+      "post_number": 4,
+      "folder": "04_linkedin_confirmed_business_analyst_fr",
+      "company_name": "Extia",
+      "job_title": "Business Analyst Confirmé H/F",
+      "source_platform": "LinkedIn",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "caebd193311b09b9ebc49898814bcd6bd3fc1a9d97210c094942bbfe4ad798b0",
+        "raw_post.txt": "bb6d8a30b3534bfb0d18c3c1fd1dae396bf0e1bb56af9b3680bbbe12d943c682",
+        "validation_audit.json": "3a4c221f29fd44ae34a0c284a42c2d833d2c50821711fbdc53cbdb6b7035fe97"
+      }
+    },
+    {
+      "post_number": 5,
+      "folder": "05_linkedin_business_manager_internship_fr",
+      "company_name": "KAIRDAN",
+      "job_title": "Stage Ingénieur d'affaires / Business Manager",
+      "source_platform": "LinkedIn",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "98130bac60e774f0b990abea5bf2f62975b6e04e0f56897ba7505629759e21b0",
+        "raw_post.txt": "46645ba49fa1f39b6408cf9a0af0eacaf76145a44650c3bd536e238d4356fce7",
+        "validation_audit.json": "a0ef7edc7fef4acb26364f337ce2ec14776d22e085d0376793795995f358b88e"
+      }
+    },
+    {
+      "post_number": 6,
+      "folder": "06_linkedin_business_analyst_rpa_fr",
+      "company_name": "Inetum",
+      "job_title": "Business Analyst RPA",
+      "source_platform": "LinkedIn",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "0942fdf56fc75bd38f23e6bc0b58f9ff9e0db161651de5f7aff042093374844a",
+        "raw_post.txt": "201e12e5380aae3ae89c1ee645f38c13f102541fe934df518080f55af323ede6",
+        "validation_audit.json": "665b26c05db31f95c4529d12cd7117852404497187e133ff90eeb5a31b4604ed"
+      }
+    },
+    {
+      "post_number": 7,
+      "folder": "07_welcometothejungle_commercial_associate_en",
+      "company_name": "Lendable",
+      "job_title": "Commercial Associate",
+      "source_platform": "Welcome to the Jungle",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "3e8e6bc4f5c5d620c08b046315c3561294dc7be7ab419ff228ee1dd77ba8b754",
+        "raw_post.txt": "c5c15872dd5c0944718d39bc84d812c71e6c3789f35d13fa301b51b0ffc4f19f",
+        "validation_audit.json": "dff8c2b9696f9dcdead0275535527a1ba6eaade80affd882cad4ae732bb167af"
+      }
+    },
+    {
+      "post_number": 8,
+      "folder": "08_welcometothejungle_digital_marketing_transformation_consultant_fr",
+      "company_name": "Okuden.",
+      "job_title": "Consultant(e), Digital Marketing, Experience & Transformation (3+ années d'expérience)",
+      "source_platform": "Welcome to the Jungle",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "c88cbd041e51612e719ade064f661c4e793d43d23e286190bf4f8df9ba873df9",
+        "raw_post.txt": "233d813d09404b703c19b048261152eb86a302ff01f8f457e9cbcf5b9e8cedbe",
+        "validation_audit.json": "84e2c0a3b9586303a4edc971869442151730156a7f72d4313802e87760ddd0bb"
+      }
+    },
+    {
+      "post_number": 9,
+      "folder": "09_welcometothejungle_ai_product_builder_consultant_fr",
+      "company_name": "IKXO",
+      "job_title": "Consultant.e Product Builder",
+      "source_platform": "Welcome to the Jungle",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "89d0456ca622bc48d156b6736541ac277d77c398720c8f2a1a043adc90d762a3",
+        "raw_post.txt": "397f9ef345af6cb2cb3546341f5258c0c14098462e5afcd725267f57efa5ecc2",
+        "validation_audit.json": "16ff4cec7fd48db7c19b774a32e5e61ce123b807d33b74513ebfc66b92cfb01b"
+      }
+    },
+    {
+      "post_number": 10,
+      "folder": "10_welcometothejungle_junior_strategy_management_consultant_fr",
+      "company_name": "Frame",
+      "job_title": "Consultant(e) junior en Stratégie et Management",
+      "source_platform": "Welcome to the Jungle",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "ebc6340ef667d4239e1eccbe7419a4bce4362a9f801b51f12dccdea602c9651e",
+        "raw_post.txt": "990f4df8bfe207643518ae428934f9e2429a41f3b28d9fd5a96d7d2cd4f9a33b",
+        "validation_audit.json": "135c506a52420558a9ef5f413dbc37d1f673d1e167a912f657913ed10b93aeed"
+      }
+    },
+    {
+      "post_number": 11,
+      "folder": "11_welcometothejungle_strategy_consultant_fr",
+      "company_name": "iQo",
+      "job_title": "Consultant(e) en Stratégie",
+      "source_platform": "Welcome to the Jungle",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "e45b0c3da0b9521aa6f34cce6d649a65c035126c47459bcba981fa3ca327c6f1",
+        "raw_post.txt": "d88a7d7db4ebd91f859f263ad427c1b6d7429a377c12139d2f737310fecd02c6",
+        "validation_audit.json": "ad46ed576a60372f390d1bf85a765753ad62835c26a1ca3f87dce880b0648cfb"
+      }
+    },
+    {
+      "post_number": 12,
+      "folder": "12_welcometothejungle_strategy_performance_consultant_fr",
+      "company_name": "STEP Consulting",
+      "job_title": "Consultant en stratégie et performances",
+      "source_platform": "Welcome to the Jungle",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "458d6326fa09bc5bf68b5dda29e45974166752113b0b8c5a150847b0d47f7b1f",
+        "raw_post.txt": "33c297380543e5624e5d05207c50741888c9de37e39623d46e4b4b339211531b",
+        "validation_audit.json": "4ad9a6447333ab80cf6e3f6188e60b4c7c90a896b2ced1599f01d3a171e85e20"
+      }
+    },
+    {
+      "post_number": 13,
+      "folder": "13_welcometothejungle_data_scientist_ai_engineer_fr",
+      "company_name": "Wivoo, a Wavestone company",
+      "job_title": "Data Scientist / AI Engineer",
+      "source_platform": "Welcome to the Jungle",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "af264353d7d60121805dc36da5ac46b4ecdd24d0657584f83a1eefd89bc94e24",
+        "raw_post.txt": "b40569941bb64c8a42fad5402c4bdc7d49d717674395922971fcc8cb49d8f026",
+        "validation_audit.json": "d446bb2229585ad26edc1d52846e0d341a8e49fa33f7eb3776f2ec3ef5bf9f7b"
+      }
+    },
+    {
+      "post_number": 14,
+      "folder": "14_welcometothejungle_applied_ai_ml_infra_engineer_en",
+      "company_name": "Mistral AI",
+      "job_title": "Applied AI Engineer, ML Infrastructure Engineer / Devops - EMEA",
+      "source_platform": "Welcome to the Jungle",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "25bac74469b3d1439bb86c2cc6834cf39763d0ade6db18c8518af2ff8155a517",
+        "raw_post.txt": "3577e6b046976ddb1e475066002bac58ab4ccae96a4f4bb7d8a8b78d80d030e4",
+        "validation_audit.json": "1c52e6b62103b43abf13eab4aa08522d35fc06cd5394d2e8a1713a07553a4eb5"
+      }
+    },
+    {
+      "post_number": 15,
+      "folder": "15_welcometothejungle_ai_agent_orchestration_specialist_en",
+      "company_name": "Edflex",
+      "job_title": "AI Agent Orchestration Specialist",
+      "source_platform": "Welcome to the Jungle",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "f1ae51aaa23c232c0ab9aac9a10609cac08cc95e8d3f61dd4f9b7ff74fae160e",
+        "raw_post.txt": "a91c324fadf9020cf830564f01874302b7b938d7ed0094ad508e998754d6305f",
+        "validation_audit.json": "23c5840f6cad2acc2761d0e7c2e38ac7fc6ffbfe2b6c4b243f5b352e6c1a89ef"
+      }
+    },
+    {
+      "post_number": 16,
+      "folder": "16_welcometothejungle_data_engineer_fr",
+      "company_name": "ADVANCED SCHEMA",
+      "job_title": "Data Engineer",
+      "source_platform": "Welcome to the Jungle",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "cb48846bf405856ef9d167f5a16c60aacf79f6fa38bf7185934589863f134200",
+        "raw_post.txt": "8a35c3cf25b5aabdf10ee018bec764fe1799ff6c3cf1af594172a9d82fb8a3bc",
+        "validation_audit.json": "3abf637ea00905e27d1d8b2e09c6642a809f2196563334b6e0d79081fa5ee9f0"
+      }
+    },
+    {
+      "post_number": 17,
+      "folder": "17_welcometothejungle_genai_agentic_ai_engineer_fr",
+      "company_name": "Skapa",
+      "job_title": "AI Engineer – IA Générative & Systèmes Agentiques (H/F)",
+      "source_platform": "Welcome to the Jungle",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "65c9df065a514f0ba6275166da675ff90dd5b344f6201c3c4fd7bde8673789a2",
+        "raw_post.txt": "7cf67f4679ac0b5dd603590d6aaa81e54e88edbfd29a50aad854f839d38e422f",
+        "validation_audit.json": "60f80c93971b6d0c2e3b7e4e929697dcd00b29db846bb08305b10574974b9dbf"
+      }
+    },
+    {
+      "post_number": 18,
+      "folder": "18_welcometothejungle_marketing_data_scientist_consultant_fr",
+      "company_name": "Sia",
+      "job_title": "Marketing Data Scientist Consultant",
+      "source_platform": "Welcome to the Jungle",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "78313eed6fa54f48a0cc68f6b7268c9f9ba36589efc81e40512b032ca2fc9694",
+        "raw_post.txt": "9b1d63c8609f463e553719c0816e41bb30600e31cf74f570d977a9a578703c5e",
+        "validation_audit.json": "d94e82a407bb0362baa526288b4cf4e2e17760756372057f11c8f9555a8a7fca"
+      }
+    },
+    {
+      "post_number": 19,
+      "folder": "19_welcometothejungle_digital_marketing_manager_en",
+      "company_name": "Hager",
+      "job_title": "Digital Marketing Manager M/f/d",
+      "source_platform": "Welcome to the Jungle",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "56c671a7f06251c8162b90467a5933c6646134e819c493d683d47950a898819f",
+        "raw_post.txt": "d9d2f44d25af70aa41f67354a9328cf1fdb55967b4f25f7d80560812f08264a9",
+        "validation_audit.json": "36e541523b13dfa0c5b9a11d96fc533c4eebd4c14369aaf89c7d82910377c382"
+      }
+    },
+    {
+      "post_number": 20,
+      "folder": "20_indeed_database_manager_fr",
+      "company_name": "Excoffier Recyclage",
+      "job_title": "Gestionnaire de Base de Données H/F",
+      "source_platform": "Indeed",
+      "files": [
+        "expected_extraction.json",
+        "raw_post.txt",
+        "validation_audit.json"
+      ],
+      "sha256": {
+        "expected_extraction.json": "a6572f165bb374e32efac98ba30ac7d177bad5550ab705db409e817e8cef74f4",
+        "raw_post.txt": "9b0bbeff7b8841361980ac7aec8971cbf7f69c3d690668e277187ae2481c538b",
+        "validation_audit.json": "5d2d2858a737841bf8d6278ec9095df412703bc6041eea71535389f9af93bf55"
+      }
+    }
+  ]
+}

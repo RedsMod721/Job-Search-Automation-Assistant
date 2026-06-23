@@ -1,0 +1,8 @@
+Orion Retail recrute un Data Analyst Junior via Workday.
+
+Le poste est base a Lille, France, en CDI avec deux jours de teletravail par semaine. Les missions incluent la creation de tableaux de bord, le nettoyage des donnees, l'analyse des ventes, la preparation de recommandations pour les equipes metier et la documentation des indicateurs.
+
+Competences requises: SQL, Excel avance, Power BI, statistiques de base, communication avec les equipes metier.
+Competences appreciees: Python, dbt, connaissance retail.
+
+La remuneration n'est pas indiquee dans l'annonce. Merci de joindre une lettre de motivation a la candidature.

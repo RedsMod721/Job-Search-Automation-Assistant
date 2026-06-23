@@ -1,0 +1,44 @@
+{
+  "company_name": "Skapa",
+  "job_title": "AI Engineer – IA Générative & Systèmes Agentiques (H/F)",
+  "company_size": "not included",
+  "company_industry": "not included",
+  "job_domain": "Generative AI and agentic systems engineering",
+  "seniority_level": "Mid-level / experienced (2+ years)",
+  "contract_type": "Permanent contract",
+  "salary": "not specified",
+  "location": "Paris, France",
+  "remote_policy": "Hybrid; remote work is allowed for a few days from home, exact frequency not included",
+  "key_responsibilities": [
+    "Concevoir, développer et déployer des applications basées sur les LLM et les architectures agentiques.",
+    "Développer des agents autonomes et des systèmes multi-agents.",
+    "Intégrer et optimiser des modèles de langage open-source et propriétaires.",
+    "Concevoir des pipelines de traitement, d'évaluation et de monitoring des modèles.",
+    "Mettre en place des mécanismes de contrôle qualité, de détection des hallucinations et de limitation des biais.",
+    "Collaborer avec les équipes DevOps pour industrialiser et sécuriser les déploiements.",
+    "Contribuer à l'amélioration continue des pratiques IA et au partage de connaissances.",
+    "Collaborer avec les équipes Produit, Data, IT et Sécurité afin de transformer les besoins métiers en solutions robustes et conformes."
+  ],
+  "required_skills": [
+    "Justifier de plus de 2 ans d'expérience.",
+    "Avoir une expérience significative avec des LLM tels que Mistral, OpenAI, Anthropic ou Llama.",
+    "Maîtriser le prompt engineering et les techniques d'optimisation des performances des modèles.",
+    "Comprendre le fine-tuning, le RAG et les mécanismes internes des modèles de langage.",
+    "Connaître les problématiques d'hallucinations, de biais et de gouvernance des modèles.",
+    "Avoir une expérience du développement d'agents IA et de systèmes multi-agents.",
+    "Maîtriser au moins un framework parmi LangChain, LangGraph, CrewAI, AutoGen ou équivalent.",
+    "Savoir concevoir des workflows complexes intégrant raisonnement, planification et prise de décision.",
+    "Maîtriser Python à un excellent niveau.",
+    "Avoir une expérience avec Docker, Kubernetes et les pipelines CI/CD.",
+    "Connaître les pratiques MLOps et le déploiement de modèles en production.",
+    "Avoir une expérience de développement dans des environnements cloud ou hybrides.",
+    "Être fortement sensibilisé(e) aux enjeux de sécurité, de protection des données et d'IA responsable."
+  ],
+  "preferred_qualifications": [
+    "Connaître le RGPD, l'AI Act ou les environnements réglementés."
+  ],
+  "detected_language": "French",
+  "source_platform": "Welcome to the Jungle",
+  "application_channel": "Application initiated through Welcome to the Jungle; resume attachment required; final submission destination not confirmed",
+  "motivation_letter_required": false
+}

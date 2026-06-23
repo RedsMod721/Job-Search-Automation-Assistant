@@ -1,0 +1,41 @@
+{
+  "company_name": "BrightOps",
+  "company_size": "120 employees",
+  "company_industry": "B2B SaaS workflow software",
+  "company_website": "",
+  "company_linkedin": "",
+  "career_page_url": "",
+  "job_title": "AI Product Associate",
+  "job_domain": "AI Product",
+  "seniority_level": "Associate",
+  "contract_type": "Permanent",
+  "job_length": "Full-time",
+  "salary": "EUR 55,000 - 65,000 per year",
+  "location": "Amsterdam, Netherlands",
+  "remote_policy": "Hybrid",
+  "relocation_required": "",
+  "key_responsibilities": [
+    "Gather customer needs",
+    "Write product requirements",
+    "Coordinate AI feature experiments",
+    "Measure adoption",
+    "Work with engineering on release notes"
+  ],
+  "required_skills": [
+    "Product discovery",
+    "Analytics",
+    "Stakeholder communication",
+    "SQL",
+    "Generative AI products"
+  ],
+  "preferred_qualifications": [
+    "Python",
+    "A/B testing",
+    "B2B SaaS experience"
+  ],
+  "detected_language": "English",
+  "source_platform": "Greenhouse",
+  "application_channel": "ATS Platform",
+  "job_url": "",
+  "motivation_letter_required": false
+}

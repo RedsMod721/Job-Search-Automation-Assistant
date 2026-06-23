@@ -125,4 +125,6 @@ def test_manual_sync_service_returns_typed_result(monkeypatch) -> None:
 
 def test_prompt_registry_versions_core_llm_prompts() -> None:
     assert set(PROMPTS) == {"job_extraction", "motivation_letter", "form_answers"}
-    assert get_prompt("job_extraction").version == "stage3-v1"
+    assert get_prompt("job_extraction").version == "stage6-v2"
+    assert get_prompt("job_extraction", "stage3-v1").status == "RETIRED"
+    assert get_prompt("job_extraction", "stage6-v1").status == "RETIRED"

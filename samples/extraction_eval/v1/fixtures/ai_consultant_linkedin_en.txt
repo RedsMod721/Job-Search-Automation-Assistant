@@ -1,0 +1,8 @@
+Nexa AI Advisory is hiring a Junior AI Consultant in Paris, France.
+
+This LinkedIn job post says the consultant will support client workshops, map business processes, identify generative AI use cases, prepare presentations, and help delivery teams turn prototypes into practical automation.
+
+Required skills: Python, SQL, structured problem solving, client communication, and interest in LLMs.
+Preferred qualifications: Azure AI, OpenAI API, Power BI, consulting exposure.
+
+The role is a permanent contract with hybrid work. Applications are completed on the company career page. A motivation letter is optional.

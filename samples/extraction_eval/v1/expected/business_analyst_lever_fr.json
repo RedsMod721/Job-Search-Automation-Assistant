@@ -1,0 +1,41 @@
+{
+  "company_name": "Kairo Services",
+  "company_size": "80 collaborateurs",
+  "company_industry": "Professional services",
+  "company_website": "",
+  "company_linkedin": "",
+  "career_page_url": "",
+  "job_title": "Business Analyst Transformation",
+  "job_domain": "Business Analysis",
+  "seniority_level": "",
+  "contract_type": "CDI",
+  "job_length": "",
+  "salary": "",
+  "location": "Lyon, France",
+  "remote_policy": "Hybrid",
+  "relocation_required": "",
+  "key_responsibilities": [
+    "Frame business needs",
+    "Run workshops",
+    "Document processes",
+    "Track action plans",
+    "Produce leadership materials"
+  ],
+  "required_skills": [
+    "Process analysis",
+    "Excel",
+    "PowerPoint",
+    "Communication",
+    "Workshop facilitation"
+  ],
+  "preferred_qualifications": [
+    "SQL",
+    "Change management",
+    "Consulting experience"
+  ],
+  "detected_language": "French",
+  "source_platform": "Lever",
+  "application_channel": "ATS Platform",
+  "job_url": "",
+  "motivation_letter_required": false
+}

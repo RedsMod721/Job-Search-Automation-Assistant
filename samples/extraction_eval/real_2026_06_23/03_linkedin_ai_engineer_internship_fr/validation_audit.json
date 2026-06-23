@@ -1,0 +1,278 @@
+{
+  "company_name": {
+    "final_value": "ALTEN",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The company name appears at the top of the posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The same name is repeated throughout the role description and company overview."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "ALTEN"
+    ]
+  },
+  "job_title": {
+    "final_value": "Stage Innovation : Ingénieur Intelligence Artificielle",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The complete title appears immediately below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The Innovation and Artificial Intelligence wording is preserved without adding a specialization absent from the title."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Stage Innovation : Ingénieur Intelligence Artificielle"
+    ]
+  },
+  "company_size": {
+    "final_value": "from outside source: 10,001+ employees",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employee range appears in the separate company Overview/profile section, not in the job-description body."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The exact displayed value is 10,001+ employees and is explicitly marked as outside source."
+    },
+    "provenance": "outside source: LinkedIn company profile panel",
+    "evidence": [
+      "Company size",
+      "10,001+ employees"
+    ]
+  },
+  "company_industry": {
+    "final_value": "from outside source: Engineering Services",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The industry label appears in the separate company Overview/profile section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The exact profile label Engineering Services is preserved and marked as outside source."
+    },
+    "provenance": "outside source: LinkedIn company profile panel",
+    "evidence": [
+      "Industry",
+      "Engineering Services"
+    ]
+  },
+  "job_domain": {
+    "final_value": "Artificial intelligence research and engineering focused on Green AI / frugal AI",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The project explicitly concerns the design of frugal artificial intelligence and Green AI."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain is supported by the project title and all three technical activities."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Projet : Conception d'Intelligences Artificielles frugales",
+      "le domaine du Green AI"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Internship / final-year engineering student",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post explicitly targets a final-year engineering student seeking a final internship."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The value does not imply prior employment experience or a graduate-level permanent role."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "étudiant(e) en dernière année d’École d’Ingénieur",
+      "à la recherche d’un stage de fin d’études"
+    ]
+  },
+  "contract_type": {
+    "final_value": "6-month final-year internship",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The posting explicitly identifies a final-year internship and specifies a six-month duration."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The possible hire after the internship is not treated as a current employment contract."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "stage de fin d’études",
+      "Durée de stage : 6 mois",
+      "Une embauche pourrait être envisagée à l’issue du stage"
+    ]
+  },
+  "salary": {
+    "final_value": "1200 euros brut/mois + tickets restaurants + prise en charge du titre de transport",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The internship compensation and benefits are explicitly stated."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The amount, gross basis, monthly frequency, meal vouchers, and transport coverage are all preserved."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Gratification de stage : 1200 euros brut/mois + Tickets restaurants + Prise en charge titre de transport"
+    ]
+  },
+  "location": {
+    "final_value": "Grenoble, Auvergne-Rhône-Alpes, France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The full location appears in the posting header."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The body independently confirms that the internship is based in the Grenoble Lab."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Grenoble, Auvergne-Rhône-Alpes, France",
+      "Lieu de stage : Lab de Grenoble"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No remote, hybrid, telework, or on-site policy is stated."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The Grenoble Lab location is not converted into an explicit on-site policy."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Déterminer une métrique permettant de mesurer la frugalité d'une intelligence artificielle.",
+      "Mener des campagnes d'évaluation et de mesure d'algorithmes d'intelligence artificielle selon cette métrique.",
+      "Construire une méthodologie scientifique permettant de concevoir une intelligence artificielle respectant un niveau défini de frugalité et de performance."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted responsibility directly matches one of the three project activities."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No mentoring, recruitment-process step, or company-marketing statement is misclassified as a responsibility."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Déterminer une métrique pour mesurer la frugalité d'une IA",
+      "Mener des campagnes d'évaluation et de mesure d'algorithmes d'IA selon cette métrique",
+      "Construire une méthodologie scientifique permettant de concevoir une IA respectant un certain niveau de frugalité / performance"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Être étudiant(e) en dernière année d'école d'ingénieur et rechercher un stage de fin d'études.",
+      "Avoir suivi une spécialité en mathématiques appliquées et/ou Data Science.",
+      "Posséder des connaissances en Machine Learning, Deep Learning et traitement du langage naturel (NLP).",
+      "Maîtriser Python, Git et Azure DevOps, avec une mise en application durant la formation.",
+      "Faire preuve de réactivité, de rigueur et d'autonomie.",
+      "Avoir le sens du service."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "All education, knowledge, tool, and soft-skill requirements appear in the Qualifications section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No unlisted framework, cloud certification, language requirement, or years-of-experience threshold has been added."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "spécialité en Mathématiques appliquées et / ou Data Science",
+      "connaissances en Machine Learning, Deep Learning et traitement du langage naturel (NLP)",
+      "Python, Git, Azure DevOps",
+      "Réactif(ve), rigoureux(se), autonome et doté(e) du sens du service"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [],
+    "stamp_1": {
+      "status": "passed",
+      "check": "No qualification is labeled as preferred, optional, a plus, or nice to have."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The applied mathematics and/or Data Science specialization is an explicit qualification, not a preferred-only criterion."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The job-description body is predominantly written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The English company Overview does not outweigh the French language of the actual posting."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Description du poste",
+      "Qualifications",
+      "Informations supplémentaires"
+    ]
+  },
+  "source_platform": {
+    "final_value": "LinkedIn",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The submitted content contains a LinkedIn-specific company-profile statement referring to associated LinkedIn members."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The layout also includes LinkedIn-style About the job and company Overview sections, supporting LinkedIn as the source platform."
+    },
+    "provenance": "submitted page text",
+    "evidence": [
+      "38,687 associated members LinkedIn members",
+      "About the job",
+      "Overview"
+    ]
+  },
+  "application_channel": {
+    "final_value": "CV submission; exact application channel not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post explicitly asks candidates to share a CV."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No button type, email address, external portal, or Easy Apply flow is shown, so the exact channel remains unspecified."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Partagez-nous votre CV"
+    ]
+  },
+  "motivation_letter_required": {
+    "final_value": null,
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post requests a CV but does not request a motivation letter or cover letter."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The value remains null because absence of a stated requirement does not prove the full application form has no letter field."
+    },
+    "provenance": "not stated in job post",
+    "evidence": []
+  }
+}

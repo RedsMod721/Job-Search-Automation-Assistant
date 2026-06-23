@@ -1,0 +1,280 @@
+{
+  "company_name": {
+    "final_value": "STEP Consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employer name appears at the beginning of the submitted posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The same company name is consistent with the supplied Welcome to the Jungle URL."
+    },
+    "provenance": "job post and source URL",
+    "evidence": [
+      "STEP Consulting",
+      "/companies/step-consulting/"
+    ]
+  },
+  "job_title": {
+    "final_value": "Consultant en stratégie et performances",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The displayed title appears directly below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The exact displayed plural form 'performances' is preserved, even though the URL slug uses the singular form."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Consultant en stratégie et performances"
+    ]
+  },
+  "company_size": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No employee count, workforce figure or company-size range appears in the submitted text."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No outside-source estimate is introduced."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "company_industry": {
+    "final_value": "Strategy and performance consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The posting describes STEP as a consulting firm working on strategy and performance topics."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized industry reflects the advertised consulting activity and does not add a sector absent from the text."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Consultant en stratégie et performances",
+      "vie interne du cabinet",
+      "missions concrètes réalisées par STEP"
+    ]
+  },
+  "job_domain": {
+    "final_value": "Operational strategy and performance consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The core duties concern client-needs analysis, operational strategy definition, implementation and business development."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain is limited to operational strategy and performance consulting."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "analyses détaillées",
+      "stratégie opérationnelle",
+      "conduisent leur mise en œuvre",
+      "développement commercial"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Experienced / mid-to-senior level (2-10 years)",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The preferred-experience section explicitly targets candidates with 2 to 10 years of experience."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Because the range spans both mid-level and more experienced profiles and the title is not junior or senior, the normalized value is experienced / mid-to-senior."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "entre 2 et 10 ans d’expérience"
+    ]
+  },
+  "contract_type": {
+    "final_value": "Permanent contract",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific Q&A explicitly states that the position is offered as a permanent contract."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No competing contract type is stated elsewhere in the post."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Type of contract for this position: Permanent contract"
+    ]
+  },
+  "salary": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No salary amount, range, bonus, equity or compensation package is provided."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No market estimate is added."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "location": {
+    "final_value": "Toulouse, France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The profile section states that STEP is recruiting consultants for its Toulouse offices."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The supplied URL also identifies Toulouse, and no alternate base location is provided."
+    },
+    "provenance": "job post and source URL",
+    "evidence": [
+      "pour nos bureaux de Toulouse",
+      "consultant-en-strategie-et-performance_toulouse"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "Occasional remote work is allowed",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific Q&A explicitly states that occasional remote work is allowed."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No additional frequency, schedule or eligibility condition is inferred."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Occasional remote work is allowed for this position."
+    ]
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Construire des analyses détaillées afin d'identifier les besoins réels des clients.",
+      "Définir la stratégie opérationnelle des entreprises et accompagner sa mise en œuvre.",
+      "Contribuer au développement commercial de STEP en participant aux appels d'offres.",
+      "Participer activement à la vie interne du cabinet, notamment aux réunions d'équipe, événements et formations."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted responsibility directly matches one of the four activities listed under 'Au quotidien'."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Recruitment-process content and candidate qualifications are excluded from the responsibility list."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "construisent des analyses détaillées",
+      "définissent la stratégie opérationnelle",
+      "participent au développement commercial",
+      "contribuent activement à la vie interne du cabinet"
+    ]
+  },
+  "required_skills": {
+    "final_value": [],
+    "stamp_1": {
+      "status": "passed",
+      "check": "No candidate criterion appears outside the section explicitly labelled 'Preferred experience'."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The experience range, degree, language, autonomy and mobility criteria are therefore not upgraded to mandatory requirements."
+    },
+    "provenance": "absence of explicit hard requirements",
+    "evidence": []
+  },
+  "preferred_qualifications": {
+    "final_value": [
+      "Être diplômé(e) d'une grande école d'ingénieurs ou de commerce.",
+      "Savoir travailler en autonomie.",
+      "Être capable de travailler en français ou en anglais.",
+      "Être mobile afin d'aller au contact de clients industriels.",
+      "Justifier de 2 à 10 ans d'expérience dans l'industrie et/ou au sein d'un cabinet de conseil."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "All extracted candidate criteria appear under the section explicitly labelled 'Preferred experience'."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The degree examples, autonomy, bilingual working ability, mobility and 2-10 year experience range are all preserved."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Preferred experience",
+      "grande école d’ingénieurs",
+      "ou de commerce",
+      "travailler en autonomie, en français ou en anglais",
+      "mobile pour aller au contact des clients industriels",
+      "entre 2 et 10 ans d’expérience"
+    ]
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive job description, preferred experience and recruitment process are written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "English interface labels and Q&A prompts do not change the primary language."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Au quotidien",
+      "Nous recherchons",
+      "Premier entretien"
+    ]
+  },
+  "source_platform": {
+    "final_value": "Welcome to the Jungle",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The supplied URL is on the welcometothejungle.com domain."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The page structure and role-specific Q&A are consistent with Welcome to the Jungle."
+    },
+    "provenance": "user-supplied source URL",
+    "evidence": [
+      "https://www.welcometothejungle.com/"
+    ]
+  },
+  "application_channel": {
+    "final_value": "Application initiated through Welcome to the Jungle; resume attachment required; final submission destination not confirmed",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The Q&A states that applicants must attach a résumé."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The source platform is Welcome to the Jungle, but the supplied text does not prove whether the final submission remains on-platform or redirects externally."
+    },
+    "provenance": "job post and source URL",
+    "evidence": [
+      "Yes, you are required to attach your resume to apply for this job.",
+      "https://www.welcometothejungle.com/"
+    ]
+  },
+  "motivation_letter_required": {
+    "final_value": false,
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific Q&A explicitly states that the cover letter is optional."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Optional means it is not mandatory, supporting the boolean value false."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "A cover letter is optional to apply for this position."
+    ]
+  }
+}

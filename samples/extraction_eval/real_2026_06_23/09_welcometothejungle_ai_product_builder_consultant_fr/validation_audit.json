@@ -1,0 +1,302 @@
+{
+  "company_name": {
+    "final_value": "IKXO",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The company name appears at the beginning of the submitted posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The same company name is repeated in the role description without contradiction."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "IKXO"
+    ]
+  },
+  "job_title": {
+    "final_value": "Consultant.e Product Builder",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The advertised title appears directly below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The title is preserved exactly, including its punctuation and inclusive form."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Consultant.e Product Builder"
+    ]
+  },
+  "company_size": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No employee count, workforce figure, or company-size range appears in the submitted text."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No external estimate is introduced."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "company_industry": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post describes consulting work but does not state a formal company-industry label."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The role domain is not reused as an unsupported industry classification."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "job_domain": {
+    "final_value": "AI product building, Product Discovery and digital transformation consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role explicitly combines Product Discovery, AI experimentation, prototyping, deployment and client consulting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain reflects the advertised work without adding unrelated AI engineering or software-development responsibilities."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Consultant·e Product Builder",
+      "Product Discovery",
+      "LLMs, les APIs et les outils IA",
+      "intervenir en immersion chez nos clients",
+      "déploiement d’usages IA"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Experienced / mid-level (ideally 3+ years)",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The preferred-experience section requests significant Product Management or product-building experience, ideally three years or more."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The value includes 'ideally' because three years is preferred rather than a strict minimum, and the role is not labeled senior or lead."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Expérience significative en Product Management ou en construction de produits (idéalement 3 ans et plus)."
+    ]
+  },
+  "contract_type": {
+    "final_value": "Permanent contract",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific Q&A explicitly states that the position is offered as a permanent contract."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No competing contract type appears elsewhere in the posting."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Type of contract for this position: Permanent contract"
+    ]
+  },
+  "salary": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No salary amount, range, bonus, equity or benefits information is included."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No outside market estimate is added."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "location": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No city, region, country, office or client site is stated."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The mention of a final meeting in company offices is not enough to determine the role location."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "remote_policy": {
+    "final_value": "Remote work is allowed; frequency and exact arrangement not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific Q&A explicitly states that remote work is allowed."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No frequency, hybrid schedule or geographic restriction is provided, so these are not inferred."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Remote work is allowed for this position."
+    ]
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Identifier les opportunités d'usage de l'IA au sein des produits, des parcours utilisateurs et des organisations.",
+      "Mener des démarches de Product Discovery pour faire émerger et prioriser les cas d'usage les plus pertinents.",
+      "Explorer les besoins utilisateurs et business afin de transformer les opportunités IA en produits, fonctionnalités et prototypes concrets.",
+      "Expérimenter avec les LLM, les API et les outils d'IA pour concevoir, prototyper et tester rapidement de nouvelles solutions.",
+      "Évaluer l'intérêt, la faisabilité et la valeur des expérimentations.",
+      "Collaborer avec les équipes Produit, Tech, Design, Data et Business pour intégrer les solutions aux produits existants.",
+      "Accompagner la priorisation, le déploiement et l'adoption des initiatives les plus prometteuses.",
+      "Mesurer l'impact des expérimentations au moyen d'indicateurs clairs.",
+      "Assurer une veille sur l'IA, les agents IA, les LLM et les nouveaux outils, puis diffuser les bonnes pratiques.",
+      "Contribuer aux projets internes, aux collectifs, au recrutement, à la formation, au coaching et au mentorat de jeunes consultants ainsi qu'à l'organisation d'événements."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted responsibility appears in the Detect, Build, Deploy, Share or internal-contribution sections."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The list separates responsibilities from preferred profile qualities and recruitment-process steps."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Identifier les opportunités IA",
+      "Mener des démarches de Product Discovery",
+      "Explorer les besoins utilisateurs et business",
+      "Expérimenter avec les LLMs, les APIs et les outils IA",
+      "Collaborer avec les équipes Produit, Tech, Design, Data et Business",
+      "Accompagner la priorisation, le déploiement et l’adoption",
+      "Mesurer l’impact",
+      "Assurer une veille active",
+      "Projets internes",
+      "Recrutement",
+      "Formation",
+      "Coaching, mentoring des jeunes consultants"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Posséder un niveau d'anglais permettant de travailler dans les domaines de l'IA et du produit."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "English is the only profile criterion explicitly described as mandatory."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Other profile items remain preferred because they sit under 'Preferred experience' and are not otherwise marked mandatory."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Anglais, dans l’IA comme dans le produit c’est mandatory !"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [
+      "Avoir suivi une formation universitaire, une école de commerce, une école d'ingénieurs ou un parcours autodidacte.",
+      "Avoir une expérience significative en Product Management ou en construction de produits, idéalement trois ans ou plus.",
+      "Maintenir une veille active sur les nouveaux usages et outils liés à l'IA.",
+      "Faire preuve d'écoute, de diplomatie, de tact et d'empathie.",
+      "Savoir convaincre et fédérer autour d'un objectif.",
+      "Savoir s'adapter, valoriser le feedback et distinguer les effets de mode des opportunités créatrices de valeur.",
+      "Adopter une approche product-minded en partant d'un problème utilisateur ou business.",
+      "Savoir transformer rapidement une idée en expérimentation concrète puis en livrable.",
+      "Maîtriser tout ou partie d'un écosystème d'outils tel que ChatGPT, Claude, Mistral, Cursor, Lovable, Bolt, v0, Make, n8n ou Dify.",
+      "Comprendre les grands principes des LLM, des API, des agents et des automatisations.",
+      "Mesurer l'impact des solutions construites et prendre des décisions à partir de données.",
+      "Avoir une expérience dans le conseil.",
+      "Avoir déjà construit et mis en ligne un produit, une fonctionnalité, une automatisation ou un agent IA dans un cadre professionnel ou personnel.",
+      "Expérimenter régulièrement de nouveaux outils et diffuser une culture AI native.",
+      "Participer à la communauté Produit et partager sa passion."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "The listed education, experience, qualities, product skills, AI-tool knowledge and 'nice-to-have' items all appear in the Preferred experience section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The 'Les petits plus' items remain preferred and the explicit English requirement is excluded because it is mandatory."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Preferred experience",
+      "idéalement 3 ans et plus",
+      "ChatGPT, Claude, Mistral, Cursor, Lovable, Bolt, v0, Make, n8n, Dify",
+      "Tu as une expérience dans le conseil",
+      "Tu as déjà buildé et mis en ligne un produit",
+      "Tu t’impliques dans la communauté Produit"
+    ]
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive job description, profile and recruitment process are written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "English technical terms and Q&A labels do not change the primary language."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "En tant que Consultant·e Product Builder",
+      "Parcours",
+      "Qualités",
+      "Compétences"
+    ]
+  },
+  "source_platform": {
+    "final_value": "Welcome to the Jungle",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The user explicitly confirmed that this posting was sourced from Welcome to the Jungle."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The page structure is consistent with the user-confirmed Welcome to the Jungle source series."
+    },
+    "provenance": "user-provided source metadata",
+    "evidence": [
+      "User confirmation: all sources starting from Lendable are Welcome to the Jungle"
+    ]
+  },
+  "application_channel": {
+    "final_value": "Application initiated through Welcome to the Jungle; resume attachment required; final submission destination not confirmed",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific application information states that a résumé must be attached."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The source platform is confirmed as Welcome to the Jungle, but the supplied text does not prove whether final submission remains on-platform or redirects elsewhere."
+    },
+    "provenance": "job post and user-provided source metadata",
+    "evidence": [
+      "Résumé attachment required",
+      "User confirmation: source platform is Welcome to the Jungle"
+    ]
+  },
+  "motivation_letter_required": {
+    "final_value": true,
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific Q&A explicitly states that a cover letter is mandatory."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The explicit mandatory wording supports the boolean value true."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "A cover letter is mandatory to apply for this position."
+    ]
+  }
+}

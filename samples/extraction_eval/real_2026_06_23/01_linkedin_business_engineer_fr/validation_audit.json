@@ -1,0 +1,269 @@
+{
+  "company_name": {
+    "final_value": "CLEEVEN",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The company name appears in the posting header."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The same company name is repeated in the separate company panel; spelling is consistent."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "CLEEVEN"
+    ]
+  },
+  "job_title": {
+    "final_value": "Stage/PFE - Business Engineer",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The exact title appears directly below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No competing or alternate job title appears in the submitted posting."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Stage/PFE - Business Engineer"
+    ]
+  },
+  "company_size": {
+    "final_value": "from outside source: 501-1000 employees",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employee range is present in LinkedIn's separate About the company panel, not in the job-description body."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The exact displayed range is 501-1000 employees and is therefore marked as from outside source."
+    },
+    "provenance": "outside source: LinkedIn company profile panel",
+    "evidence": [
+      "501-1000 employees"
+    ]
+  },
+  "company_industry": {
+    "final_value": "from outside source: Engineering Services",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The industry label is present in LinkedIn's separate About the company panel."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The exact label is Engineering Services and is marked as from outside source."
+    },
+    "provenance": "outside source: LinkedIn company profile panel",
+    "evidence": [
+      "Engineering Services"
+    ]
+  },
+  "job_domain": {
+    "final_value": "Business development in engineering consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post explicitly describes a business-oriented role involving prospecting, commercial development, recruitment, and engineering consulting clients."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain does not introduce a sector or function absent from the post."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Votre métier, très orienté business",
+      "prospection et le développement commercial auprès de clients industriels",
+      "Recrutement de votre équipe d'ingénieurs consultants"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Internship / entry level",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post targets an engineering student seeking a PFE and/or first employment and explicitly says no experience is required."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Internship / entry level accurately normalizes the stated candidate level without overstating experience."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "En école d'ingénieur, à la recherche d'un PFE et/ou d'un premier emploi",
+      "Aucune expérience requise"
+    ]
+  },
+  "contract_type": {
+    "final_value": "Stage/PFE (internship/final-year project)",
+    "stamp_1": {
+      "status": "passed",
+      "check": "Stage/PFE is explicitly stated in the job title."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No CDI, CDD, apprenticeship, or other formal contract type is stated; the value is limited to Stage/PFE."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Stage/PFE - Business Engineer"
+    ]
+  },
+  "salary": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No salary, wage, bonus, or compensation range appears in the submitted content."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No compensation figure is inferred from the company, location, or role."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "location": {
+    "final_value": "Grenoble, Auvergne-Rhône-Alpes, France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The complete location appears in the posting header."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The city, region, and country have been preserved exactly."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Grenoble, Auvergne-Rhône-Alpes, France"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post does not mention remote, hybrid, on-site, telework, or home-office arrangements."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The location alone is not used to infer an on-site policy."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Bâtir une relation de confiance avec les clients industriels et l'équipe d'ingénieurs afin de soutenir la performance.",
+      "Créer et développer l'activité commerciale par la prospection et le développement auprès de clients industriels.",
+      "Recruter une équipe d'ingénieurs consultants.",
+      "Suivre les projets des ingénieurs consultants et manager leurs carrières."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each responsibility is explicitly described in the role overview or responsibility list."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The items are non-duplicative, remain faithful to the text, and do not include candidate traits."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "bâtir auprès des clients industriels, ainsi qu'avec votre équipe d'ingénieurs, une relation de confiance permettant la performance",
+      "Création et développement de votre business, par la prospection et le développement commercial auprès de clients industriels",
+      "Recrutement de votre équipe d'ingénieurs consultants",
+      "Suivi des projets de vos ingénieurs consultants et management de leur carrières"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Être en école d'ingénieur et rechercher un PFE et/ou un premier emploi.",
+      "Avoir une appétence pour le business et l'entrepreneuriat.",
+      "Faire preuve de pugnacité et d'audace, et être motivé(e) par le challenge.",
+      "Posséder une culture technique.",
+      "Démontrer un fort investissement, une véritable force automotrice et une grande envie de se dépasser."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each listed requirement appears in the Votre profil section or in the explicit expectations at the end of the post."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No experience requirement has been invented; the post explicitly states that no experience is required."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "En école d'ingénieur, à la recherche d'un PFE et/ou d'un premier emploi",
+      "avec une appétence pour le business et l'entrepreneuriat",
+      "Vous êtes pugnace, audacieux(se), motivé(e) par le challenge",
+      "mettre à profit votre culture technique",
+      "un fort investissement, une véritable force automotrice et une grande envie de vous dépasser"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [],
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post contains no separately identified preferred, optional, bonus, or nice-to-have qualifications."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "All stated candidate traits are framed as profile expectations, so none are moved into preferred qualifications."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive job-description text is written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "English interface labels such as About the job do not change the detected language of the posting."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Votre rôle est extrêmement complet",
+      "Votre profil"
+    ]
+  },
+  "source_platform": {
+    "final_value": "LinkedIn",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The supplied URL is a linkedin.com/jobs URL and the pasted layout is a LinkedIn job page."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No other source platform is indicated."
+    },
+    "provenance": "user-supplied URL and page text",
+    "evidence": [
+      "https://www.linkedin.com/jobs/view/4422678937/"
+    ]
+  },
+  "application_channel": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The submitted text does not state Easy Apply, Apply on company website, email application, or another application route."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The source platform is not assumed to be the application channel."
+    },
+    "provenance": "absence confirmed in submitted content",
+    "evidence": []
+  },
+  "motivation_letter_required": {
+    "final_value": null,
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post does not request a cover letter, motivation letter, or written statement."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The value remains null because absence of a stated requirement does not prove that a letter is forbidden or unnecessary in the application flow."
+    },
+    "provenance": "not stated in job post",
+    "evidence": []
+  }
+}

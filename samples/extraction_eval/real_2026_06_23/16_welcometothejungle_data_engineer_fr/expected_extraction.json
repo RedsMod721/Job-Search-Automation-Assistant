@@ -1,0 +1,34 @@
+{
+  "company_name": "ADVANCED SCHEMA",
+  "job_title": "Data Engineer",
+  "company_size": "not included",
+  "company_industry": "Data engineering and information systems consulting",
+  "job_domain": "Data engineering, data integration and technical project delivery",
+  "seniority_level": "Junior / early-career (1+ year)",
+  "contract_type": "Permanent contract; job body also states the position is available as an internship and CDI",
+  "salary": "not specified",
+  "location": "Paris, France",
+  "remote_policy": "No remote work",
+  "key_responsibilities": [
+    "Concevoir des modélisations physiques de données.",
+    "Construire des mappings techniques et rédiger des spécifications d'alimentation.",
+    "Développer des flux de données.",
+    "Contribuer au pilotage de projets et de proofs of concept.",
+    "Participer à des missions d'expertise."
+  ],
+  "required_skills": [
+    "Être titulaire d'un diplôme Bac+3 minimum dans le domaine de la data.",
+    "Posséder au moins un an d'expérience dans le métier.",
+    "Maîtriser l'anglais oral et technique.",
+    "Avoir une expérience avérée dans l'écriture de code propre avec au moins deux technologies parmi Bash, SQL, Java, Python et NoSQL."
+  ],
+  "preferred_qualifications": [
+    "Être enthousiaste à l'idée d'apprendre de nouvelles technologies.",
+    "Avoir une expérience de la méthodologie Agile ou Scrum.",
+    "Savoir planifier et prioriser les tâches confiées en autonomie."
+  ],
+  "detected_language": "French",
+  "source_platform": "Welcome to the Jungle",
+  "application_channel": "Application initiated through Welcome to the Jungle; resume attachment required; final submission destination not confirmed",
+  "motivation_letter_required": true
+}

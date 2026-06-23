@@ -1,0 +1,301 @@
+{
+  "company_name": {
+    "final_value": "iQo",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The company name appears directly below the supplied Welcome to the Jungle URL."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The same spelling is used throughout the description without an alternate employer name."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "iQo"
+    ]
+  },
+  "job_title": {
+    "final_value": "Consultant(e) en Stratégie",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The exact advertised title appears at the beginning of the supplied page text."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No competing job title is used elsewhere in the posting."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Consultant(e) en Stratégie"
+    ]
+  },
+  "company_size": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No employee count, workforce figure or company-size band is included."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The statement that the firm was created five years ago is not used to estimate its size."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "company_industry": {
+    "final_value": "Strategy and transformation consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The company explicitly identifies itself as a consulting firm focused on transformation and strategy."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized industry is limited to consulting activities directly described in the post."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "cabinet de conseil",
+      "le conseil accélérateur de transformations",
+      "pôle Stratégie"
+    ]
+  },
+  "job_domain": {
+    "final_value": "Strategy consulting focused on growth, impact, innovation and business transformation",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role includes strategic planning, growth, new business models, impact strategies and transformation topics."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain reflects the listed missions without adding an unsupported sector specialisation."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "plans stratégiques",
+      "stratégies de croissance",
+      "nouveaux modèles économiques",
+      "stratégies à impact",
+      "transformation"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Consultant / early-career",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role is titled Consultant and requires a first experience in strategy consulting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Consultant / early-career is used rather than junior, senior or manager because no explicit seniority label or years-of-experience threshold is provided."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Consultant(e) en Stratégie",
+      "Une première expérience en cabinet de conseil en stratégie"
+    ]
+  },
+  "contract_type": {
+    "final_value": "Permanent contract",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific Q&A explicitly states that the position is offered as a permanent contract."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No conflicting contract type is present elsewhere in the posting."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Type of contract for this position: Permanent contract"
+    ]
+  },
+  "salary": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No salary amount, range, bonus plan, equity or direct compensation information is included."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Training, mentoring and office benefits are not treated as salary."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "location": {
+    "final_value": "Paris, France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The supplied job URL identifies the role as Paris and the description states that iQo has offices in the heart of Paris."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Geneva and the Middle East are described as locations of collaborating teams, not as the primary position location."
+    },
+    "provenance": "source-page URL and job post",
+    "evidence": [
+      "consultant-en-strategie_paris",
+      "des bureaux au cœur de Paris",
+      "équipes basées à Paris, Genève et au Moyen‑Orient"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific Q&A explicitly says that no information about remote-work conditions has been provided."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The absence of remote information is preserved and no on-site or hybrid arrangement is inferred from the Paris office."
+    },
+    "provenance": "absence explicitly confirmed in job post",
+    "evidence": [
+      "No information about remote work conditions has been provided for this job."
+    ]
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Accompagner les Directions Générales et Comités de Direction sur des problématiques stratégiques à fort enjeu.",
+      "Élaborer des plans stratégiques comprenant une vision à dix ans, une raison d'être, des axes et une feuille de route à trois ans.",
+      "Définir des stratégies de croissance, de nouveaux modèles économiques, des stratégies à impact et des plans de développement.",
+      "Contribuer au développement commercial d'iQo en développant ses territoires commerciaux.",
+      "Participer à des ateliers avec des prospects et réaliser des pitchs ainsi que des propositions commerciales innovantes.",
+      "Contribuer à la croissance interne du cabinet sur des sujets d'organisation, de diffusion de la connaissance et d'animation.",
+      "Intervenir sur des missions mêlant stratégie d'innovation, data, marketing, expérience client, design d'organisation et de services, performance opérationnelle et transformation culturelle."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each responsibility is based on the role section or the listed cross-functional strategy expertise areas."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The extracted duties exclude candidate requirements, benefits and recruitment-process steps."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "accompagner les Directions Générales / Comité de Direction",
+      "Établir des plans stratégiques",
+      "stratégies de croissance et nouveaux modèles économiques",
+      "Participer au succès commercial d’iQo",
+      "ateliers avec des prospects",
+      "propositions commerciales innovantes",
+      "sujets d’organisation, de diffusion de la connaissance, d’animation",
+      "Stratégie d’innovation et plan stratégique",
+      "Exploitation de la data",
+      "Marketing et Expérience Client",
+      "Performance Opérationnelle",
+      "Transformation Culturelle"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Être diplômé(e) d'une grande école de commerce de rang A ou d'une école d'ingénieurs.",
+      "Avoir une première expérience en cabinet de conseil en stratégie.",
+      "Posséder un niveau d'anglais professionnel courant à l'oral et à l'écrit.",
+      "Avoir un état d'esprit orienté solutions.",
+      "Posséder une aisance analytique.",
+      "Avoir le sens de l'organisation.",
+      "Posséder de bonnes compétences relationnelles."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "All extracted criteria appear under the section explicitly labelled 'Les must have'."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The degree, prior strategy-consulting experience, English level and behavioural capabilities are all preserved without adding unlisted tools or years."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Les must have",
+      "grande école de commerce (rang A) ou d’ingénieurs",
+      "première expérience en cabinet de conseil en stratégie",
+      "anglais professionnel courant",
+      "solution-oriented",
+      "aisance analytique",
+      "sens de l’organisation",
+      "compétences relationnelles"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [
+      "Avoir un esprit entrepreneurial.",
+      "Faire preuve de curiosité intellectuelle.",
+      "Souhaiter s'investir dans la croissance d'un cabinet à mission."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted preferred qualification appears under the section explicitly labelled 'Les nice to have'."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No must-have criterion is incorrectly moved into the preferred list."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Les nice to have",
+      "Un esprit entrepreneurial",
+      "une curiosité intellectuelle",
+      "L’envie de vous investir dans la croissance d’un cabinet à mission"
+    ]
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive company description, role, profile and interview process are written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "English interface labels and short English expressions do not change the primary language."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Qui sommes-nous ?",
+      "Votre rôle au sein du pôle Stratégie",
+      "Votre profil"
+    ]
+  },
+  "source_platform": {
+    "final_value": "Welcome to the Jungle",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The supplied URL is on the welcometothejungle.com domain."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The page structure and role-specific Q&A are consistent with Welcome to the Jungle."
+    },
+    "provenance": "user-supplied source URL",
+    "evidence": [
+      "https://www.welcometothejungle.com/"
+    ]
+  },
+  "application_channel": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No résumé requirement, cover-letter requirement, application button type, external ATS or email submission instruction is included."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The source platform is not automatically treated as the final application channel."
+    },
+    "provenance": "absence confirmed in submitted content",
+    "evidence": []
+  },
+  "motivation_letter_required": {
+    "final_value": null,
+    "stamp_1": {
+      "status": "passed",
+      "check": "The supplied Q&A does not mention a cover letter or motivation letter."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The value remains null because the application form and document requirements are not shown."
+    },
+    "provenance": "not stated in job post",
+    "evidence": []
+  }
+}

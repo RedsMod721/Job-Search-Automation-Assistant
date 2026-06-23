@@ -1,0 +1,304 @@
+{
+  "company_name": {
+    "final_value": "Skapa",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employer name appears at the beginning of the submitted posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The supplied Welcome to the Jungle URL contains the same company name."
+    },
+    "provenance": "job post and source URL",
+    "evidence": [
+      "Skapa",
+      "/companies/skapa/"
+    ]
+  },
+  "job_title": {
+    "final_value": "AI Engineer – IA Générative & Systèmes Agentiques (H/F)",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The complete advertised title appears directly below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The inclusive H/F marker and the distinction between generative AI and agentic systems are preserved."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "AI Engineer – IA Générative & Systèmes Agentiques (H/F)"
+    ]
+  },
+  "company_size": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No employee count, workforce figure or company-size range is included."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No external company-profile data is introduced."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "company_industry": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The posting describes the role but does not explicitly state Skapa's company industry."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The job's technical domain is not reused as an unsupported company-industry classification."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "job_domain": {
+    "final_value": "Generative AI and agentic systems engineering",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The title, mission and responsibilities explicitly concern generative AI and agentic systems engineering."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain is limited to the core technical scope and does not add unrelated data-science functions."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "IA Générative & Systèmes Agentiques",
+      "solutions d’IA générative et agentique",
+      "agents autonomes et des systèmes multi-agents"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Mid-level / experienced (2+ years)",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The job summary explicitly requires more than two years of experience."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Mid-level / experienced is used because the role is not labelled junior, senior or lead."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Experience: > 2 years"
+    ]
+  },
+  "contract_type": {
+    "final_value": "Permanent contract",
+    "stamp_1": {
+      "status": "passed",
+      "check": "Permanent contract is stated in the job summary."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The role-specific Q&A independently confirms the same contract type."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Permanent contract",
+      "Type of contract for this position: Permanent contract"
+    ]
+  },
+  "salary": {
+    "final_value": "not specified",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The job summary explicitly marks the salary as not specified."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No amount, range, bonus or compensation detail appears elsewhere in the post."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Salary: Not specified"
+    ]
+  },
+  "location": {
+    "final_value": "Paris, France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "Paris is explicitly listed in the job summary."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The source URL also identifies Paris and no alternate work location appears."
+    },
+    "provenance": "job post and source URL",
+    "evidence": [
+      "Paris",
+      "_paris"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "Hybrid; remote work is allowed for a few days from home, exact frequency not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The job summary says 'A few days at home' and the Q&A confirms that remote work is allowed."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No exact number of remote days or other schedule is stated, so none is inferred."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "A few days at home",
+      "Remote work is allowed for this position."
+    ]
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Concevoir, développer et déployer des applications basées sur les LLM et les architectures agentiques.",
+      "Développer des agents autonomes et des systèmes multi-agents.",
+      "Intégrer et optimiser des modèles de langage open-source et propriétaires.",
+      "Concevoir des pipelines de traitement, d'évaluation et de monitoring des modèles.",
+      "Mettre en place des mécanismes de contrôle qualité, de détection des hallucinations et de limitation des biais.",
+      "Collaborer avec les équipes DevOps pour industrialiser et sécuriser les déploiements.",
+      "Contribuer à l'amélioration continue des pratiques IA et au partage de connaissances.",
+      "Collaborer avec les équipes Produit, Data, IT et Sécurité afin de transformer les besoins métiers en solutions robustes et conformes."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted duty appears in the mission overview or in the subsection explicitly titled 'Vos responsabilités'."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The page-level 'Preferred experience' heading does not change the fact that 'Vos responsabilités' contains job duties rather than candidate qualifications."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "concevez, développez et déployez",
+      "Vos responsabilités",
+      "applications basées sur les LLM",
+      "agents autonomes et des systèmes multi-agents",
+      "pipelines de traitement, d’évaluation et de monitoring",
+      "contrôle qualité",
+      "Collaborer avec les équipes DevOps",
+      "amélioration continue des pratiques IA"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Justifier de plus de 2 ans d'expérience.",
+      "Avoir une expérience significative avec des LLM tels que Mistral, OpenAI, Anthropic ou Llama.",
+      "Maîtriser le prompt engineering et les techniques d'optimisation des performances des modèles.",
+      "Comprendre le fine-tuning, le RAG et les mécanismes internes des modèles de langage.",
+      "Connaître les problématiques d'hallucinations, de biais et de gouvernance des modèles.",
+      "Avoir une expérience du développement d'agents IA et de systèmes multi-agents.",
+      "Maîtriser au moins un framework parmi LangChain, LangGraph, CrewAI, AutoGen ou équivalent.",
+      "Savoir concevoir des workflows complexes intégrant raisonnement, planification et prise de décision.",
+      "Maîtriser Python à un excellent niveau.",
+      "Avoir une expérience avec Docker, Kubernetes et les pipelines CI/CD.",
+      "Connaître les pratiques MLOps et le déploiement de modèles en production.",
+      "Avoir une expérience de développement dans des environnements cloud ou hybrides.",
+      "Être fortement sensibilisé(e) aux enjeux de sécurité, de protection des données et d'IA responsable."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "The experience threshold is explicit in the summary and the expertise sections use direct mastery, experience and capability language."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "All core GenAI, agentic AI, engineering, MLOps and security criteria are retained, while the only item explicitly marked 'appréciée' is excluded."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Experience: > 2 years",
+      "Expérience significative sur les LLM",
+      "Maîtrise du prompt engineering",
+      "Bonne compréhension du fine-tuning, du RAG",
+      "Expérience de développement d’agents IA",
+      "Maîtrise d’au moins un framework",
+      "Excellente maîtrise de Python",
+      "Docker, Kubernetes et les pipelines CI/CD",
+      "pratiques MLOps",
+      "environnements cloud ou hybrides",
+      "Sensibilité forte aux enjeux de sécurité"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [
+      "Connaître le RGPD, l'AI Act ou les environnements réglementés."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Knowledge of GDPR, the AI Act or regulated environments is explicitly described as appreciated."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The word 'appréciée' marks this item as preferred rather than mandatory."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Connaissance du RGPD, de l’AI Act ou d’environnements réglementés appréciée."
+    ]
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive mission, responsibilities and expertise sections are written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "English interface labels and technical terminology do not change the primary language."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Votre mission",
+      "Vos responsabilités",
+      "Expertise IA Générative"
+    ]
+  },
+  "source_platform": {
+    "final_value": "Welcome to the Jungle",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The supplied URL is on the welcometothejungle.com domain."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The Job summary, Preferred experience and role-specific Q&A structure are consistent with Welcome to the Jungle."
+    },
+    "provenance": "user-supplied source URL",
+    "evidence": [
+      "https://www.welcometothejungle.com/"
+    ]
+  },
+  "application_channel": {
+    "final_value": "Application initiated through Welcome to the Jungle; resume attachment required; final submission destination not confirmed",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The Q&A states that applicants must attach a résumé."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The source is Welcome to the Jungle, but the supplied text does not confirm whether final submission remains on-platform or redirects elsewhere."
+    },
+    "provenance": "job post and source URL",
+    "evidence": [
+      "Yes, you are required to attach your resume to apply for this job.",
+      "https://www.welcometothejungle.com/"
+    ]
+  },
+  "motivation_letter_required": {
+    "final_value": false,
+    "stamp_1": {
+      "status": "passed",
+      "check": "The Q&A explicitly states that a cover letter is optional."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Optional means it is not mandatory, supporting the boolean value false."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "A cover letter is optional to apply for this position."
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "company_name": "Luma Beauty",
+  "company_size": "",
+  "company_industry": "Beauty",
+  "company_website": "",
+  "company_linkedin": "",
+  "career_page_url": "",
+  "job_title": "Marketing Analyst CRM",
+  "job_domain": "Marketing Analytics",
+  "seniority_level": "",
+  "contract_type": "CDI",
+  "job_length": "",
+  "salary": "38k - 42k EUR per year",
+  "location": "Lyon, France",
+  "remote_policy": "Hybrid",
+  "relocation_required": "",
+  "key_responsibilities": [
+    "Analyze CRM campaigns",
+    "Segment customers",
+    "Track conversions",
+    "Prepare weekly reports",
+    "Recommend optimizations"
+  ],
+  "required_skills": [
+    "Google Analytics",
+    "Excel",
+    "SQL",
+    "CRM",
+    "Marketing analysis"
+  ],
+  "preferred_qualifications": [
+    "Power BI",
+    "Python",
+    "A/B experimentation"
+  ],
+  "detected_language": "French",
+  "source_platform": "Company Website",
+  "application_channel": "Company Career Page",
+  "job_url": "",
+  "motivation_letter_required": false
+}

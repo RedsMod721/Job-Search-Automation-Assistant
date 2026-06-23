@@ -1,0 +1,291 @@
+{
+  "company_name": {
+    "final_value": "Excoffier Recyclage",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employer name appears directly below the job title and is repeated in the posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The body consistently refers to EXCOFFIER Recyclage without introducing another employer."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Excoffier Recyclage",
+      "Rejoignez EXCOFFIER Recyclage !"
+    ]
+  },
+  "job_title": {
+    "final_value": "Gestionnaire de Base de Données H/F",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The title is displayed at the top of the posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The trailing interface text '- job post' is removed because it is not part of the role title."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Gestionnaire de Base de Données H/F- job post"
+    ]
+  },
+  "company_size": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No employee count, workforce figure or company-size band appears in the supplied content."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The phrases 'entreprise familiale' and 'en pleine expansion' are not converted into a size estimate."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "company_industry": {
+    "final_value": "Circular economy, recycling and waste management",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The company explicitly describes itself as a circular-economy leader active in waste management and recovery."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized industry uses only activities directly stated in the company description."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "leader de l’économie circulaire",
+      "gestion globale et la valorisation des déchets"
+    ]
+  },
+  "job_domain": {
+    "final_value": "Database management, ERP data quality and electronic invoicing preparation",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role focuses on maintaining databases, improving data reliability, supporting ERP use and preparing electronic invoicing."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain does not add analytics, database administration or software-development responsibilities absent from the post."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "mettre à jour la Base de Données Clients et Fournisseurs",
+      "passage à la facturation électronique",
+      "garantir la fiabilité",
+      "amélioration de l’utilisation de notre ERP"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Experience level not specified",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The posting gives no years-of-experience threshold, junior/senior label or degree requirement."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The level is not inferred from the six-month contract or the list of responsibilities."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "contract_type": {
+    "final_value": "Full-time six-month fixed-term contract (CDD), with possible permanent role afterward; one later sentence inconsistently states CDI",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The header, job details and body identify a full-time CDD, and the contract section specifies an initial six-month duration with possible CDI afterward."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "A later sentence unexpectedly says the candidate will join in CDI; the contradiction is documented rather than silently corrected."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Temps plein, CDD",
+      "CDD de temps complet",
+      "CDD de 6 mois dans un premier temps, CDI possible ensuite",
+      "Vous rejoindrez nos équipes de Groisy en CDI à temps plein"
+    ]
+  },
+  "salary": {
+    "final_value": "From €2,300 gross per month, plus two activity-specific bonuses and profit-sharing",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The posting states a starting salary of €2,300 gross per month."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The two activity-specific bonuses and participation are included because they are explicitly part of the compensation package."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "À partir de 2 300 € par mois",
+      "à partir de 2 300€ brut mensuel",
+      "deux primes spécifiques à l'activité et la participation"
+    ]
+  },
+  "location": {
+    "final_value": "74570 Groisy",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The postal code and city are repeated in the header, location field and body."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No country is stated, so the location is not enriched beyond the supplied text."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "74570 Groisy",
+      "site de Groisy (74)"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No remote, hybrid, telework or home-working arrangement is stated."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The on-site schedule is not automatically converted into a formal no-remote policy."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Mettre à jour la base de données clients et fournisseurs afin de préparer le passage à la facturation électronique.",
+      "Assurer le suivi, la mise à jour et l'évolution de l'ensemble des bases de données de l'entreprise.",
+      "Maintenir les données relatives aux matières, au transport et à la logistique, aux filières et à la sous-traitance.",
+      "Garantir la fiabilité des données de l'entreprise.",
+      "Contribuer à l'amélioration de l'utilisation de l'ERP en recueillant les informations manquantes et en échangeant avec les utilisateurs."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted duty appears in the POSTE section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The list captures the initial electronic-invoicing task and the broader future database-quality scope without adding unrelated administrative duties."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "mettre à jour la Base de Données Clients et Fournisseurs",
+      "assurer le passage à la facturation électronique",
+      "missions de suivi, de mise à jour et d’évolution",
+      "Matières, Transport et Logistique, Filières, Sous-Traitance",
+      "garantir la fiabilité",
+      "amélioration de l’utilisation de notre ERP"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Être organisé(e), rigoureux(se) et méthodique.",
+      "Aimer travailler avec les chiffres et les données.",
+      "Faire preuve de précision et d'attention aux détails.",
+      "Faire preuve d'initiative et savoir rechercher les informations manquantes en autonomie.",
+      "Posséder une bonne maîtrise de l'informatique.",
+      "Avoir une sensibilité aux systèmes d'information et aux ERP.",
+      "Savoir dialoguer avec les utilisateurs.",
+      "Faire preuve de curiosité pour comprendre les métiers de l'entreprise."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "All extracted criteria appear in the PROFIL section and include explicit wording such as obligatoire, requise and indispensable."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No degree, years of experience, software package or certification is added because none is stated."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Organisé(e), rigoureux(se) et méthodique",
+      "aimez les chiffres et les données",
+      "sens du détail et de la précision",
+      "esprit d'initiative",
+      "informations manquantes en autonomie",
+      "maîtrise de l’informatique est évidemment obligatoire",
+      "sensibilité aux systèmes d’informations (ERP) requise",
+      "dialoguer avec les utilisateurs",
+      "curiosité pour comprendre nos métiers sera indispensable"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [],
+    "stamp_1": {
+      "status": "passed",
+      "check": "No qualification is marked optional, preferred, ideal, a plus or nice to have."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "All listed profile criteria are expressed as direct expectations."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive job description, profile and contract sections are written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No second language is used for the role content."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Description du poste",
+      "POSTE",
+      "PROFIL",
+      "CONTRAT"
+    ]
+  },
+  "source_platform": {
+    "final_value": "Indeed",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The layout includes Indeed-specific elements such as '- job post', employer star rating, profile-match wording and job-detail labels."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The repeated salary/type/location blocks and HTML '&nbsp;' artifacts are also consistent with copied Indeed page text."
+    },
+    "provenance": "submitted page structure",
+    "evidence": [
+      "- job post",
+      "3.8/5 étoiles",
+      "Correspondance entre ce poste et votre profil.",
+      "Détails de l'emploi",
+      "&nbsp;"
+    ]
+  },
+  "application_channel": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No application button type, email address, employer website, résumé requirement or external ATS instruction is included."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The source platform alone is not treated as proof of the final application route."
+    },
+    "provenance": "absence confirmed in submitted content",
+    "evidence": []
+  },
+  "motivation_letter_required": {
+    "final_value": null,
+    "stamp_1": {
+      "status": "passed",
+      "check": "No cover letter, motivation letter or written statement is requested."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The value remains null because the application document requirements are not shown."
+    },
+    "provenance": "not stated in job post",
+    "evidence": []
+  }
+}

@@ -1,0 +1,305 @@
+{
+  "company_name": {
+    "final_value": "Hager",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employer name appears at the top of the submitted posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The same name is used consistently throughout the role description."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Hager",
+      "Hager Group’s awarded Hi University"
+    ]
+  },
+  "job_title": {
+    "final_value": "Digital Marketing Manager M/f/d",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The advertised title appears directly below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The capitalization variation M/f/d versus M/F/D does not change the title."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Digital Marketing Manager M/f/d",
+      "Digital Marketing Manager M/F/D"
+    ]
+  },
+  "company_size": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No employee count, workforce figure or company-size band is provided."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The internal-mobility percentage is not a workforce-size indicator."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "company_industry": {
+    "final_value": "Electrical products and solutions",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post states that Hager is shaping the electrical world and refers to product configurators and an e-catalogue."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized industry is kept broad and does not add an unsupported manufacturing subtype."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "shaping tomorrow’s electrical world",
+      "product configurators",
+      "e-catalogue"
+    ]
+  },
+  "job_domain": {
+    "final_value": "Digital marketing, e-commerce, customer experience and performance analytics",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The responsibilities explicitly cover digital marketing, e-commerce, customer journeys, SEO, email and analytics."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain reflects only the responsibilities listed in the post."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "digital customer journeys",
+      "e-commerce capabilities",
+      "SEO",
+      "analytics",
+      "email marketing"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Manager / experienced (5+ years)",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The title is Manager and the profile requires 5+ years of relevant experience."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Manager / experienced is used rather than senior leadership because the role reports to the Country Marketing Manager."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Digital Marketing Manager",
+      "5+ years of experience",
+      "report to the Country Marketing Manager"
+    ]
+  },
+  "contract_type": {
+    "final_value": "Permanent contract",
+    "stamp_1": {
+      "status": "passed",
+      "check": "Permanent contract appears in the job summary and role description."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The role-specific Q&A independently confirms the same contract type."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Permanent contract",
+      "Type of contract for this position: Permanent contract"
+    ]
+  },
+  "salary": {
+    "final_value": "not specified",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The job summary explicitly marks the salary as not specified."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No amount, range, bonus or compensation detail appears elsewhere."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Salary: Not specified"
+    ]
+  },
+  "location": {
+    "final_value": "Telford",
+    "stamp_1": {
+      "status": "passed",
+      "check": "Telford is explicitly listed in the summary and role description."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No country is stated in the supplied text, so the field is not enriched with one."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Telford",
+      "based in Telford"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "Hybrid; remote work is allowed for a few days from home, exact frequency not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The summary says 'A few days at home' and the Q&A confirms that remote work is allowed."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No weekly frequency or other condition is stated, so none is inferred."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "A few days at home",
+      "Remote work is allowed for this position."
+    ]
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Optimise and personalise digital customer journeys across touchpoints, with a focus on post-purchase engagement and conversion.",
+      "Manage e-commerce capabilities, including product configurators and an accurate e-catalogue.",
+      "Lead implementation of new digital functionalities and tools in alignment with the global core model.",
+      "Own website and content management, including landing pages, personalised experiences and SEO-optimised content.",
+      "Drive SEO, analytics and performance monitoring using data and KPIs.",
+      "Design and execute email-marketing and customer-engagement initiatives.",
+      "Ensure digital initiatives comply with Quality, Health, Safety and Environmental standards."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted duty appears in the explicit 'What you will do?' section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Candidate requirements and benefits are excluded from the responsibility list."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Optimise and personalise digital customer journeys",
+      "Enable and manage e-commerce capabilities",
+      "Lead the implementation of new digital functionalities and tools",
+      "Own website and content management",
+      "Drive SEO, analytics and performance monitoring",
+      "Design and execute email marketing",
+      "compliance with Quality, Health, Safety and Environmental standards"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Hold a degree in Marketing, Communications, Business or a related field, or possess equivalent experience.",
+      "Have at least 5 years of experience in digital marketing or a related role.",
+      "Have hands-on experience with SEO, email marketing and digital analytics tools.",
+      "Possess strong organisational and administrative skills.",
+      "Be able to manage multiple projects and deadlines in parallel.",
+      "Be an excellent communicator and copywriter.",
+      "Understand web-content management and social-media best practices.",
+      "Demonstrate a customer-focused mindset, creativity and attention to detail.",
+      "Possess strong stakeholder-management skills.",
+      "Work collaboratively across teams and support local commercial strategy.",
+      "Be open to occasional national and limited international travel."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "All extracted criteria appear in the direct 'What about you?' candidate-requirements section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The degree, experience, technical exposure, communication, organisation, stakeholder and travel requirements are all retained without adding unlisted tools."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "degree in Marketing, Communications, Business or a related field",
+      "5+ years of experience",
+      "SEO, email marketing and digital analytics tools",
+      "organisational and administrative skills",
+      "manage multiple projects and deadlines",
+      "excellent communicator and copywriter",
+      "web content management",
+      "social media best practices",
+      "customer-focused mindset",
+      "stakeholder management skills",
+      "work collaboratively across teams",
+      "occasional national and limited international travel"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [],
+    "stamp_1": {
+      "status": "passed",
+      "check": "No qualification is marked preferred, ideal, optional, a plus or nice to have."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Equivalent experience is an alternative to the degree, not a preferred qualification."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "detected_language": {
+    "final_value": "English",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive job description, requirements and recruitment process are written in English."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No other language is used for the role content."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "What you will do?",
+      "What about you?",
+      "What are the recruitment stages?"
+    ]
+  },
+  "source_platform": {
+    "final_value": "Welcome to the Jungle",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The user previously confirmed that all sources from the Lendable post onward are from Welcome to the Jungle."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The Job summary and role-specific Q&A structure are consistent with Welcome to the Jungle."
+    },
+    "provenance": "user-provided source metadata",
+    "evidence": [
+      "User confirmation: all sources starting from Lendable are Welcome to the Jungle"
+    ]
+  },
+  "application_channel": {
+    "final_value": "Application initiated through Welcome to the Jungle; CV screening is part of recruitment; final submission destination not confirmed",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The posting says applications begin with CV screening and includes an 'Apply now' instruction."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Welcome to the Jungle is the confirmed source platform, but the final submission destination is not shown."
+    },
+    "provenance": "job post and user-provided source metadata",
+    "evidence": [
+      "Once your CV has been selected",
+      "Apply now",
+      "User confirmation: source platform is Welcome to the Jungle"
+    ]
+  },
+  "motivation_letter_required": {
+    "final_value": null,
+    "stamp_1": {
+      "status": "passed",
+      "check": "No cover-letter or motivation-letter requirement appears in the supplied posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The value remains null because the application-document requirements are incomplete."
+    },
+    "provenance": "not stated in job post",
+    "evidence": []
+  }
+}

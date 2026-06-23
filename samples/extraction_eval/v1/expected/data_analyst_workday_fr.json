@@ -1,0 +1,41 @@
+{
+  "company_name": "Orion Retail",
+  "company_size": "",
+  "company_industry": "Retail",
+  "company_website": "",
+  "company_linkedin": "",
+  "career_page_url": "",
+  "job_title": "Data Analyst Junior",
+  "job_domain": "Data Analysis",
+  "seniority_level": "Junior",
+  "contract_type": "CDI",
+  "job_length": "",
+  "salary": "",
+  "location": "Lille, France",
+  "remote_policy": "Hybrid",
+  "relocation_required": "",
+  "key_responsibilities": [
+    "Create dashboards",
+    "Clean data",
+    "Analyze sales",
+    "Prepare recommendations",
+    "Document indicators"
+  ],
+  "required_skills": [
+    "SQL",
+    "Advanced Excel",
+    "Power BI",
+    "Basic statistics",
+    "Business communication"
+  ],
+  "preferred_qualifications": [
+    "Python",
+    "dbt",
+    "Retail knowledge"
+  ],
+  "detected_language": "French",
+  "source_platform": "Workday",
+  "application_channel": "ATS Platform",
+  "job_url": "",
+  "motivation_letter_required": true
+}

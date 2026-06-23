@@ -1,0 +1,98 @@
+Wivoo, a Wavestone company
+Data Scientist / AI Engineer
+Job summary
+Permanent contract
+Paris
+A few days at home
+Salary:
+€60K to 75K
+Experience:
+> 5 years
+Education:
+Master's Degree
+Job description
+Vous voulez que votre IA tourne en production, pas dans un slide. Vous savez concevoir des systèmes IA, les industrialiser et les exploiter en production. Mais vous en avez assez des POC qui ne dépassent jamais la démo, et de la distance entre votre code et la décision métier qu’il était censé servir.
+
+Chez Wivoo, vous êtes builder d’abord. Vous êtes au contact direct du métier, du premier cadrage jusqu’aux utilisateurs réels — intégré dans un collectif de 130+ product managers qui livrent des produits data et IA pour de grands comptes des secteurs transport & logistique, banque & assurance, hôtellerie, industrie et distribution.
+
+Ce que vous allez construire
+Des exemples réels de ce sur quoi nos équipes travaillent aujourd’hui :
+
+Un modèle de Marketing Mix Modeling en hôtellerie : mesure de l’impact des leviers marketing, inférence causale, recommandations d’allocation budgétaire pour les directions métier.
+
+Un agent IA d’automatisation de tâches administratives sur des volumes documentaires massifs en logistique : extraction, vérification, orchestration d’actions — déployé en production sur une stack LLM dédiée.
+
+Un assistant conversationnel RAG multilingue pour des centres de relation client en banque : recherche augmentée sur base documentaire interne, évaluation continue de la qualité des réponses, évolution vers l’interaction vocale (STT).
+
+Selon les missions, vous passez du cadrage du besoin à la mise en production, et vous restez responsable de ce que vous livrez : robustesse, qualité d’output, coût et latence.
+
+Le poste, concrètement
+
+Cadrer : challenger le besoin métier avec les product managers, valider la disponibilité et la qualité des données, choisir l’approche et l’architecture adaptées.
+
+Construire, selon votre dominante :
+
+GenAI — concevoir et industrialiser du RAG (chunking, retrieval, évaluation, gestion des hallucinations), des agents (orchestration, tool calling), intégrer des APIs LLM.
+
+ML / Data Science — modélisation avancée, feature engineering, et selon les cas modélisation économétrique (Marketing Mix, scoring, prévision).
+
+Industrialiser : code Python de production (FastAPI, programmation asynchrone), pipelines de données, containerisation (Docker), CI/CD, MLOps, déploiement cloud et passage à l’échelle.
+
+Mesurer et arbitrer : définir les métriques de qualité d’output, suivre les performances en production, arbitrer coût / latence / qualité.
+
+Diffuser : poser des standards techniques réutilisables, mentorer les profils plus juniors, vulgariser auprès de décideurs non techniques.
+
+Pourquoi c’est différent ici
+
+Vous posez les fondations, vous ne suivez pas un cadre figé. Parmi les premières expertises IA senior de Wivoo, vous définissez concrètement : le socle MLOps, les standards d’évaluation des systèmes LLM/RAG, et les patterns d’architecture agentique réutilisés d’un projet à l’autre.
+
+Un accompagnement 360° sur l’impact business et le product management : vous montez en compétence sur la valeur, le produit et la relation métier — rare pour un profil IA qui veut élargir son champ sans renoncer à la technique.
+
+L’accès aux expertises Wavestone (cyber, tech, IA) pour approfondir et tenir votre niveau technique au plus haut.
+
+Taille humaine, esprit entrepreneurial : visibilité directe sur les décisions, marges de manœuvre réelles, capacité à peser sur la façon dont Wivoo fait de l’IA.
+
+View less
+Preferred experience
+4 à 8 ans d’expérience (idéalement 5+) en conception de solutions data/IA, avec au moins un système que vous avez mené jusqu’en production et qui a tourné avec de vrais utilisateurs (critère central, vérifié en entretien).
+
+Python expert et vraie culture d’ingénierie logicielle : APIs (FastAPI, REST), programmation asynchrone, Git, Docker, CI/CD.
+
+Maîtrise du ML appliqué et de l’IA générative, avec une dominante claire (GenAI ou ML/DS) et de la curiosité pour l’autre.
+
+Expérience MLOps et cloud : industrialisation de workflows IA, déploiement sur AWS (ou GCP/Azure), pipelines de données (SQL, idéalement NoSQL).
+
+Adaptabilité technique : capable de monter vite sur une stack imposée par le contexte (fournisseur de modèles, plateforme interne) plutôt qu’attaché à une seule techno.
+
+Appétence business affirmée : vous reliez naturellement la technique à une valeur métier et savez l’expliquer simplement.
+
+Bilingue français / anglais.
+
+Formation supérieure quantitative (stats, maths appliquées, informatique, école d’ingénieur ou équivalent).
+
+Stack technique
+Python (FastAPI, async), frameworks d’agents et APIs LLM, RAG et bases vectorielles, SQL/NoSQL, cloud AWS, Git, Docker, CI/CD, MLOps (Airflow, MLflow).
+Selon les missions, vous pouvez être amené à travailler sur des stacks LLM variées (fournisseurs de modèles, plateformes internes client).
+
+View less
+Recruitment process
+Tu as un premier échange visio avec l’un de nos Talent Recruiter (30 minutes) ;
+
+Puis un second échange avec un de nos sales (1 heure) ;
+
+Tu découvres ensuite notre Data Game (test technique) avec l’un de nos experts techniques (1 heure) ;
+
+Et pour terminer une rencontre avec nos co-fondateurs qui permet de valider ton envie de nous rejoindre (1 heure).
+
+Proposition dans les 48h 🔥
+Is it mandatory to attach a resume?
+Yes, you are required to attach your resume to apply for this job.
+
+Does this position allow remote work?
+Remote work is allowed for this position.
+
+What type of contract is offered for this position?
+Type of contract for this position: Permanent contract
+
+Is a cover letter mandatory to apply for this position?
+A cover letter is optional to apply for this position.

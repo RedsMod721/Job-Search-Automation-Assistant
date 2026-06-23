@@ -7,8 +7,10 @@ from typing import Any
 import requests
 
 from . import cv_matcher
+from .database import extraction_quality_summary
 from .database_migrations import schema_status
 from .network import describe_network_settings
+from .services.extraction_evaluation_service import latest_evaluation_summary
 from .services.recovery_service import run_integrity_check
 from .services.sync_service import sync_status_summary
 from .sheets_sync import normalize_spreadsheet_id
@@ -142,6 +144,12 @@ def collect_diagnostics(configs: dict[str, dict[str, Any]] | None = None) -> dic
             },
             "sync_status": sync_status_summary(db_path) if db_path.exists() else {},
         },
+        "extraction_quality": {
+            "database_summary": extraction_quality_summary(db_path) if db_path.exists() else {},
+            "latest_artifact": latest_evaluation_summary(
+                settings.get("extraction_evaluation", {}).get("output_dir", "")
+            ),
+        },
         "network": describe_network_settings(settings.get("network", {})),
     }
     return redact_mapping(diagnostics)
@@ -151,6 +159,17 @@ def diagnostics_summary(diagnostics: dict[str, Any]) -> dict[str, str]:
     missing_cvs = diagnostics.get("documents", {}).get("missing_cvs", {})
     ollama = diagnostics.get("ollama", {})
     sheets = diagnostics.get("google_sheets", {})
+    extraction_quality = diagnostics.get("extraction_quality", {})
+    database_evaluation_status = (
+        extraction_quality.get("database_summary", {}).get("latest_evaluation", {}).get("status")
+    )
+    artifact_evaluation_status = extraction_quality.get("latest_artifact", {}).get("status")
+    if database_evaluation_status == "FAIL" or artifact_evaluation_status == "FAIL":
+        extraction_eval_status = "attention"
+    elif database_evaluation_status == "PASS" or artifact_evaluation_status == "PASS":
+        extraction_eval_status = "ok"
+    else:
+        extraction_eval_status = "pending"
     return {
         "database": "ok" if diagnostics.get("database", {}).get("exists") else "missing",
         "cv_files": "ok" if not missing_cvs else "missing",
@@ -159,5 +178,6 @@ def diagnostics_summary(diagnostics: dict[str, Any]) -> dict[str, str]:
         "google_sheets": "ready"
         if sheets.get("credentials_exists") and sheets.get("spreadsheet_configured")
         else "manual setup needed",
+        "extraction_eval": extraction_eval_status,
         "network_tls": "enabled" if diagnostics.get("network", {}).get("verify_tls") else "disabled",
     }

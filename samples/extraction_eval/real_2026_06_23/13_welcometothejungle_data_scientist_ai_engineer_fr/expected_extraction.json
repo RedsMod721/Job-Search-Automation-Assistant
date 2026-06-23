@@ -1,0 +1,45 @@
+{
+  "company_name": "Wivoo, a Wavestone company",
+  "job_title": "Data Scientist / AI Engineer",
+  "company_size": "not included",
+  "company_industry": "Product, data and AI consulting",
+  "job_domain": "Senior Data Science and AI engineering with GenAI, MLOps and production deployment",
+  "seniority_level": "Senior / experienced (5+ years; target range 4-8 years)",
+  "contract_type": "Permanent contract",
+  "salary": "€60K to €75K",
+  "location": "Paris, France",
+  "remote_policy": "Hybrid; remote work is allowed for a few days from home, exact frequency not included",
+  "key_responsibilities": [
+    "Cadrer les besoins métier avec les product managers, vérifier la disponibilité et la qualité des données et sélectionner l'approche et l'architecture adaptées.",
+    "Concevoir et industrialiser des systèmes GenAI, notamment des solutions RAG, des agents et des intégrations d'API LLM.",
+    "Développer des solutions de Machine Learning et Data Science incluant modélisation avancée, feature engineering, scoring, prévision et Marketing Mix Modeling.",
+    "Produire du code Python industrialisable avec FastAPI et programmation asynchrone.",
+    "Mettre en place des pipelines de données, la conteneurisation Docker, la CI/CD, le MLOps, le déploiement cloud et le passage à l'échelle.",
+    "Définir les métriques de qualité, surveiller les performances en production et arbitrer entre coût, latence et qualité.",
+    "Garantir la robustesse et la qualité des systèmes livrés jusqu'à leur utilisation réelle en production.",
+    "Définir des standards techniques réutilisables, le socle MLOps, les standards d'évaluation LLM/RAG et des patterns d'architecture agentique.",
+    "Mentorer les profils plus juniors et vulgariser les sujets techniques auprès de décideurs non techniques."
+  ],
+  "required_skills": [
+    "Justifier de plus de 5 ans d'expérience selon le résumé de l'offre.",
+    "Être titulaire d'un diplôme de niveau Master.",
+    "Avoir mené au moins un système data ou IA jusqu'en production avec de vrais utilisateurs."
+  ],
+  "preferred_qualifications": [
+    "Avoir 4 à 8 ans d'expérience en conception de solutions data ou IA, idéalement 5 ans ou plus.",
+    "Maîtriser Python à un niveau expert et posséder une solide culture d'ingénierie logicielle.",
+    "Maîtriser les API FastAPI et REST, la programmation asynchrone, Git, Docker et la CI/CD.",
+    "Maîtriser le Machine Learning appliqué et l'IA générative avec une dominante claire en GenAI ou en ML/Data Science.",
+    "Avoir une expérience en MLOps, industrialisation de workflows IA et déploiement cloud sur AWS, GCP ou Azure.",
+    "Maîtriser les pipelines de données, SQL et idéalement NoSQL.",
+    "Comprendre les frameworks d'agents, les API LLM, le RAG, les bases vectorielles, Airflow et MLflow.",
+    "Être capable de s'adapter rapidement à une stack imposée par le contexte.",
+    "Savoir relier les choix techniques à la valeur métier et les expliquer simplement.",
+    "Être bilingue français et anglais.",
+    "Avoir suivi une formation quantitative supérieure en statistiques, mathématiques appliquées, informatique, école d'ingénieurs ou équivalent."
+  ],
+  "detected_language": "French",
+  "source_platform": "Welcome to the Jungle",
+  "application_channel": "Application initiated through Welcome to the Jungle; resume attachment required; final submission destination not confirmed",
+  "motivation_letter_required": false
+}

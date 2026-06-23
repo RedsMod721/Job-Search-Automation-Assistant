@@ -1,0 +1,42 @@
+{
+  "company_name": "Nexa AI Advisory",
+  "company_size": "",
+  "company_industry": "AI consulting",
+  "company_website": "",
+  "company_linkedin": "",
+  "career_page_url": "",
+  "job_title": "Junior AI Consultant",
+  "job_domain": "AI Consulting",
+  "seniority_level": "Junior",
+  "contract_type": "Permanent",
+  "job_length": "",
+  "salary": "",
+  "location": "Paris, France",
+  "remote_policy": "Hybrid",
+  "relocation_required": "",
+  "key_responsibilities": [
+    "Support client workshops",
+    "Map business processes",
+    "Identify generative AI use cases",
+    "Prepare presentations",
+    "Help delivery teams turn prototypes into automation"
+  ],
+  "required_skills": [
+    "Python",
+    "SQL",
+    "Structured problem solving",
+    "Client communication",
+    "LLMs"
+  ],
+  "preferred_qualifications": [
+    "Azure AI",
+    "OpenAI API",
+    "Power BI",
+    "Consulting exposure"
+  ],
+  "detected_language": "English",
+  "source_platform": "LinkedIn",
+  "application_channel": "Company Career Page",
+  "job_url": "",
+  "motivation_letter_required": false
+}

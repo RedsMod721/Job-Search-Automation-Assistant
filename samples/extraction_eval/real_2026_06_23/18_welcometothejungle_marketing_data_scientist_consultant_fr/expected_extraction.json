@@ -1,0 +1,44 @@
+{
+  "company_name": "Sia",
+  "job_title": "Marketing Data Scientist Consultant",
+  "company_size": "3,000 consultants",
+  "company_industry": "Management consulting",
+  "job_domain": "Marketing data science, AI and strategic analytics consulting",
+  "seniority_level": "Consultant / experience level not specified",
+  "contract_type": "Permanent contract",
+  "salary": "not specified",
+  "location": "Paris, France",
+  "remote_policy": "Occasional remote work is allowed",
+  "key_responsibilities": [
+    "Accompagner les équipes opérationnelles et les directions marketing et stratégie dans la définition de leurs besoins data.",
+    "Analyser les données clients et déployer des algorithmes de Data Science afin d'éclairer la prise de décision stratégique.",
+    "Mettre en œuvre des traitements complexes en IA générative, Machine Learning, statistiques, Data Engineering et DevOps.",
+    "Développer des solutions de détection et de classification de besoins utilisateurs à l'aide de l'IA générative, du NLP et du clustering.",
+    "Construire des modèles de prévision des ventes pour optimiser l'assortiment de produits.",
+    "Analyser et segmenter les comportements clients afin d'améliorer le ciblage marketing et la stratégie commerciale.",
+    "Contribuer au développement des offres du cabinet par des formations, groupes de travail et supports internes ou externes.",
+    "Participer à la politique de publication du cabinet.",
+    "Contribuer au développement commercial en aidant à définir les besoins et en participant aux actions commerciales."
+  ],
+  "required_skills": [
+    "Être titulaire d'un diplôme Bac+5 d'une école d'ingénieurs, d'une école de commerce ou d'une formation équivalente.",
+    "Avoir une spécialisation en Data Science, statistiques et marketing.",
+    "Maîtriser Python, SQL et la modélisation de données.",
+    "Maîtriser les algorithmes de Data Science, l'IA générative et le Machine Learning supervisé et non supervisé.",
+    "Avoir une forte appétence pour les sujets liés à la data et à l'IA.",
+    "Être capable de monter rapidement en compétences.",
+    "Faire preuve de curiosité, d'esprit d'équipe et de sens de l'analyse.",
+    "Parler couramment français et anglais dans un contexte professionnel."
+  ],
+  "preferred_qualifications": [
+    "Connaître un environnement cloud tel que GCP, AWS ou Azure.",
+    "Comprendre les secteurs du luxe, de la grande consommation, de l'énergie, de la banque ou de l'assurance.",
+    "Avoir une expérience en analyse de données dans un contexte marketing.",
+    "Maîtriser des outils de BI tels que Power BI, Tableau ou Qlik.",
+    "Maîtriser des outils de visualisation tels que Dash ou Plotly."
+  ],
+  "detected_language": "French",
+  "source_platform": "Welcome to the Jungle",
+  "application_channel": "not included",
+  "motivation_letter_required": null
+}

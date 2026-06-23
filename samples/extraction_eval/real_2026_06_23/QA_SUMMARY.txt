@@ -1,0 +1,16 @@
+Stage 6 Real Job Posts - QA Summary
+Validated post folders: 20
+Expected extraction fields per post: 17
+Validation stamps per field: 2
+JSON parse status: passed
+Schema completeness: passed
+Audit final-value consistency: passed
+Folder sequence 01-20: passed
+
+Archive contents:
+- 20 numbered post folders
+- raw_post.txt in each folder
+- expected_extraction.json in each folder
+- validation_audit.json in each folder
+- MANIFEST.json
+- QA_SUMMARY.txt

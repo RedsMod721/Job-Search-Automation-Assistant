@@ -1,0 +1,41 @@
+{
+  "company_name": "Northstar Mobility",
+  "company_size": "500 people",
+  "company_industry": "Mobility services",
+  "company_website": "",
+  "company_linkedin": "",
+  "career_page_url": "",
+  "job_title": "Strategy Analyst",
+  "job_domain": "Strategy",
+  "seniority_level": "Analyst",
+  "contract_type": "Permanent",
+  "job_length": "",
+  "salary": "EUR 50k - 60k annual base",
+  "location": "Berlin, Germany or remote within the EU",
+  "remote_policy": "Remote within EU",
+  "relocation_required": "",
+  "key_responsibilities": [
+    "Build market models",
+    "Evaluate expansion opportunities",
+    "Prepare leadership memos",
+    "Analyze competitor data",
+    "Support quarterly planning"
+  ],
+  "required_skills": [
+    "Excel",
+    "SQL",
+    "Market analysis",
+    "Financial modeling",
+    "Concise writing"
+  ],
+  "preferred_qualifications": [
+    "Python",
+    "Mobility sector knowledge",
+    "Consulting experience"
+  ],
+  "detected_language": "English",
+  "source_platform": "Ashby",
+  "application_channel": "ATS Platform",
+  "job_url": "",
+  "motivation_letter_required": false
+}

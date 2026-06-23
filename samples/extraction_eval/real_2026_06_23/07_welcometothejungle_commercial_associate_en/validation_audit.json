@@ -1,0 +1,300 @@
+{
+  "company_name": {
+    "final_value": "Lendable",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employer name appears at the beginning of the submitted posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The same name is repeated throughout the company and role descriptions without contradiction."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Lendable",
+      "About Lendable"
+    ]
+  },
+  "job_title": {
+    "final_value": "Commercial Associate",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The advertised title appears directly below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The body uses the more specific phrase Commercial Partnerships Associate, but the advertised title Commercial Associate is retained as the benchmark value."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Commercial Associate",
+      "Commercial Partnerships Associate"
+    ]
+  },
+  "company_size": {
+    "final_value": "Just over 700 people",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The job post explicitly states that the company has a team of just over 700 people."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No outside employee-count source is used and the qualitative wording is preserved."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "a team of just over 700 people"
+    ]
+  },
+  "company_industry": {
+    "final_value": "Fintech / consumer finance technology",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post explicitly describes Lendable as a fintech company and lists consumer-finance products including loans, credit cards, and car finance."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized industry uses only activities stated in the post and does not add an external classification."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "one of the world’s leading fintech companies",
+      "consumer finance products",
+      "loans, credit cards and car finance"
+    ]
+  },
+  "job_domain": {
+    "final_value": "Commercial partnerships, growth analytics, and go-to-market",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role explicitly combines partner management, growth, product launches, channel analytics, and go-to-market work."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain accurately reflects the Growth-team context and core responsibilities without introducing unrelated functions."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Commercial Partnerships Associate",
+      "join the Growth team",
+      "go to market",
+      "building the partner relationships",
+      "delivering analytics"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Associate / mid-level (2-3+ years)",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The title is Associate and the post requires 2-3+ years of relevant experience."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Associate / mid-level is used rather than entry level or senior because the stated experience requirement and title support an intermediate level."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Commercial Associate",
+      "2-3+ years’ experience"
+    ]
+  },
+  "contract_type": {
+    "final_value": "Permanent contract",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific questions and answers section explicitly states that the contract is permanent."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No fixed-term, freelance, internship, or temporary arrangement appears elsewhere in the post."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Type of contract for this position: Permanent contract"
+    ]
+  },
+  "salary": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No salary range, base pay, bonus amount, equity grant, or other direct compensation figure is included."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Benefits and referral bonuses are not misclassified as the role's salary."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "location": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No city, region, country, or office location is stated for this specific role."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "References to the UK and US as business markets are not treated as the work location."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "remote_policy": {
+    "final_value": "Remote work is allowed; whether the role is fully remote or hybrid is not specified",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific questions and answers section explicitly states that remote work is allowed."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The generic benefits section distinguishes hybrid and fully remote roles but does not identify which model applies here, so the exact arrangement remains unspecified."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Remote work is allowed for this position.",
+      "Hybrid roles require three days in-office weekly; fully remote roles include regular opportunities for in-person connection"
+    ]
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Own the launch of Zable car insurance and mobile products on price comparison websites from initial partner discussions through integration, go-live, and ongoing optimisation.",
+      "Monitor channel performance by tracking volume, conversion, and customer acquisition cost at partner level, identifying drivers of change and corrective actions.",
+      "Manage strategic and day-to-day partner relationships, develop new ideas, and hold partners accountable to delivery milestones.",
+      "Prepare data analysis and clear recommendations to support commercial decisions.",
+      "Negotiate customer acquisition costs and commissions with key partners and identify cost-optimisation opportunities.",
+      "Work cross-functionally with Product, Pricing, Data, and Compliance to scope integrations, complete partner due diligence, and advance projects.",
+      "Monitor mobile and insurance partnership markets, including new entrants, product changes, and competitor activity, and share insights internally.",
+      "Gradually take full ownership of the strategy and execution of selected partnership projects, marketing initiatives, or product enhancements.",
+      "Assess new partnership opportunities and maintain a clear view of the partner pipeline.",
+      "Own due diligence checks and ongoing compliance monitoring for partners."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each responsibility is stated in the 'What you’ll be working on' or six-month success sections."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The list covers launch, analytics, partnerships, negotiation, cross-functional delivery, market monitoring, pipeline ownership, and compliance without adding generic commercial duties."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "own the launch of Zable car insurance and mobile on price comparison websites",
+      "take responsibility for channel performance",
+      "manage partner relationships",
+      "Prepare analysis to support commercial decisions",
+      "negotiate customer acquisition costs and commissions",
+      "Work cross functionally with Product, Pricing, Data and Compliance",
+      "Keep track of what’s happening in mobile and insurance partner markets",
+      "gradually owning the full responsibility for strategy and execution",
+      "assessing new partnership opportunities",
+      "First line ownership of due diligence checks and ongoing compliance monitoring"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Have 2-3+ years of experience in a commercial, consulting, partnerships, analytical, business development, or account management role.",
+      "Be highly numerate and analytical.",
+      "Be proficient in manipulating and visualising data using AI-assisted SQL and/or Python.",
+      "Use commercial modelling to support decisions.",
+      "Communicate strongly and represent Lendable externally while building trusted internal and external relationships.",
+      "Demonstrably use AI tools to improve work, such as automating repetitive tasks, accelerating analysis, improving writing, or finding faster answers.",
+      "Be outcome-driven, proactive, and able to prioritise and independently drive projects.",
+      "Work effectively in a collaborative team while being comfortable with individually visible performance and impact."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "All experience, analytical, technical, communication, AI-use, ownership, and teamwork requirements appear in the 'Your experience' section."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No degree, certification, specific AI vendor, or financial-services background is treated as mandatory because the post does not require them."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "2-3+ years’ experience",
+      "Highly numerate and analytical",
+      "AI-assisted SQL / Python",
+      "commercial modelling",
+      "Strong communicator",
+      "Demonstrably uses AI tools to work better",
+      "Outcome-driven and proactive",
+      "independently driving projects",
+      "Comfortable contributing to a collaborative team"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [
+      "Experience in financial services or a high-growth technology environment."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "The post explicitly says relevant experience is ideally within financial services or a high-growth technology environment."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Because 'ideally' denotes preference rather than a mandatory requirement, it is correctly separated from required skills."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "ideally within financial services or a high-growth tech environment"
+    ]
+  },
+  "detected_language": {
+    "final_value": "English",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The full substantive posting is written in English."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No other language is used for the role description or requirements."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Job description",
+      "About the role",
+      "Your experience"
+    ]
+  },
+  "source_platform": {
+    "final_value": "Welcome to the Jungle",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The user explicitly confirmed that this posting was sourced from Welcome to the Jungle."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The page structure is consistent with the user-confirmed Welcome to the Jungle source series."
+    },
+    "provenance": "user-provided source metadata",
+    "evidence": [
+      "User confirmation: all sources starting from Lendable are Welcome to the Jungle"
+    ]
+  },
+  "application_channel": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No application button type, email address, external portal, or submission instruction is included."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The interview process describes post-application stages and does not identify how an application is submitted."
+    },
+    "provenance": "absence confirmed in submitted content",
+    "evidence": []
+  },
+  "motivation_letter_required": {
+    "final_value": null,
+    "stamp_1": {
+      "status": "passed",
+      "check": "No cover letter, motivation letter, written statement, or equivalent document is requested."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The value remains null because the complete application form is not shown."
+    },
+    "provenance": "not stated in job post",
+    "evidence": []
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "company_name": "ALTEN",
+  "job_title": "Stage Innovation : Ingénieur Intelligence Artificielle",
+  "company_size": "from outside source: 10,001+ employees",
+  "company_industry": "from outside source: Engineering Services",
+  "job_domain": "Artificial intelligence research and engineering focused on Green AI / frugal AI",
+  "seniority_level": "Internship / final-year engineering student",
+  "contract_type": "6-month final-year internship",
+  "salary": "1200 euros brut/mois + tickets restaurants + prise en charge du titre de transport",
+  "location": "Grenoble, Auvergne-Rhône-Alpes, France",
+  "remote_policy": "not included",
+  "key_responsibilities": [
+    "Déterminer une métrique permettant de mesurer la frugalité d'une intelligence artificielle.",
+    "Mener des campagnes d'évaluation et de mesure d'algorithmes d'intelligence artificielle selon cette métrique.",
+    "Construire une méthodologie scientifique permettant de concevoir une intelligence artificielle respectant un niveau défini de frugalité et de performance."
+  ],
+  "required_skills": [
+    "Être étudiant(e) en dernière année d'école d'ingénieur et rechercher un stage de fin d'études.",
+    "Avoir suivi une spécialité en mathématiques appliquées et/ou Data Science.",
+    "Posséder des connaissances en Machine Learning, Deep Learning et traitement du langage naturel (NLP).",
+    "Maîtriser Python, Git et Azure DevOps, avec une mise en application durant la formation.",
+    "Faire preuve de réactivité, de rigueur et d'autonomie.",
+    "Avoir le sens du service."
+  ],
+  "preferred_qualifications": [],
+  "detected_language": "French",
+  "source_platform": "LinkedIn",
+  "application_channel": "CV submission; exact application channel not included",
+  "motivation_letter_required": null
+}

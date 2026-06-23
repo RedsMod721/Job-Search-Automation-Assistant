@@ -10,7 +10,7 @@ from src.database_backups import create_sqlite_backup, restore_sqlite_backup
 from src.normalization import canonicalize_url, content_hash, normalize_company_name, normalize_email
 from src.utils import now_iso, resolve_path
 
-CURRENT_SCHEMA_VERSION = 2
+CURRENT_SCHEMA_VERSION = 3
 
 
 class MigrationError(RuntimeError):
@@ -360,9 +360,72 @@ def apply_stage5_migration(connection: sqlite3.Connection) -> None:
     _backfill_stage5_sync_state(connection)
 
 
+def apply_stage6_migration(connection: sqlite3.Connection) -> None:
+    connection.executescript(
+        """
+        CREATE TABLE IF NOT EXISTS extraction_corrections (
+            correction_id TEXT PRIMARY KEY,
+            date_created TEXT NOT NULL,
+            application_id TEXT,
+            fixture_id TEXT,
+            raw_text_hash TEXT NOT NULL,
+            field_name TEXT NOT NULL,
+            original_value_json TEXT,
+            corrected_value_json TEXT,
+            prompt_version TEXT,
+            model_name TEXT,
+            model_parameters_json TEXT,
+            source TEXT NOT NULL,
+            notes TEXT
+        );
+
+        CREATE TABLE IF NOT EXISTS extraction_evaluation_runs (
+            evaluation_run_id TEXT PRIMARY KEY,
+            dataset_version TEXT NOT NULL,
+            prompt_version TEXT NOT NULL,
+            model_name TEXT NOT NULL,
+            model_parameters_json TEXT,
+            started_at TEXT NOT NULL,
+            completed_at TEXT,
+            runner TEXT NOT NULL,
+            status TEXT NOT NULL,
+            aggregate_metrics_json TEXT,
+            output_path TEXT,
+            notes TEXT
+        );
+
+        CREATE TABLE IF NOT EXISTS extraction_evaluation_results (
+            result_id TEXT PRIMARY KEY,
+            evaluation_run_id TEXT NOT NULL,
+            fixture_id TEXT NOT NULL,
+            role_family TEXT,
+            language TEXT,
+            source_platform TEXT,
+            ats_source TEXT,
+            json_valid INTEGER DEFAULT 1,
+            latency_seconds REAL DEFAULT 0,
+            aggregate_metrics_json TEXT,
+            validation_issues_json TEXT,
+            field_results_json TEXT,
+            FOREIGN KEY(evaluation_run_id) REFERENCES extraction_evaluation_runs(evaluation_run_id)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_extraction_corrections_field
+            ON extraction_corrections(field_name, date_created);
+        CREATE INDEX IF NOT EXISTS idx_extraction_corrections_application
+            ON extraction_corrections(application_id, date_created);
+        CREATE INDEX IF NOT EXISTS idx_extraction_evaluation_runs_started
+            ON extraction_evaluation_runs(started_at);
+        CREATE INDEX IF NOT EXISTS idx_extraction_evaluation_results_run
+            ON extraction_evaluation_results(evaluation_run_id, fixture_id);
+        """
+    )
+
+
 MIGRATIONS: tuple[Migration, ...] = (
     Migration(1, "stage4_database_safety", apply_stage4_migration),
     Migration(2, "stage5_google_sheets_sync", apply_stage5_migration),
+    Migration(3, "stage6_extraction_evaluation", apply_stage6_migration),
 )
 
 

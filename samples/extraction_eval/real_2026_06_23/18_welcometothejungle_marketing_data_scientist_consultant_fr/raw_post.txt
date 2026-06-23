@@ -1,0 +1,82 @@
+Sia
+Marketing Data Scientist Consultant
+Job summary
+Permanent contract
+Paris
+Occasional remote
+Salary:
+Not specified
+
+Job description
+Description de l’entreprise
+
+Sia est un groupe international de conseil en management de nouvelle génération, fondé en 1999. Nés à l’ère du digital, nous sommes augmentés par la data, enrichis par la créativité et guidés par la responsabilité. Nous collaborons avec nos clients pour relever les défis et saisir les opportunités. Dans un monde en pleine mutation, nous croyons que l’optimisme est un puissant levier de transformation. Avec une expertise couvrant un large éventail de secteurs et de services, nos 3 000 consultants accompagnent des clients dans le monde entier, depuis 48 bureaux répartis dans 19 pays. Notre expertise produit des résultats concrets. Notre optimisme change la donne.
+
+Chez Sia, nous reconnaissons l’importance croissante de l’analyse de données et des outils IA afin de piloter la stratégie marketing de nos clients, car elle permet une compréhension approfondie des comportements des consommateurs, une optimisation des campagnes marketing et une prise de décision stratégique éclairée.
+
+Nos initiatives de data marketing couvrent une gamme variée de domaines, englobant le luxe, l’énergie, les biens de grande consommation (FMCG), la banque et l’assurance.
+
+Description du poste
+
+Pour accompagner son développement, Sia recrute un(e) consultant(e) Data Scientist avec une forte appétence sur les sujets et enjeux Marketing, Client et Produit.
+
+Rattaché(e) aux équipes Data Science de Sia, vous avez pour vocation d’accompagner les équipes opérationnelles et directions marketing et stratégie de nos clients dans la définition de leurs besoins data, dans l’analyse de leurs données, le déploiement d’algorithme de data science, ainsi que sur de l’aide à la décision stratégique.
+
+Les missions nécessitent la mise en œuvre de traitements complexes pour accompagner nos clients notamment :
+
+IA Générative, Machine Learning & Statistiques
+Data Analyse pour de l’appui stratégique
+Data Ingénierie & Devops
+Transformation Data & Acculturation
+Quelques exemples de missions :
+
+Détection et classification automatique de besoins parmi des utilisateurs : Identification des grands thèmes et des besoins précis à partir d’échanges en texte libre provenant de diverses sources (sondages, échange de mails, …) via IA générative, traitement NLP et clustering.
+Prévision de ventes pour optimiser l’assortiment de nouveaux produits en magasin : Développement d’un modèle de machine learning pour estimer le potentiel de vente de nouveaux produits de luxe dans chaque magasin du réseau afin de fournir des recommandations d’assortiments de produits en magasins.
+Analyse des comportements clients pour une maison de luxe : Approfondir la connaissance client et réaliser une segmentation de ces derniers. L’objectif est d’identifier des profils de clients homogènes à l’aide des techniques de clustering et trouver les attributs qui les caractérisent et leurs sont propres, afin de mieux cibler les actions marketing et optimiser la stratégie commerciale de l’entreprise.
+Dans le cadre des activités internes du cabinet, votre participation s’articule autour des axes suivants :
+
+Le développement ou le renforcement de nos offres au travers de formations, de groupes de travail, de diffusion de support internes et externes…
+La politique de publication (blogs sectoriels, études, parution presse…)
+Le développement commercial en contribuant à la définition des besoins et en participant aux actions commerciales.
+Qualifications
+
+Diplômé d’un niveau Bac+5, formation d’ingénieur ou d’école de commerce avec une spécialisation dans le domaine de la data science, des statistiques, et du marketing.
+
+Ce que nous attendons de vous :
+
+Programmation : Python, SQL et modélisation de données.
+Modélisation : maîtrise des algorithmes de Data science : IA Générative et Machine Learning (méthodes supervisées, non-supervisée, clustering…).
+Atouts supplémentaires appréciés :
+
+Connaissance d’un environnement Cloud appréciée (GCP, AWS ou Azure).
+Compréhension des secteurs du luxe, de la grande consommation, de l’énergie, de la banque et de l’assurance.
+Expérience en analyse de données dans un contexte marketing.
+Maîtrise des outils de BI (Power BI, Tableau, Qlik…) et de visualisation (dash, plotly).
+Vous disposez d’une appétence pour les enjeux liés à la data et l’IA, d’une capacité à monter en compétences rapidement sur ces sujets et êtes enthousiaste à l’idée d’accompagner nos clients à en saisir les opportunités.
+
+Vous êtes curieux(se) et aimez travailler en équipe ? Vous êtes reconnu(e) pour votre sens de l’analyse ?
+Vous souhaitez rejoindre un environnement professionnel dynamique et motivant ? Vous partagez nos valeurs que sont l’excellence, l’entrepreneuriat, l’innovation, le partage, la bienveillance et l’équilibre vie personnelle/vie professionnelle ?
+
+Vous parlez français et anglais couramment dans un contexte professionnel ?
+
+Alors rejoignez-nous !
+
+Informations supplémentaires
+
+Rejoindre Sia c’est :
+
+Travailler sur des missions à fort impact dans des secteurs d’activités variés (énergie, luxe, transport, finance…),
+Développer ses compétences grâce à un large choix de formations et certifications en data
+Évoluer dans un environnement stimulant, entre projets R&D à forte valeur ajoutée et partages d’expertise via des publications :
+S’impliquer dans des initiatives transverses sur des thématiques actuelles comme l’IA générative ou la transition écologique.
+Pour plus d’information sur notre practice Data Science, consultez notre showroom de solutions IA :
+
+Découvrez notre site carrière et parcourez notre vitrine Welcome To The Jungle
+
+Sia est un employeur qui souscrit au principe de l’égalité d’accès à l’emploi. Tous les aspects de l’emploi, tels que le recrutement, les promotions, la rémunération, ou les sanctions sont basés uniquement sur les performances, les compétences, et le comportement des employés ou les besoins de l’entreprise.
+
+Does this position allow remote work?
+Occasional remote work is allowed for this position.
+
+What type of contract is offered for this position?
+Type of contract for this position: Permanent contract

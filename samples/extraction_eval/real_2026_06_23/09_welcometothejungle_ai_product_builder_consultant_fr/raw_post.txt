@@ -1,0 +1,107 @@
+IKXO
+Consultant.e Product Builder
+
+Job description
+En tant que Consultant·e Product Builder et ambassadeur·rice IKXO, tu seras amené·e à intervenir en immersion chez nos clients pour les accompagner dans l’identification, l’expérimentation et le déploiement d’usages IA à forte valeur.
+
+Ton rôle est de transformer les opportunités offertes par l’IA en produits, fonctionnalités et prototypes concrets qui répondent à de vrais besoins utilisateurs et business. Tu ne te contentes pas de cadrer : tu construis, tu livres, tu mesures.Concrètement, tu sais :
+
+Détecter
+
+Identifier les opportunités IA au sein des produits, des user journeys et des organisations.
+
+Mener des démarches de Product Discovery pour faire émerger les use cases les plus pertinents
+
+Explorer les besoins utilisateurs et business pour faire émerger les cas d’usage les plus pertinents.
+
+Construire
+
+Expérimenter avec les LLMs, les APIs et les outils IA pour concevoir, prototyper et tester rapidement de nouvelles solutions afin d’en valider l’intérêt, la faisabilité et la valeur.
+
+Collaborer avec les équipes Produit, Tech, Design, Data et Business pour intégrer ces solutions aux produits existants.
+
+Déployer
+
+Accompagner la priorisation, le déploiement et l’adoption des initiatives les plus prometteuses.
+
+Mesurer l’impact des expérimentations menées, en t’appuyant sur des indicateurs clairs.
+
+Diffuser
+
+Assurer une veille active sur les évolutions de l’IA, des AI Agents, des LLMs et des nouveaux outils du marché afin d’identifier les opportunités les plus pertinentes et diffuser les bonnes pratiques au sein des organisations accompagnées.
+Tu seras également amené·e à contribuer activement à la vie et au développement d’IKXO :
+
+Projets internes,
+
+Animation de collectifs,
+
+Recrutement,
+
+Formation,
+
+Coaching, mentoring des jeunes consultants,
+
+Organisation d’événements (bien-être, sport, soirée, expo…),
+
+View more
+Preferred experience
+Parcours :
+Parcours Formation universitaire, école de commerce, ingé, autodidacte. Chacun sa route, chacun son chemin !
+Expérience significative en Product Management ou en construction de produits (idéalement 3 ans et plus).
+
+Qualités :
+Curieux·se, tu maintiens une veille active sur les nouveaux usages et outils liés à l’IA.
+
+Diplomate, tu es à l’écoute et aimes porter tes idées avec tact et empathie.
+
+Meneur·se, tu sais convaincre et fédérer autour d’un objectif.
+
+Ouvert·e, tu sais t’adapter et aimes découvrir de nouveaux horizons.
+
+Humble, tu valorises le feedback et aimes en donner à ton tour.
+
+Pragmatique, tu sais distinguer les effets de mode des opportunités qui créent réellement de la valeur.
+
+Compétences :
+Product minded, tu pars d’un problème utilisateur ou business avant de penser à la solution.
+
+Builder, tu transformes rapidement une idée en expérimentation concrète, puis en livrable.
+
+Outillé·e, tu maîtrises tout ou partie d’un écosystème tel que ChatGPT, Claude, Mistral, Cursor, Lovable, Bolt, v0, Make, n8n, Dify ou équivalent.
+
+Connecté·e au monde de la Tech et de l’IA, tu comprends les grands principes des LLM, des APIs, des agents et des automatisations.
+
+Analytique, tu mesures l’impact de ce que tu construis et décides à partir de données.
+
+Anglais, dans l’IA comme dans le produit c’est mandatory !
+
+Les petits plus :
+Tu as une expérience dans le conseil.
+
+Tu as déjà buildé et mis en ligne un produit, une feature, une automatisation ou un agent IA, que ce soit dans un cadre pro ou perso (side project, hackathon, outil interne…).
+
+Tu expérimentes régulièrement de nouveaux outils et aimes diffuser une culture AI native autour de toi.
+
+Tu t’impliques dans la communauté Produit et aimes partager ta passion !
+
+Recruitment process
+Notre process :
+
+1 échange visio avec Camille ou Robinson, nos Talent Manager (45 min/1h)
+
+1 entretien hardskills sur tes compétences Produit avec Jérémie notre Product Lead (1h/1h30)
+
+1 RDV dans nos locaux pour rencontrer Aurélien et Alexandre, les 2 co-fondateurs
+Questions and answers about the job
+
+Is it mandatory to attach a resume?
+Yes, you are required to attach your resume to apply for this job.
+
+Does this position allow remote work?
+Remote work is allowed for this position.
+
+What type of contract is offered for this position?
+Type of contract for this position: Permanent contract
+
+Is a cover letter mandatory to apply for this position?
+A cover letter is mandatory to apply for this position.

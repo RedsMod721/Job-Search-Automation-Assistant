@@ -1,0 +1,317 @@
+{
+  "company_name": {
+    "final_value": "Edflex",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The employer name appears at the top of the posting."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The same name is repeated throughout the role description without contradiction."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Edflex"
+    ]
+  },
+  "job_title": {
+    "final_value": "AI Agent Orchestration Specialist",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The exact role title appears directly below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No alternate or competing title appears elsewhere in the posting."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "AI Agent Orchestration Specialist"
+    ]
+  },
+  "company_size": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No employee count, workforce figure or company-size range is provided."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The list of international office locations is not used to infer company size."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "company_industry": {
+    "final_value": "Corporate learning technology / B2B SaaS",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The company describes a platform that centralises training resources for corporate learners."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized industry is limited to corporate learning technology and B2B SaaS, both directly supported by the text."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "world of corporate training",
+      "centralising the best training resources",
+      "our SaaS platform",
+      "B2B SaaS environment"
+    ]
+  },
+  "job_domain": {
+    "final_value": "AI agent orchestration, automation and business transformation",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role explicitly covers AI-agent orchestration, automation and business transformation."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain reflects the title, objective and responsibilities without adding unrelated AI engineering functions."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "orchestrate Edflex’s AI agents",
+      "automated, multi-agent workflows",
+      "AI, automation and business transformation"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Experienced / mid-level (3-5 years)",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The summary requires more than 3 years of experience and the profile specifies 3 to 5 years."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Experienced / mid-level is appropriate because the post does not use a senior or lead title."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Experience: > 3 years",
+      "You have 3 to 5 years of professional experience"
+    ]
+  },
+  "contract_type": {
+    "final_value": "Permanent contract",
+    "stamp_1": {
+      "status": "passed",
+      "check": "Permanent contract appears in the job summary."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The role-specific Q&A independently confirms the same contract type."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Permanent contract",
+      "Type of contract for this position: Permanent contract"
+    ]
+  },
+  "salary": {
+    "final_value": "€50 to €70; unit not specified",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The job summary displays '€50 to 70'."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No unit such as thousands, annual, monthly or hourly is shown, so no unit is inferred."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Salary: €50 to 70"
+    ]
+  },
+  "location": {
+    "final_value": "Paris, France",
+    "stamp_1": {
+      "status": "passed",
+      "check": "Paris is explicitly listed in the job summary."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Other cities are described as company locations and do not replace Paris as the role location."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Paris",
+      "Paris, Nantes, Milan, Miami & Montreal"
+    ]
+  },
+  "remote_policy": {
+    "final_value": "Hybrid: 2 remote days per week plus 2 fully remote weeks per year",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The benefits section explicitly states 2 remote days per week and 2 full remote weeks per year."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "This detailed policy is more precise than the summary's 'Occasional remote' wording and is therefore retained."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Occasional remote",
+      "2 days of remote work per week + 2 full remote weeks per year"
+    ]
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Prioritise, prototype, deploy and ship internal and client-facing AI agents and AI-assisted workflows.",
+      "Integrate agents with HubSpot, Planhat, Slack, the Edflex SaaS platform and internal APIs.",
+      "Architect multi-agent pipelines combining curation, recommendation and analytics agents.",
+      "Implement guardrails, monitoring, audit logging and human-in-the-loop patterns for critical decisions.",
+      "Ensure the consistency and quality of agent outputs in production.",
+      "Translate business-team expertise into agent instructions and train colleagues on AI-augmented ways of working.",
+      "Measure and communicate business impact, including time saved, leads generated, customer satisfaction improvements and churn reduction.",
+      "Define quality, security and compliance standards for AI agents, including GDPR and client-data requirements.",
+      "Own the performance-monitoring framework covering accuracy, latency and API costs.",
+      "Lead technology monitoring and propose or arbitrate the AI-agent roadmap with the COO and CTO."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted responsibility appears in the explicit day-to-day responsibility list."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The list covers prioritisation, deployment, integrations, multi-agent architecture, guardrails, training, impact, compliance, monitoring and roadmap ownership without adding profile requirements."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Prioritise and deploy AI use cases",
+      "Integrate agents across the Edflex ecosystem",
+      "Architect multi-agent workflows",
+      "Define human-in-the-loop patterns",
+      "train and upskill colleagues",
+      "Measure and communicate business impact",
+      "Define quality, security and compliance standards",
+      "own the performance monitoring framework",
+      "Lead active tech watch",
+      "propose/arbitrate the agent roadmap"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Hold a Master's degree.",
+      "Have more than 3 years of professional experience.",
+      "Have 3 to 5 years of professional experience, including 1 to 2 years on LLM or AI automation projects.",
+      "Have solid experience with AI orchestration frameworks such as LangChain, LangGraph, CrewAI or AutoGen.",
+      "Have hands-on knowledge of LLMs such as GPT, Claude or Mistral and of advanced prompt engineering.",
+      "Be proficient with REST APIs, webhooks and automation tools such as n8n, Make or Zapier.",
+      "Have programming skills in Python and/or TypeScript.",
+      "Be familiar with CI/CD and AWS.",
+      "Have experience in B2B SaaS environments.",
+      "Be able to translate business needs into technical solutions.",
+      "Have experience working cross-functionally with non-technical teams.",
+      "Possess process-engineering and change-management capabilities.",
+      "Communicate clearly and concisely.",
+      "Demonstrate autonomy, proactivity and ownership."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "The summary explicitly requires a Master's degree and more than 3 years of experience, while the profile says 'we expect' the listed skills."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The 3-5 year range, 1-2 years of LLM/AI automation experience, frameworks, APIs, programming, SaaS and cross-functional skills are all preserved as required expectations."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Education: Master's Degree",
+      "Experience: > 3 years",
+      "we expect the following skills",
+      "LangChain, LangGraph, CrewAI, AutoGen",
+      "GPT, Claude, Mistral",
+      "REST APIs, webhooks",
+      "n8n, Make, Zapier",
+      "Python and/or TypeScript",
+      "CI/CD and AWS",
+      "B2B SaaS environments",
+      "3 to 5 years of professional experience",
+      "1 to 2 years on LLM or AI automation projects"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [
+      "Experience in edtech or HR tech.",
+      "A background as a business analyst, technical product manager, solutions engineer or automation engineer."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Edtech or HR tech is explicitly described as a strong plus."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The example prior backgrounds are described as possible backgrounds rather than mandatory requirements."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "edtech or HR tech a strong plus",
+      "Your background might be as a business analyst, technical PM, solutions engineer or automation engineer"
+    ]
+  },
+  "detected_language": {
+    "final_value": "English",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive posting is written in English."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No other language is used for the role description, requirements or Q&A."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Job description",
+      "Preferred experience",
+      "Recruitment process"
+    ]
+  },
+  "source_platform": {
+    "final_value": "Welcome to the Jungle",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The user previously confirmed that all sources from the Lendable post onward are from Welcome to the Jungle."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The Job summary, Preferred experience and role-specific Q&A structure are consistent with Welcome to the Jungle."
+    },
+    "provenance": "user-provided source metadata",
+    "evidence": [
+      "User confirmation: all sources starting from Lendable are Welcome to the Jungle"
+    ]
+  },
+  "application_channel": {
+    "final_value": "Application initiated through Welcome to the Jungle; resume attachment required; final submission destination not confirmed",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The Q&A confirms that applicants must attach a résumé."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The platform is confirmed as Welcome to the Jungle, but the supplied text does not prove whether final submission remains on-platform or redirects externally."
+    },
+    "provenance": "job post and user-provided source metadata",
+    "evidence": [
+      "Yes, you are required to attach your resume to apply for this job.",
+      "User confirmation: source platform is Welcome to the Jungle"
+    ]
+  },
+  "motivation_letter_required": {
+    "final_value": true,
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific Q&A explicitly states that a cover letter is mandatory."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The explicit mandatory wording supports the boolean value true."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "A cover letter is mandatory to apply for this position."
+    ]
+  }
+}

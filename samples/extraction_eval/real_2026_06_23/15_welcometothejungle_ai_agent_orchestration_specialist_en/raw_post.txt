@@ -1,0 +1,123 @@
+Edflex
+AI Agent Orchestration Specialist
+Job summary
+Permanent contract
+Paris
+Occasional remote
+Salary:
+€50 to 70
+Starting date:
+June 10, 2026
+Experience:
+> 3 years
+Education:
+Master's Degree
+Job description
+Faced with the obsolescence of skills, the Edflex teams have been committed since 2016 to supporting companies in their transformation by developing the skills of their employees.
+
+We put all our energy into delivering exceptional content curation, centralising the best training resources from the web and our publisher partners on a single platform.
+
+Our strength? Offering our clients and their learners content that is constantly updated, varied in formats and languages, and covering more than 230 topics to foster continuous learning.
+
+To support our growth, we are looking for curious profiles, passionate about challenges and determined to revolutionise the world of corporate training 🚀. Our culture values innovation, proactivity and performance; our values encourage a taste for challenge, mutual support, transparent communication and the pursuit of knowledge.
+
+As part of a newly created role, we are looking for someone passionate about AI, automation and business transformation, to contribute with us to the development of Edflex.
+
+⏳ Start date: ASAP !
+
+As AI Agent Orchestration Specialist, your main objective will be to orchestrate Edflex’s AI agents — translating the needs of our business teams (CSM, Learning, Tech & Product, Sales, Support) into automated, multi-agent workflows — and drive measurable impact across the organisation.
+
+💙 Your main responsibilities will be…
+
+On a day-to-day basis, your main responsibilities will include (non-exhaustive list!):
+
+Prioritise and deploy AI use cases — from our AI tracker (ARR/productivity impact), you will design, prototype and ship AI agents: internal automations, client-facing agents, and AI-assisted workflows.
+
+Integrate agents across the Edflex ecosystem — connect agents with HubSpot, Planhat, Slack, our SaaS platform and internal APIs to create seamless, end-to-end automation.
+
+Architect multi-agent workflows — build pipelines combining e.g. a curation agent, a recommendation agent, and an analytics agent; set up guardrails, monitoring and audit logging.
+
+Define human-in-the-loop patterns for critical decisions and ensure the consistency and quality of agent outputs in production.
+
+Work hand-in-hand with every team to turn business expertise into agent instructions; train and upskill colleagues on AI-augmented ways of working.
+
+Measure and communicate business impact — time saved, leads generated, client satisfaction improvements, churn reduction.
+
+Define quality, security and compliance standards for agents (GDPR, client data) and own the performance monitoring framework (accuracy, latency, API costs).
+
+Lead active tech watch and propose/arbitrate the agent roadmap in collaboration with the COO and CTO.
+
+For this role, you will work in close collaboration with the COO, CTO, and all business teams (CSM, Learning, Sales, Tech & Product, Support).
+
+View less
+Preferred experience
+🔍 Key skills we’re looking for in our future AI Agent Orchestration Specialist :
+
+To succeed in this role, we expect the following skills from our future colleague:
+
+Solid experience with AI orchestration frameworks: LangChain, LangGraph, CrewAI, AutoGen
+
+Hands-on knowledge of LLMs (GPT, Claude, Mistral) and advanced prompt engineering
+
+Proficiency with REST APIs, webhooks, and automation tools: n8n, Make, Zapier
+
+Programming skills in Python and/or TypeScript; familiarity with CI/CD and AWS
+
+Experience with B2B SaaS environments (edtech or HR tech a strong plus)
+
+Autonomous and driven, you have an exceptional ability to translate business needs into technical solutions. You have experience working cross-functionally with non-technical teams and are known for your process engineering skills, change management mindset, and clear, synthetic communication. You thrive on proactivity and ownership.
+
+You have 3 to 5 years of professional experience, including 1 to 2 years on LLM or AI automation projects, in a B2B SaaS environment. Your background might be as a business analyst, technical PM, solutions engineer or automation engineer who has grown into AI — what matters is the combination of business acumen and technical execution.
+
+If you want to acquire new skills, be part of an entrepreneurial project and gain experience in a company with social impact, we look forward to your application 💙
+
+View less
+Recruitment process
+🗒️ Process:
+
+Step 1: Video interview with our People Team (~45 min)
+
+Step 2: In-person interview with the hiring manager (COO)
+
+Step 3: Technical case study
+
+Step 4: Video or in-person interview with a Co-founder (~30 min)
+
+Step 5: Informal chat with part of the Operations team and meeting with the Chairman
+
+➕ Benefits:
+
+Joining us means the opportunity to enjoy many advantages:
+
+A highly motivated team with a strong team spirit, lived values, in an international environment (Paris, Nantes, Milan, Miami & Montreal) 🌍
+
+Strong internal rituals: 1 company seminar per year, 1 team seminar per semester, monthly “Show & Tell” sessions, quarterly “Get Together” events 🙌
+
+Fast career growth, based on your skills and commitment 📈
+
+An impact-driven company, EcoVadis Silver certified 🥈, member of the UN Global Compact, and founder of the L&D for Good movement 💙
+
+And also:
+
+Alan health insurance covered at 75% 🚑
+
+Meal vouchers (Swile) covered at 60% 🍔
+
+Wellpass sports membership 🤸
+
+2 days of remote work per week + 2 full remote weeks per year 💻
+
+Is it mandatory to attach a resume?
+Yes, you are required to attach your resume to apply for this job.
+
+Does this position allow remote work?
+Occasional remote work is allowed for this position.
+
+What type of contract is offered for this position?
+Type of contract for this position: Permanent contract
+
+Is a cover letter mandatory to apply for this position?
+A cover letter is mandatory to apply for this position.
+
+What is the start date of the contract?
+The contract for this position starts on June 10, 2026

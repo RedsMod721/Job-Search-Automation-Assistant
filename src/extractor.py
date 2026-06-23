@@ -8,6 +8,8 @@ from typing import Any
 import requests
 
 from .constants import EXTRACTION_LIST_FIELDS, EXTRACTION_SCHEMA_KEYS
+from .prompts.registry import get_prompt
+from .services.extraction_quality import apply_rule_based_corrections
 from .utils import clean_string
 
 
@@ -23,29 +25,9 @@ def default_extraction() -> dict[str, Any]:
     return data
 
 
-def build_extraction_prompt(job_post_text: str) -> str:
+def build_extraction_prompt(job_post_text: str, prompt_version: str | None = None) -> str:
     schema = json.dumps(default_extraction(), indent=2)
-    return f"""You are an information extraction assistant for a job application tracking tool.
-
-Your task is to extract structured information from the job post provided by the user.
-
-Rules:
-- Return JSON only.
-- Follow the exact schema.
-- Extract only facts present in the job post.
-- Do not invent salary, company size, benefits, company website, or requirements.
-- If a field is missing, use an empty string, null, or an empty list.
-- Keep lists concise.
-- Detect the language of the job post.
-- Detect whether a motivation letter is explicitly requested.
-- If unsure about a field, leave it empty.
-
-Schema:
-{schema}
-
-Job post:
-{job_post_text}
-"""
+    return get_prompt("job_extraction", prompt_version).render(schema=schema, job_post_text=job_post_text)
 
 
 def _call_ollama(
@@ -133,12 +115,14 @@ def extract_job_post(
     fallback_models: list[str] | None = None,
     timeout_seconds: int = 120,
     temperature: float = 0.2,
+    prompt_version: str | None = None,
+    enable_rule_correction: bool = True,
 ) -> dict[str, Any]:
     cleaned_text = clean_job_text(raw_text)
     if not cleaned_text:
         raise ValueError("Job post text is empty.")
 
-    prompt = build_extraction_prompt(cleaned_text)
+    prompt = build_extraction_prompt(cleaned_text, prompt_version=prompt_version)
     candidate_models: list[str] = []
     for candidate in [model, *(fallback_models or [])]:
         if candidate and candidate not in candidate_models:
@@ -158,6 +142,8 @@ def extract_job_post(
         extraction["source_platform"] = source_platform
     if job_url:
         extraction["job_url"] = job_url
+    if enable_rule_correction:
+        extraction, _ = apply_rule_based_corrections(cleaned_text, extraction)
     return extraction
 
 

@@ -1,0 +1,41 @@
+{
+  "company_name": "Helio Strategy",
+  "company_size": "",
+  "company_industry": "Strategy consulting",
+  "company_website": "",
+  "company_linkedin": "",
+  "career_page_url": "",
+  "job_title": "Junior Consultant",
+  "job_domain": "Consulting",
+  "seniority_level": "Junior",
+  "contract_type": "Permanent",
+  "job_length": "Graduate role",
+  "salary": "",
+  "location": "London, United Kingdom",
+  "remote_policy": "Hybrid",
+  "relocation_required": "",
+  "key_responsibilities": [
+    "Support market research",
+    "Capture interview notes",
+    "Perform benchmark analysis",
+    "Create slides",
+    "Coordinate strategy projects"
+  ],
+  "required_skills": [
+    "Structured problem solving",
+    "Excel",
+    "PowerPoint",
+    "Research",
+    "Written communication"
+  ],
+  "preferred_qualifications": [
+    "Consulting internship",
+    "Basic data analysis",
+    "French language"
+  ],
+  "detected_language": "English",
+  "source_platform": "Workday",
+  "application_channel": "ATS Platform",
+  "job_url": "",
+  "motivation_letter_required": false
+}

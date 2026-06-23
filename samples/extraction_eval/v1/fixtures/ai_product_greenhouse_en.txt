@@ -1,0 +1,9 @@
+BrightOps is looking for an AI Product Associate on its Greenhouse board.
+
+BrightOps is a scale-up of 120 employees building workflow software for operations teams. The role is based in Amsterdam, Netherlands with hybrid work.
+
+Responsibilities include gathering customer needs, writing product requirements, coordinating AI feature experiments, measuring adoption, and working with engineering on release notes.
+
+Required skills include product discovery, analytics, stakeholder communication, SQL, and familiarity with generative AI products. Preferred qualifications include Python, A/B testing, and experience with B2B SaaS.
+
+This is a permanent full-time role. Salary range: EUR 55,000 - 65,000 per year. Apply through Greenhouse. Cover letter not required.

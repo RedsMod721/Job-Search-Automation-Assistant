@@ -41,6 +41,9 @@ jobs:
       - name: Tests
         run: uv run pytest
 
+      - name: Extraction evaluation regression gate
+        run: uv run python scripts/evaluate_extraction.py --runner fixture --no-db-record
+
       - name: Security scan
         run: uv run bandit -c pyproject.toml -r app.py src
 

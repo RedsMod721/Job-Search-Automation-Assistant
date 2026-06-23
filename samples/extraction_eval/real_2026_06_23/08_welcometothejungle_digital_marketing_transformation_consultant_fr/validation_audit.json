@@ -1,0 +1,290 @@
+{
+  "company_name": {
+    "final_value": "Okuden.",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The company name is shown twice at the beginning of the submitted post."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The punctuation in the displayed company name is preserved."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Okuden."
+    ]
+  },
+  "job_title": {
+    "final_value": "Consultant(e), Digital Marketing, Experience & Transformation (3+ années d'expérience)",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The full advertised title appears directly below the company name."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The 3+ years experience marker is retained as part of the title."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Consultant(e), Digital Marketing, Experience & Transformation (3+ années d'expérience)"
+    ]
+  },
+  "company_size": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No employee count or company-size range appears in the submitted content."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No outside-source estimate is introduced."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "company_industry": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The text describes consulting work but does not explicitly state a formal company-industry label."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The role domain is not reused as an unsupported company-industry classification."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "job_domain": {
+    "final_value": "Digital marketing, customer experience, CRM, data and digital transformation consulting",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The mission examples explicitly cover digital marketing, customer experience, CRM, data, product, and transformation topics."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The normalized domain contains only themes repeated in the advertised title and mission examples."
+    },
+    "provenance": "derived from job post",
+    "evidence": [
+      "Digital Marketing, Experience & Transformation",
+      "solution de CRM",
+      "plateforme de connaissance clients",
+      "reporting",
+      "vision produit",
+      "Chat / Chatbot / Knowledge Base"
+    ]
+  },
+  "seniority_level": {
+    "final_value": "Experienced / mid-level (3+ years)",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The title explicitly requires 3+ years of experience."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Experienced / mid-level is used instead of senior because the post does not use a senior or lead designation."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "3+ années d'expérience"
+    ]
+  },
+  "contract_type": {
+    "final_value": "Permanent contract",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific questions and answers section explicitly states Permanent contract."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No competing contract type appears elsewhere."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Type of contract for this position: Permanent contract"
+    ]
+  },
+  "salary": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No salary, range, bonus, equity, or compensation information is included."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No market estimate is added."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "location": {
+    "final_value": "not included",
+    "stamp_1": {
+      "status": "passed",
+      "check": "No city, region, country, office, or worksite is stated."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Client-sector examples are not treated as locations."
+    },
+    "provenance": "absence confirmed in job post",
+    "evidence": []
+  },
+  "remote_policy": {
+    "final_value": "Occasional remote work is allowed",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific Q&A explicitly states that occasional remote work is allowed."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "No remote frequency beyond 'occasional' is inferred."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Occasional remote work is allowed for this position."
+    ]
+  },
+  "key_responsibilities": {
+    "final_value": [
+      "Piloter des partenariats digitaux média pour un groupe automobile en coordination avec les pays et régions.",
+      "Cadrer et déployer une solution CRM pour un service clients, depuis l'identification des besoins jusqu'au pilotage des équipes et de la roadmap.",
+      "Accompagner un département marketing dans le choix d'une plateforme CRM de connaissance et d'activation clients, prioriser les cas d'usage et construire des outils de reporting.",
+      "Concevoir un portail B2B pour la distribution d'assurance santé, animer la gouvernance projet, formaliser les besoins, piloter l'équipe de développement et créer des tableaux de bord.",
+      "Cadrer une plateforme digitale dédiée à la santé mentale, définir la vision produit et le business case, concevoir l'expérience et obtenir l'adhésion des parties prenantes.",
+      "Réaliser un benchmark et cadrer le besoin d'une solution unifiée de chat, chatbot et knowledge base pour plusieurs marques."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "Each extracted responsibility is based on one of the concrete mission examples."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The tasks are normalized without adding generic consulting duties absent from the post."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Piloter les partenariats digitaux média",
+      "Cadrer et mettre en place une nouvelle solution de CRM",
+      "Concevoir la plateforme de connaissance clients",
+      "Designer un nouveau portail B2B",
+      "Cadrer la mise en place plateforme digitale dédiée à la santé mentale",
+      "Réaliser un benchmark et cadrer le besoin d’une solution de Chat / Chatbot / Knowledge Base"
+    ]
+  },
+  "required_skills": {
+    "final_value": [
+      "Avoir au moins 3 ans d'expérience."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "The 3+ years threshold is explicit in the title and is therefore retained as a hard requirement."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Other qualifications are not moved into required skills because they appear under a section explicitly labeled Preferred experience."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "3+ années d'expérience"
+    ]
+  },
+  "preferred_qualifications": {
+    "final_value": [
+      "Être titulaire d'un Bac+5 d'une grande école de commerce ou d'ingénieurs.",
+      "Avoir des connaissances sectorielles dans l'assurance, la mobilité ou le sport/eSport.",
+      "Connaître les métiers du conseil en Digital & Data.",
+      "Posséder un excellent niveau d'anglais business à l'écrit et à l'oral.",
+      "Faire preuve d'une grande rigueur et d'une bonne capacité d'analyse.",
+      "Savoir piloter et mettre en œuvre un projet impliquant de multiples parties prenantes.",
+      "Savoir animer des ateliers, identifier et prioriser les besoins et proposer des solutions avec diplomatie.",
+      "Maîtriser les outils bureautiques et de gestion de projet tels que Planner, Trello ou Jira.",
+      "Maîtriser au moins un outil de BI parmi Tableau, Looker Studio ou Power BI.",
+      "Être proactif(ve), faire preuve de leadership naturel et posséder d'excellentes capacités de communication.",
+      "Savoir résoudre des problèmes complexes.",
+      "Savoir travailler en équipe, s'adapter à différentes situations et apprendre de manière autonome."
+    ],
+    "stamp_1": {
+      "status": "passed",
+      "check": "All listed education, sector knowledge, English, tools, delivery skills, and soft skills appear under Preferred experience."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The list preserves the original section's preferred status and does not omit named tools or sector knowledge."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "Preferred experience",
+      "formation bac +5",
+      "connaissances sectorielles dans l’assurance, la mobilité ou le sport/eSport",
+      "excellent niveau d’anglais business",
+      "Planner, Trello, Jira",
+      "Tableau, Looker Studio, Power BI"
+    ]
+  },
+  "detected_language": {
+    "final_value": "French",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The substantive job description and qualifications are written in French."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "English interface labels and Q&A prompts do not change the primary language."
+    },
+    "provenance": "derived from submitted text",
+    "evidence": [
+      "Notre offre",
+      "Vos savoirs",
+      "Votre savoir-faire",
+      "Votre savoir-être"
+    ]
+  },
+  "source_platform": {
+    "final_value": "Welcome to the Jungle",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The user explicitly confirmed that this posting was sourced from Welcome to the Jungle."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The page structure is consistent with the user-confirmed Welcome to the Jungle source series."
+    },
+    "provenance": "user-provided source metadata",
+    "evidence": [
+      "User confirmation: all sources starting from Lendable are Welcome to the Jungle"
+    ]
+  },
+  "application_channel": {
+    "final_value": "Application initiated through Welcome to the Jungle; resume attachment required; final submission destination not confirmed",
+    "stamp_1": {
+      "status": "passed",
+      "check": "The role-specific application information states that a résumé must be attached."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "The source platform is confirmed as Welcome to the Jungle, but the supplied text does not prove whether final submission remains on-platform or redirects elsewhere."
+    },
+    "provenance": "job post and user-provided source metadata",
+    "evidence": [
+      "Résumé attachment required",
+      "User confirmation: source platform is Welcome to the Jungle"
+    ]
+  },
+  "motivation_letter_required": {
+    "final_value": false,
+    "stamp_1": {
+      "status": "passed",
+      "check": "The Q&A explicitly states that a cover letter is optional."
+    },
+    "stamp_2": {
+      "status": "passed",
+      "check": "Optional means it is not mandatory, so the boolean value is false rather than null."
+    },
+    "provenance": "job post",
+    "evidence": [
+      "A cover letter is optional to apply for this position."
+    ]
+  }
+}
